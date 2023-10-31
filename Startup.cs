@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QuanLyRapPhim.Data;
 
 namespace QuanLyRapPhim
 {
@@ -24,6 +26,13 @@ namespace QuanLyRapPhim
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<QuanLyRapPhimDBContext>(
+                (option) =>
+                {
+                    string connectionString = Configuration.GetConnectionString("quanLyRapPhimDBContext");
+                    option.UseSqlServer(connectionString);
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +53,7 @@ namespace QuanLyRapPhim
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

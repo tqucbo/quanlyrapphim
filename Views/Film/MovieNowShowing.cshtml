@@ -1,0 +1,54 @@
+﻿@model List<QuanLyRapPhim.Models.FilmModel>
+@{
+    ViewData["Title"] = "Phim đang chiếu";
+}
+
+
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<ul class="list-unstyled" style="    
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 197px);
+        justify-content: space-between;">
+@foreach (var item in Model)
+{
+        var filmGenre = string.IsNullOrEmpty(item.filmGenreId) ? "" : item.filmGenre.filmGenreName;
+        var filmGenreStyle = string.IsNullOrEmpty(item.filmGenreId) ? "" : "width: 48px; height: 27px";
+        var filmMainCategory = string.IsNullOrEmpty(item.filmMainCategoryId) ? "Chưa xác định" : item.filmMainCategory.filmMainCategoryName;
+        var filmLength = item.filmLength == -1 ||  item.filmLength == 0 ? "Chưa xác định" : $"{item.filmLength} phút";
+        var filmStartDate = item.filmStartDate.HasValue ? string.Format("{0:dd/MM/yyyy}", item.filmStartDate) : "Chưa xác định";
+        var filmPosterImage = item.filmPosterImage ?? "noimageavailable.jpg";
+        
+            <li style="position: relative; margin-bottom: 30px;">
+                <span class="rounded" style="position: absolute; top: 5px; left: 5px; @filmGenreStyle; color: white; background-color: orange;">
+                    <center>
+                        <strong style="user-select: none;">@filmGenre</strong>
+                    </center>
+                </span>
+                <div>
+                    <img src="~/poster/@filmPosterImage" + alt="@item.filmName.ToUpper()" width="197px" height="271px">
+                </div>
+                <div style="height: 175px;">
+                    <div>
+                        <span><strong>@item.filmName.ToUpper()</strong></span>
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">Thể loại : </span>
+                        <span>@filmMainCategory</span>
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">Thời lượng : </span>
+                        <span>@filmLength</span>
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">Khởi chiếu : </span>
+                        <span>@filmStartDate</span>
+                    </div>
+                </div >
+                        <input type="submit" class="btn btn-primary" value="Mua vé" style="float: right;"
+                       asp-route-filmId="@item.filmId" asp-action="Index" asp-controller="BuyTicket">
+                        </input>    
+            </li>
+}  </div>
+ </ul>
