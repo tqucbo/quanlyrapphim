@@ -153,3 +153,5 @@ D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Proxies.dll
 D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\Razor\Views\Film\MovieComingSoon.cshtml.g.cs
 D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\Razor\Views\Film\MovieNowShowing.cshtml.g.cs
 D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\Razor\Views\BuyTicket\Index.cshtml.g.cs
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\package-lock.json
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\package.json

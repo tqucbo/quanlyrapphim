@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuanLyRapPhim.Data;
 
 namespace QuanLyRapPhim.Migrations
 {
     [DbContext(typeof(QuanLyRapPhimDBContext))]
-    partial class QuanLyRapPhimDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231101031637_Version0.7")]
+    partial class Version07
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,6 +153,9 @@ namespace QuanLyRapPhim.Migrations
 
                     b.Property<DateTime?>("filmStartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("languageDub")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("languageSubtitle")
                         .HasColumnType("nvarchar(max)");

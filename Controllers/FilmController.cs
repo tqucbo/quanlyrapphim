@@ -43,9 +43,5 @@ namespace QuanLyRapPhim.Controllers
                                      select film).ToList();
             return View(films);
         }
-        public IActionResult RedirectToBuyTicket(string filmId)
-        {
-            return RedirectToAction("Index", "BuyTicket", filmId);
-        }
     }
 }

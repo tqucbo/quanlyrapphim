@@ -1,5 +1,114 @@
+@model QuanLyRapPhim.Models.BuyTicketMutipleViewModel
+
 @{
     ViewData["Title"] = "Mua vé xem phim";
 }
 
 <h1>@ViewData["Title"]</h1>
+<hr />
+
+
+<div class="row no-gutters flex">
+    <div class="col-auto" style="position: relative;">
+        @{
+            var filmPosterImage = Model.filmModel.filmPosterImage ?? "noimageavailable.jpg";
+        }
+        <img src="~/poster/@filmPosterImage" alt="@Model.filmModel.filmName.ToUpper()" width="197px" height="271px">
+        @{
+            var filmGenre = string.IsNullOrEmpty(Model.filmModel.filmGenreId) ? "" :
+            Model.filmModel.filmGenre.filmGenreName;
+            var filmGenreStyle = string.IsNullOrEmpty(Model.filmModel.filmGenreId) ? "" : "width: 48px; height: 27px";
+        }
+        <span class="rounded"
+            style="position: absolute; top: 5px; left: 5px; @filmGenreStyle; color: white; background-color: orange;">
+            <center>
+                <strong style="user-select: none;">@filmGenre</strong>
+            </center>
+        </span>
+    </div>
+    <div class="col" style="padding-left: 25px;">
+        <span>
+            <h4>@Model.filmModel.filmName.ToUpper()</h4>
+        </span>
+        <div>
+            <div>
+                <span class=" font-weight-bold">Đạo diễn : </span>
+                <span>@Model.filmModel.filmDirector</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Diễn viên : </span>
+                <span>@Model.filmModel.filmMainActors</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Thể loại : </span>
+                @{
+                    var filmMainCategory = string.IsNullOrEmpty(Model.filmModel.filmMainCategoryId) ? "Chưa xác định" :
+                    Model.filmModel.filmMainCategory.filmMainCategoryName;
+                }
+                <span>@filmMainCategory</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Thời lượng : </span>
+                @{
+                    var filmLength = Model.filmModel.filmLength == -1 || Model.filmModel.filmLength == 0 ? "Chưa xác định" :
+                    $"{Model.filmModel.filmLength} phút";
+                }
+                <span>@filmLength</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Quốc gia sản xuất : </span>
+                @{
+                    var filmCountry = Model.filmModel.filmCountry ?? "Chưa xác định";
+                }
+                <span>@filmCountry</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Phụ đề : </span>
+                @{
+                    var languageSubtitle = Model.filmModel.languageSubtitle ?? "Không";
+                }
+                <span>@languageSubtitle</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Khởi chiếu : </span>
+                @{
+                    var filmStartDate = Model.filmModel.filmStartDate.HasValue
+                    ? string.Format("{0:dd/MM/yyyy}", Model.filmModel.filmStartDate)
+                    : "Chưa xác định";
+                }
+                <span>@filmStartDate</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Phân loại độ tuổi : </span>
+                @{
+                    filmGenre = string.IsNullOrEmpty(Model.filmModel.filmGenreId) ? "Chưa xác định" :
+                    Model.filmModel.filmGenre.filmGenreName + " - " + Model.filmModel.filmGenre.filmGenreDescription;
+                }
+                <span>@filmGenre</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, 250px);justify-content: space-between;">
+    <select class="custom-select mt-4 w-100" asp->
+        <option hidden selected>Chọn rạp</option>
+        @foreach (var cinema in Model.cinemaModels)
+        {
+            <option value="@cinema.cinemaId">@cinema.cinemaName</option>
+        }
+    </select>
+    <select class="custom-select mt-4 w-100">
+        <option hidden selected>Chọn ngày chiếu</option>
+        <option>Ngày 1</option>
+        <option>Ngày 2</option>
+    </select>
+    <select class="custom-select mt-4 w-100">
+        <option hidden selected>Chọn giờ chiếu</option>
+        <option>Giờ 1</option>
+        <option>Giờ 2</option>
+    </select>
+    <a type="submit" class="btn btn-primary mt-4 w-100 text-light">
+        Chọn vị trí ngồi</a>
+</div>

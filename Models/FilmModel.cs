@@ -37,5 +37,8 @@ namespace QuanLyRapPhim.Models
 
         public string filmPosterImage { set; get; }        //  Ảnh Poster
 
+        public string filmCountry { set; get; }             // Quốc gia sản xuất
+
+        public string languageSubtitle { set; get; }        //  Ngôn ngữ phụ đề
     }
 }
