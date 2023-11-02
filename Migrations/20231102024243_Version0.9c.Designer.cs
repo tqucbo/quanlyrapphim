@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuanLyRapPhim.Data;
 
 namespace QuanLyRapPhim.Migrations
 {
     [DbContext(typeof(QuanLyRapPhimDBContext))]
-    partial class QuanLyRapPhimDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231102024243_Version0.9c")]
+    partial class Version09c
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

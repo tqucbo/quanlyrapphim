@@ -1,4 +1,4 @@
-@model QuanLyRapPhim.Models.BuyTicketMutipleViewModel
+@model QuanLyRapPhim.Models.FilmModel
 
 @{
     ViewData["Title"] = "Mua vé xem phim";
@@ -11,13 +11,13 @@
 <div class="row no-gutters flex">
     <div class="col-auto" style="position: relative;">
         @{
-            var filmPosterImage = Model.filmModel.filmPosterImage ?? "noimageavailable.jpg";
+            var filmPosterImage = Model.filmPosterImage ?? "noimageavailable.jpg";
         }
-        <img src="~/poster/@filmPosterImage" alt="@Model.filmModel.filmName.ToUpper()" width="197px" height="271px">
+        <img src="~/poster/@filmPosterImage" alt="@Model.filmName.ToUpper()" width="197px" height="271px">
         @{
-            var filmGenre = string.IsNullOrEmpty(Model.filmModel.filmGenreId) ? "" :
-            Model.filmModel.filmGenre.filmGenreName;
-            var filmGenreStyle = string.IsNullOrEmpty(Model.filmModel.filmGenreId) ? "" : "width: 48px; height: 27px";
+            var filmGenre = string.IsNullOrEmpty(Model.filmGenreId) ? "" :
+            Model.filmGenre.filmGenreName;
+            var filmGenreStyle = string.IsNullOrEmpty(Model.filmGenreId) ? "" : "width: 48px; height: 27px";
         }
         <span class="rounded"
             style="position: absolute; top: 5px; left: 5px; @filmGenreStyle; color: white; background-color: orange;">
@@ -28,52 +28,52 @@
     </div>
     <div class="col" style="padding-left: 25px;">
         <span>
-            <h4>@Model.filmModel.filmName.ToUpper()</h4>
+            <h4>@Model.filmName.ToUpper()</h4>
         </span>
         <div>
             <div>
                 <span class=" font-weight-bold">Đạo diễn : </span>
-                <span>@Model.filmModel.filmDirector</span>
+                <span>@Model.filmDirector</span>
             </div>
             <div>
                 <span class="font-weight-bold">Diễn viên : </span>
-                <span>@Model.filmModel.filmMainActors</span>
+                <span>@Model.filmMainActors</span>
             </div>
             <div>
                 <span class="font-weight-bold">Thể loại : </span>
                 @{
-                    var filmMainCategory = string.IsNullOrEmpty(Model.filmModel.filmMainCategoryId) ? "Chưa xác định" :
-                    Model.filmModel.filmMainCategory.filmMainCategoryName;
+                    var filmMainCategory = string.IsNullOrEmpty(Model.filmMainCategoryId) ? "Chưa xác định" :
+                    Model.filmMainCategory.filmMainCategoryName;
                 }
                 <span>@filmMainCategory</span>
             </div>
             <div>
                 <span class="font-weight-bold">Thời lượng : </span>
                 @{
-                    var filmLength = Model.filmModel.filmLength == -1 || Model.filmModel.filmLength == 0 ? "Chưa xác định" :
-                    $"{Model.filmModel.filmLength} phút";
+                    var filmLength = Model.filmLength == -1 || Model.filmLength == 0 ? "Chưa xác định" :
+                    $"{Model.filmLength} phút";
                 }
                 <span>@filmLength</span>
             </div>
             <div>
                 <span class="font-weight-bold">Quốc gia sản xuất : </span>
                 @{
-                    var filmCountry = Model.filmModel.filmCountry ?? "Chưa xác định";
+                    var filmCountry = Model.filmCountry ?? "Chưa xác định";
                 }
                 <span>@filmCountry</span>
             </div>
             <div>
                 <span class="font-weight-bold">Phụ đề : </span>
                 @{
-                    var languageSubtitle = Model.filmModel.languageSubtitle ?? "Không";
+                    var languageSubtitle = Model.languageSubtitle ?? "Không";
                 }
                 <span>@languageSubtitle</span>
             </div>
             <div>
                 <span class="font-weight-bold">Khởi chiếu : </span>
                 @{
-                    var filmStartDate = Model.filmModel.filmStartDate.HasValue
-                    ? string.Format("{0:dd/MM/yyyy}", Model.filmModel.filmStartDate)
+                    var filmStartDate = Model.filmStartDate.HasValue
+                    ? string.Format("{0:dd/MM/yyyy}", Model.filmStartDate)
                     : "Chưa xác định";
                 }
                 <span>@filmStartDate</span>
@@ -81,10 +81,14 @@
             <div>
                 <span class="font-weight-bold">Phân loại độ tuổi : </span>
                 @{
-                    filmGenre = string.IsNullOrEmpty(Model.filmModel.filmGenreId) ? "Chưa xác định" :
-                    Model.filmModel.filmGenre.filmGenreName + " - " + Model.filmModel.filmGenre.filmGenreDescription;
+                    filmGenre = string.IsNullOrEmpty(Model.filmGenreId) ? "Chưa xác định" :
+                    Model.filmGenre.filmGenreName + " - " + Model.filmGenre.filmGenreDescription;
                 }
                 <span>@filmGenre</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Nội dung chính : </span>
+                <span>@Model.filmDescription</span>
             </div>
         </div>
     </div>
@@ -92,23 +96,104 @@
 
 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, 250px);justify-content: space-between;">
-    <select class="custom-select mt-4 w-100" asp->
-        <option hidden selected>Chọn rạp</option>
-        @foreach (var cinema in Model.cinemaModels)
-        {
-            <option value="@cinema.cinemaId">@cinema.cinemaName</option>
-        }
+    <select class="custom-select mt-4 w-100" id="selectCinema" disabled>
+        <option disabled hidden selected>Chọn rạp</option>
     </select>
-    <select class="custom-select mt-4 w-100">
-        <option hidden selected>Chọn ngày chiếu</option>
-        <option>Ngày 1</option>
-        <option>Ngày 2</option>
+    <select class="custom-select mt-4 w-100" id="selectFilmShowDate" disabled>
+        <option disabled hidden selected>Chọn ngày chiếu</option>
     </select>
-    <select class="custom-select mt-4 w-100">
-        <option hidden selected>Chọn giờ chiếu</option>
-        <option>Giờ 1</option>
-        <option>Giờ 2</option>
+    <select class="custom-select mt-4 w-100" id="selectFilmShowTime" disabled>
+        <option disabled hidden selected>Chọn giờ chiếu</option>
     </select>
-    <a type="submit" class="btn btn-primary mt-4 w-100 text-light">
+    <a type="submit" class="btn btn-primary mt-4 w-100 text-light" id="chooseSeatButton">
         Chọn vị trí ngồi</a>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function (event) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.RouteUrl("getCinema")",
+                data: {
+                    "filmId": "@Model.filmId",
+                },
+                success: function (response) {
+                    if (response != '') {
+                        $("#selectCinema").removeAttr("disabled");
+                    }
+                    $("#selectCinema").find("option").not(":first").remove();
+                    for (i in response) {
+                        $("#selectCinema").append(
+                            "<option value = \"" + response[i]["cinemaId"] + "\">" + response[i]["cinemaName"] + "</option>"
+                        )
+                    }
+                }
+            });
+        });
+
+        $("#selectCinema").change(function (event) {
+            event.preventDefault();
+            var cinemaId = $("#selectCinema option:selected").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.RouteUrl("getFilmShowDate")",
+                data: {
+                    "cinemaId": cinemaId,
+                },
+                success: function (response) {
+                    $("#selectFilmShowDate").removeAttr("disabled");
+                    $("#selectFilmShowDate").find("option").not(":first").remove();
+                    for (i in response) {
+                        $("#selectFilmShowDate").append(
+                            "<option value = \"" + response[i] + "\">" + response[i] + "</option>"
+                        )
+                    }
+                }
+            });
+        });
+
+        $("#selectFilmShowDate").change(function (event) {
+            event.preventDefault();
+            var cinemaId = $("#selectCinema option:selected").val();
+            var filmShowDate = $("#selectFilmShowDate option:selected").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.RouteUrl("getFilmShowTime")",
+                data: {
+                    "filmShowDate": filmShowDate,
+                    "cinemaId": cinemaId,
+                },
+                success: function (response) {
+                    $("#selectFilmShowTime").removeAttr("disabled");
+                    $("#selectFilmShowTime").find("option").not(":first").remove();
+                    for (i in response) {
+                        $("#selectFilmShowTime").append(
+                            "<option value = \"" + response[i] + "\">" + response[i] + "</option>"
+                        )
+                    }
+                }
+            });
+        });
+
+        $("#chooseSeatButton").click(function (event) {
+            var cinemaId = $("#selectCinema option:selected").val();
+            var filmShowDate = $("#selectFilmShowDate option:selected").val();
+            var filmShowTime = $("#selectFilmShowTime option:selected").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.RouteUrl("getFilmScheduleId")",
+                data: {
+                    "cinemaId": cinemaId,
+                    "filmShowDate": filmShowDate,
+                    "filmShowTime": filmShowTime,
+                },
+                success: function (response) {
+                    $("#chooseSeatButton").attr("asp-action", "Index");
+                    $("#chooseSeatButton").attr("asp-controller", "ChooseSeat");
+                    $("#chooseSeatButton").attr("asp-route-filmScheduleId", response);
+                }
+            })
+        });
+    </script>
+}

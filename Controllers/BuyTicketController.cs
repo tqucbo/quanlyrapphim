@@ -4,7 +4,6 @@ using QuanLyRapPhim.Data;
 using QuanLyRapPhim.Models;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 
 namespace QuanLyRapPhim.Controllers
@@ -24,22 +23,75 @@ namespace QuanLyRapPhim.Controllers
         [Route("/buyticket/{filmId}")]
         public IActionResult Index(string filmId)
         {
+
+            FilmModel f = (from film in _context.films
+                           where film.filmId == filmId
+                           select film).FirstOrDefault();
+
+            return View(f);
+        }
+
+        [HttpPost]
+        [Route("/getCinema", Name = "getCinema")]
+        public IActionResult GetCinema([FromForm] string filmId)
+        {
             List<CinemaModel> cms = (from cm in _context.cinemas
                                      join crm in _context.cinemaRooms on cm.cinemaId equals crm.cinemaId
                                      join fsm in _context.filmSechedules on crm.cinemaRoomId equals fsm.cinemaRoomId
                                      where fsm.filmId == filmId
                                      select cm).Distinct().ToList();
 
-            FilmModel f = (from film in _context.films
-                           where film.filmId == filmId
-                           select film).FirstOrDefault();
+            return Json(cms);
+        }
 
-            BuyTicketMutipleViewModel multipleModel = new BuyTicketMutipleViewModel();
+        [HttpPost]
+        [Route("/getFilmShowDate", Name = "getFilmShowDate")]
+        public IActionResult GetFilmShowDate([FromForm] string cinemaId)
+        {
+            List<FilmSecheduleModel> fsms = (from fms in _context.filmSechedules
+                                             join crm in _context.cinemaRooms
+                                             on fms.cinemaRoomId equals crm.cinemaRoomId
+                                             where crm.cinemaId == cinemaId
+                                             select fms).ToList();
 
-            multipleModel.filmModel = f;
-            multipleModel.cinemaModels = cms;
+            List<string> allFilmShowDate = fsms.Select((fsm) => fsm.filmShowDate.ToShortDateString()).Distinct().ToList();
 
-            return View(multipleModel);
+            return Json(allFilmShowDate);
+        }
+
+        [HttpPost]
+        [Route("/getFilmShowTime", Name = "getFilmShowTime")]
+        public IActionResult GetFilmShowTime([FromForm] string filmShowDate, [FromForm] string cinemaId)
+        {
+            List<FilmSecheduleModel> fsms = (from fms in _context.filmSechedules
+                                             join crm in _context.cinemaRooms
+                                              on fms.cinemaRoomId equals crm.cinemaRoomId
+                                             where fms.filmShowDate == DateTime.Parse(filmShowDate)
+                                             && crm.cinemaId == cinemaId
+                                             select fms).ToList();
+
+            List<string> allFilmShowTime = fsms.Select((fsm) => fsm.filmShowTime.ToString()).Distinct().ToList();
+
+            return Json(allFilmShowTime);
+        }
+
+        [HttpPost]
+        [Route("/getFilmScheduleId", Name = "getFilmScheduleId")]
+        public IActionResult GetFilmScheduleId(string cinemaId, string filmShowDate, string filmShowTime)
+        {
+            // var _filmShowDate = DateTime.Parse(filmShowDate);
+
+            // Console.WriteLine(filmShowDate);
+
+            FilmSecheduleModel f = (from fms in _context.filmSechedules
+                                    join crm in _context.cinemaRooms
+                                     on fms.cinemaRoomId equals crm.cinemaRoomId
+                                    where crm.cinemaId == cinemaId
+                                    && fms.filmShowDate == DateTime.Parse(filmShowDate)
+                                    && fms.filmShowTime == TimeSpan.Parse(filmShowTime)
+                                    select fms).FirstOrDefault();
+
+            return Json(f.filmSecheduleId);
         }
     }
 }
