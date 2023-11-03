@@ -38,6 +38,7 @@ namespace QuanLyRapPhim.Controllers
             List<CinemaModel> cms = (from cm in _context.cinemas
                                      join crm in _context.cinemaRooms on cm.cinemaId equals crm.cinemaId
                                      join fsm in _context.filmSechedules on crm.cinemaRoomId equals fsm.cinemaRoomId
+                                     orderby cm.cinemaName
                                      where fsm.filmId == filmId
                                      select cm).Distinct().ToList();
 
@@ -51,6 +52,7 @@ namespace QuanLyRapPhim.Controllers
             List<FilmSecheduleModel> fsms = (from fms in _context.filmSechedules
                                              join crm in _context.cinemaRooms
                                              on fms.cinemaRoomId equals crm.cinemaRoomId
+                                             orderby fms.filmShowDate
                                              where crm.cinemaId == cinemaId
                                              select fms).ToList();
 
@@ -66,6 +68,7 @@ namespace QuanLyRapPhim.Controllers
             List<FilmSecheduleModel> fsms = (from fms in _context.filmSechedules
                                              join crm in _context.cinemaRooms
                                               on fms.cinemaRoomId equals crm.cinemaRoomId
+                                              orderby fms.filmShowTime
                                              where fms.filmShowDate == DateTime.Parse(filmShowDate)
                                              && crm.cinemaId == cinemaId
                                              select fms).ToList();
@@ -79,10 +82,6 @@ namespace QuanLyRapPhim.Controllers
         [Route("/getFilmScheduleId", Name = "getFilmScheduleId")]
         public IActionResult GetFilmScheduleId(string cinemaId, string filmShowDate, string filmShowTime)
         {
-            // var _filmShowDate = DateTime.Parse(filmShowDate);
-
-            // Console.WriteLine(filmShowDate);
-
             FilmSecheduleModel f = (from fms in _context.filmSechedules
                                     join crm in _context.cinemaRooms
                                      on fms.cinemaRoomId equals crm.cinemaRoomId

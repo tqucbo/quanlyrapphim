@@ -17,11 +17,6 @@ D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\QuanLyRapPhim.RazorAssemblyInfo.cache
 D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\QuanLyRapPhim.RazorAssemblyInfo.cs
 D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\scopedcss\bundle\QuanLyRapPhim.styles.css
 D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\QuanLyRapPhim.StaticWebAssets.Manifest.cache
-D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\QuanLyRapPhim.StaticWebAssets.Pack.cache
-D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\msbuild.QuanLyRapPhim.Microsoft.AspNetCore.StaticWebAssets.props
-D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\msbuild.build.QuanLyRapPhim.props
-D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.QuanLyRapPhim.props
-D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.QuanLyRapPhim.props
 D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\QuanLyRapPhim.TagHelpers.input.cache
 D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\QuanLyRapPhim.TagHelpers.output.cache
 D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\QuanLyRapPhim.RazorCoreGenerate.cache

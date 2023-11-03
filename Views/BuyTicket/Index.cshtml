@@ -105,13 +105,13 @@
     <select class="custom-select mt-4 w-100" id="selectFilmShowTime" disabled>
         <option disabled hidden selected>Chọn giờ chiếu</option>
     </select>
-    <a type="submit" class="btn btn-primary mt-4 w-100 text-light" id="chooseSeatButton">
+    <a class="btn btn-primary mt-4 w-100 text-light" id="chooseSeatButton">
         Chọn vị trí ngồi</a>
 </div>
 
 @section Scripts {
     <script>
-        $(document).ready(function (event) {
+        $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: "@Url.RouteUrl("getCinema")",
@@ -132,8 +132,7 @@
             });
         });
 
-        $("#selectCinema").change(function (event) {
-            event.preventDefault();
+        $("#selectCinema").change(function () {
             var cinemaId = $("#selectCinema option:selected").val();
             $.ajax({
                 type: "POST",
@@ -153,8 +152,7 @@
             });
         });
 
-        $("#selectFilmShowDate").change(function (event) {
-            event.preventDefault();
+        $("#selectFilmShowDate").change(function () {
             var cinemaId = $("#selectCinema option:selected").val();
             var filmShowDate = $("#selectFilmShowDate option:selected").val();
             $.ajax({
@@ -176,7 +174,7 @@
             });
         });
 
-        $("#chooseSeatButton").click(function (event) {
+        $("#selectFilmShowTime").change(function () {
             var cinemaId = $("#selectCinema option:selected").val();
             var filmShowDate = $("#selectFilmShowDate option:selected").val();
             var filmShowTime = $("#selectFilmShowTime option:selected").val();
@@ -189,9 +187,8 @@
                     "filmShowTime": filmShowTime,
                 },
                 success: function (response) {
-                    $("#chooseSeatButton").attr("asp-action", "Index");
-                    $("#chooseSeatButton").attr("asp-controller", "ChooseSeat");
-                    $("#chooseSeatButton").attr("asp-route-filmScheduleId", response);
+                    var href = "@Url.Action("Index", "ChooseSeat", new { filmScheduleId = "response" })".replace("response", response);
+                    $("#chooseSeatButton").attr("href", href);
                 }
             })
         });
