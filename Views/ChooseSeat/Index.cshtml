@@ -2,9 +2,70 @@
 
 @{
     ViewData["Title"] = "Chọn ghế";
+
+    var SeatRow = Model.Select(sr => sr.seatRowChar).Distinct().ToList();
+
+    
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@functions {
+        public string GetSeatModelsBySeatRow (char rowChar) {
+            string htmlRaw = "";
+            var seats = (from s in Model
+                        where s.seatRowChar == rowChar
+                        select s.seatName).ToList();
+            seats.ForEach(
+                s =>{
+
+                    htmlRaw = htmlRaw + "<td><a class=\"btn btn-primary align-middle\" style=\"width: 100%; max-width: 50px; color: white;\">" + s + "</a></td>";
+                } 
+            );
+            return htmlRaw;
+        }
+}
+
+<h1>
+    @ViewData["Title"]
+</h1>
+
+<hr/>
+
+<center>
+    <p class="text-secondary" style="margin-top: 25px; margin-bottom: 50px;">
+        MÀN HÌNH
+    </p>
+    <table>
+
+        @foreach (var i in SeatRow){
+            <tr>
+                @Html.Raw(GetSeatModelsBySeatRow(i))
+            </tr>
+           
+        }
+    </table>
+</center>
+
+
+@* <table>
+    <tr>
+        <td colspan="@totalSeatColumn">
+            <center>
+                Màn hình<br><br>
+                </center>
+        </td>
+    </tr>
+    @for (var i = 0; i < totalSeatRow; i++) {
+        <tr>
+            @for (var j = 0; j < totalSeatColumn; j++){
+                <td>
+                    <a href="#" class="btn btn-primary" style="width: 50px; height: 50px;">
+                        <center>
+                            @seats[i * totalSeatColumn + j].seatRowChar@seats[i * totalSeatColumn + j].seatColumnNumber
+                        </center>
+                    </a>
+                    
+                </td>
+            }
+        </tr>
+    }
+</table> *@
