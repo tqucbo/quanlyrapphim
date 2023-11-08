@@ -11,7 +11,7 @@
 <div class="row no-gutters flex">
     <div class="col-auto" style="position: relative;">
         @{
-            var filmPosterImage = Model.filmPosterImage ?? "noimageavailable.jpg";
+            var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{Model.filmPosterImage}") ? Model.filmPosterImage : "noimageavailable.jpg";
         }
         <img src="~/poster/@filmPosterImage" alt="@Model.filmName.ToUpper()" width="197px" height="271px">
         @{

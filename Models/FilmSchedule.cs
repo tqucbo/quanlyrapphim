@@ -28,7 +28,5 @@ namespace QuanLyRapPhim.Models
         [ForeignKey("cinemaRoomId")]
         public virtual CinemaRoomModel CinemaRoom { set; get; }
 
-        public int price { set; get; }                             //  Giá vé
-
     }
 }

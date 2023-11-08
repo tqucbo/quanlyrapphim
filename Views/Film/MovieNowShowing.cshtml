@@ -18,8 +18,8 @@
         var filmMainCategory = string.IsNullOrEmpty(item.filmMainCategoryId) ? "Chưa xác định" : item.filmMainCategory.filmMainCategoryName;
         var filmLength = item.filmLength == -1 ||  item.filmLength == 0 ? "Chưa xác định" : $"{item.filmLength} phút";
         var filmStartDate = item.filmStartDate.HasValue ? string.Format("{0:dd/MM/yyyy}", item.filmStartDate) : "Chưa xác định";
-        var filmPosterImage = item.filmPosterImage ?? "noimageavailable.jpg";
-        
+        var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{item.filmPosterImage}") ? item.filmPosterImage : "noimageavailable.jpg";
+                
             <li style="position: relative; margin-bottom: 30px;">
                 <span class="rounded" style="position: absolute; top: 5px; left: 5px; @filmGenreStyle; color: white; background-color: orange;">
                     <center>

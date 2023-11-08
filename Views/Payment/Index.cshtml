@@ -1,0 +1,98 @@
+@model QuanLyRapPhim.Models.MultipleViewModelForPaymentView
+
+@{
+    ViewData["Title"] = "Thanh toán";
+
+    var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{Model.filmSecheduleModel.film.filmPosterImage}") ? Model.filmSecheduleModel.film.filmPosterImage : "noimageavailable.jpg";
+    var filmGenre = string.IsNullOrEmpty(Model.filmSecheduleModel.film.filmGenreId) ? "" :
+            Model.filmSecheduleModel.film.filmGenre.filmGenreName;
+            var filmGenreStyle = string.IsNullOrEmpty(Model.filmSecheduleModel.film.filmGenreId) ? "" : "width: 48px; height: 27px";
+    
+}
+
+<div class="row no-gutters justify-content-between">
+    <h1 style="align-self: self-end;">
+        @ViewData["Title"]
+    </h1>
+    <a class="btn btn-primary text-white" id="btnXacNhanMuaVe" style="height: min-content; width:100%; max-width: 200px; align-self: self-end;">
+        Thanh toán trong : <span id="Countdown">00:00</span>
+    </a>
+</div>
+<hr />
+
+<div class="container">
+<div class="row" style="display: flex;">
+    <div class=" col-md-6 bg-info">
+        <p >Mã khuyến mãi</p>
+    </div>
+    <div class=" col-md-6">
+        <div class="row no-gutters flex">
+            <div class="col-auto" style="position: relative;">
+                <img src="~/poster/@filmPosterImage" alt="@Model.filmSecheduleModel.film.filmName.ToUpper()" style="height: auto; max-width: 197px;">
+                <span class="rounded"
+                    style="position: absolute; top: 5px; left: 5px; @filmGenreStyle; color: white; background-color: orange;">
+                    <center>
+                        <strong style="user-select: none;">@filmGenre</strong>
+                    </center>
+                </span>
+            </div>
+            <div class="col no-gutters w-100 pl-2 pr-2" style="">
+                <h4>@Model.filmSecheduleModel.film.filmName.ToUpper()</h4>
+                <br>
+                <p>
+                    Cụm rạp : <strong>@Model.cinemaModel.cinemaName</strong>
+                </p>
+                <p>
+                    Phòng chiếu : <strong>@Model.filmSecheduleModel.CinemaRoom.cinemaRoomName</strong>
+                </p>
+                <p>
+                    Suất chiếu: <strong>@Model.filmSecheduleModel.filmShowTime.ToString(@"hh\:mm") @Model.filmSecheduleModel.filmShowDate.ToShortDateString()</strong>
+                </p>
+            </div>
+        </div>
+        <div>
+            <p>
+                Các ghế đã chọn : <strong>@Model.seats</strong>
+            </p>
+            <p>
+                Tổng số tiền phải thanh toán : <strong><span>@Model.price</span<span>000 VND</span></strong>
+            </p>
+        </div>
+    </div>    
+</div>
+</div>
+        
+
+
+@section Scripts {
+    <script>
+        function countdown( elementName, minutes, seconds )
+        {
+            var element, endTime, mins, msLeft, time;
+
+            function twoDigits( n )
+            {
+                return (n <= 9 ? "0" + n : n);
+            }
+
+            function updateTimer()
+            {
+                msLeft = endTime - (+new Date);
+                if ( msLeft >= 0 ) {
+                    time = new Date(msLeft);
+         
+                    mins = time.getUTCMinutes();
+                    element.innerHTML = twoDigits(mins) + ':' + twoDigits( time.getUTCSeconds() );
+                    setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+                } else {
+                    $("#btnXacNhanMuaVe").text("Đã huỷ thanh toán")
+                }
+            }
+
+            element = document.getElementById( elementName );
+            endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+            updateTimer();
+        }
+        countdown("Countdown", 5, 0 );
+    </script>
+}

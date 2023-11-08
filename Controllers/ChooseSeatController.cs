@@ -32,16 +32,41 @@ namespace QuanLyRapPhim.Controllers
                                     where fsm.filmSecheduleId == filmScheduleId
                                     orderby sm.seatRowChar, sm.seatColumnNumber
                                     select sm).ToList();
-            return View(sms);
+
+            FilmSecheduleModel fs = (from fsm in _context.filmSechedules
+                                    where fsm.filmSecheduleId == filmScheduleId
+                                    select fsm).FirstOrDefault(); 
+
+            CinemaModel c = (from cm in _context.cinemas
+                                     join crm in _context.cinemaRooms on cm.cinemaId equals crm.cinemaId
+                                     join fsm in _context.filmSechedules on crm.cinemaRoomId equals fsm.cinemaRoomId
+                                     orderby cm.cinemaName
+                                     where fsm.filmSecheduleId == filmScheduleId
+                                     select cm).FirstOrDefault();
+
+            MultipleViewModelForChooseSeatView m = new MultipleViewModelForChooseSeatView() ;
+            m.seatModels = sms;
+            m.filmSecheduleModel = fs;
+            m.cinemaModel = c;
+
+            return View(m);
         }
 
+        [Route("/redirectToPayment/", Name = "redirectToPayment")]
         [HttpPost]
-        [Route("/getFilmScheduleDetail", Name = "getFilmScheduleDetail")]
-        public IActionResult GetFilmScheduleDetail(string filmScheduleId){
-            FilmSecheduleModel f = (from fsm in _context.filmSechedules
-                                    where fsm.filmSecheduleId == filmScheduleId
-                                    select fsm).FirstOrDefault();
-            return Json(f);
+        public IActionResult RedirectToPayment(string[] listOfChooseSeat, string filmScheduleId, int price) {
+            return Json (new { 
+                url = Url.Action(
+                    "Index", 
+                    "Payment", 
+                    new {
+                            listOfChooseSeat = listOfChooseSeat, 
+                            filmScheduleId = filmScheduleId,
+                            price = price,
+                        }
+                    )
+                }      
+            );
         }
     }
 }

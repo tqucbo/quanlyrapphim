@@ -151,3 +151,16 @@ D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\Razor\Views\BuyTicket\Index.cshtml.g.cs
 D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\package-lock.json
 D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\package.json
 D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\Razor\Views\ChooseSeat\Index.cshtml.g.cs
+D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\QuanLyRapPhim.StaticWebAssets.Pack.cache
+D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\msbuild.QuanLyRapPhim.Microsoft.AspNetCore.StaticWebAssets.props
+D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\msbuild.build.QuanLyRapPhim.props
+D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.QuanLyRapPhim.props
+D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.QuanLyRapPhim.props
+D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\Razor\Views\Payment\Index.cshtml.g.cs
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\System.Web.Mvc.dll
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\System.Web.Razor.dll
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\System.Web.Helpers.dll
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\System.Web.WebPages.Deployment.dll
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\System.Web.WebPages.Razor.dll
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\System.Web.WebPages.dll
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll

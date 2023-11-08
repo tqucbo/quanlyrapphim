@@ -73,7 +73,7 @@ namespace QuanLyRapPhim.Controllers
                                              && crm.cinemaId == cinemaId
                                              select fms).ToList();
 
-            List<string> allFilmShowTime = fsms.Select((fsm) => fsm.filmShowTime.ToString()).Distinct().ToList();
+            List<string> allFilmShowTime = fsms.Select((fsm) => fsm.filmShowTime.ToString(@"hh\:mm")).Distinct().ToList();
 
             return Json(allFilmShowTime);
         }

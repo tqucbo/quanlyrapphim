@@ -181,9 +181,6 @@ namespace QuanLyRapPhim.Migrations
                     b.Property<TimeSpan>("filmShowTime")
                         .HasColumnType("TIME");
 
-                    b.Property<int>("price")
-                        .HasColumnType("int");
-
                     b.HasKey("filmSecheduleId");
 
                     b.HasIndex("cinemaRoomId");
@@ -193,12 +190,31 @@ namespace QuanLyRapPhim.Migrations
                     b.ToTable("FilmSchedule");
                 });
 
+            modelBuilder.Entity("QuanLyRapPhim.Models.SeatCategoryModel", b =>
+                {
+                    b.Property<string>("seatCategoryId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("seatCategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("seatCategoryPrice")
+                        .HasColumnType("int");
+
+                    b.HasKey("seatCategoryId");
+
+                    b.ToTable("SeatCategory");
+                });
+
             modelBuilder.Entity("QuanLyRapPhim.Models.SeatModel", b =>
                 {
                     b.Property<string>("seatId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("cinemaRoomId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("seatCategoryId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("seatColumnNumber")
@@ -214,6 +230,8 @@ namespace QuanLyRapPhim.Migrations
                     b.HasKey("seatId");
 
                     b.HasIndex("cinemaRoomId");
+
+                    b.HasIndex("seatCategoryId");
 
                     b.ToTable("Seat");
                 });
@@ -293,7 +311,13 @@ namespace QuanLyRapPhim.Migrations
                         .WithMany()
                         .HasForeignKey("cinemaRoomId");
 
+                    b.HasOne("QuanLyRapPhim.Models.SeatCategoryModel", "seatCategory")
+                        .WithMany()
+                        .HasForeignKey("seatCategoryId");
+
                     b.Navigation("cinemaRoom");
+
+                    b.Navigation("seatCategory");
                 });
 
             modelBuilder.Entity("QuanLyRapPhim.Models.TicketModel", b =>
