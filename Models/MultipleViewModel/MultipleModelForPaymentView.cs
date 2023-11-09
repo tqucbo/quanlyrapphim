@@ -8,6 +8,8 @@ namespace QuanLyRapPhim.Models
         public FilmSecheduleModel filmSecheduleModel {set;get;}
 
         public CinemaModel cinemaModel {set;get;}
+
+        public List<PaymentMethodModel> paymentMethodModels {set;get;}
         
         public int price {set;get;}
     }

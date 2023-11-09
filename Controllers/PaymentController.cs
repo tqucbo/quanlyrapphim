@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using QuanLyRapPhim.Data;
 using QuanLyRapPhim.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace QuanLyRapPhim.Controllers
@@ -29,6 +31,8 @@ namespace QuanLyRapPhim.Controllers
                     m.seats += listOfChooseSeat[i] + ", ";  
             }
 
+            List<PaymentMethodModel> pms = (from pmm in _context.paymentMethods
+                                                        select pmm).ToList();
 
             var fs = (from fsm in _context.filmSechedules
                                     where fsm.filmSecheduleId == filmScheduleId
@@ -44,6 +48,8 @@ namespace QuanLyRapPhim.Controllers
                                      select cm).FirstOrDefault();
 
             m.cinemaModel = c;
+
+            m.paymentMethodModels = pms;
 
             m.price = price;
 

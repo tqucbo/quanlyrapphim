@@ -29,6 +29,8 @@ namespace QuanLyRapPhim.Data
 
         public DbSet<TicketModel> tickets { set; get; }
 
+        public DbSet<PaymentMethodModel> paymentMethods {set;get;}
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -47,6 +49,9 @@ namespace QuanLyRapPhim.Data
                     entityType.SetTableName(tableName.Substring(6));
                 }
             }
+
+            modelBuilder.Entity<InvoiceModel>().HasKey(i => new {i.invoiceId, i.ticketId});
+
         }
     }
 }

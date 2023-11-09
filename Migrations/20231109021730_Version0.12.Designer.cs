@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuanLyRapPhim.Data;
 
 namespace QuanLyRapPhim.Migrations
 {
     [DbContext(typeof(QuanLyRapPhimDBContext))]
-    partial class QuanLyRapPhimDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231109021730_Version0.12")]
+    partial class Version012
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,28 +192,10 @@ namespace QuanLyRapPhim.Migrations
                     b.ToTable("FilmSchedule");
                 });
 
-            modelBuilder.Entity("QuanLyRapPhim.Models.InvoiceModel", b =>
-                {
-                    b.Property<string>("invoiceId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ticketId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("invoiceId", "ticketId");
-
-                    b.HasIndex("ticketId");
-
-                    b.ToTable("Invoice");
-                });
-
             modelBuilder.Entity("QuanLyRapPhim.Models.PaymentMethodModel", b =>
                 {
                     b.Property<string>("paymentMethodId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("paymentMethodImage")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("paymentMethodName")
                         .HasColumnType("nvarchar(max)");
@@ -337,17 +321,6 @@ namespace QuanLyRapPhim.Migrations
                     b.Navigation("CinemaRoom");
 
                     b.Navigation("film");
-                });
-
-            modelBuilder.Entity("QuanLyRapPhim.Models.InvoiceModel", b =>
-                {
-                    b.HasOne("QuanLyRapPhim.Models.TicketModel", "ticket")
-                        .WithMany()
-                        .HasForeignKey("ticketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ticket");
                 });
 
             modelBuilder.Entity("QuanLyRapPhim.Models.SeatModel", b =>

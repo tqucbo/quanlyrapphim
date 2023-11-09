@@ -20,15 +20,34 @@
 </div>
 <hr />
 
-<div class="container">
+
 <div class="row" style="display: flex;">
-    <div class=" col-md-6 bg-info">
-        <p >Mã khuyến mãi</p>
+    <div class="col-md-7">
+        <h4>Hình thức thanh toán</h4>
+        <div class="pt-2">
+            @foreach (var item in Model.paymentMethodModels){
+                <div style="display: table; height: 64px;">
+                    <div style="display: table-cell; width: fit-content; padding-right: 10px;">
+                        <input class="" type="radio" name="paymentMethod" value="@item.paymentMethodName">
+                    </div>
+                    <div style="display: table-cell; width: fit-content; padding-right: 10px;">
+                        <img class="" src="~/paymentMethod/@item.paymentMethodImage" alt="@item.paymentMethodName.ToUpper()" width="48px" height="48px">
+                    </div>
+                    @{
+                        var verticalAlign = string.IsNullOrEmpty(item.paymentMethodNote) ? "center" : "top";
+                    }
+                    <div style="display: table-cell; vertical-align: @verticalAlign">
+                        <div>@item.paymentMethodName</div>
+                        <div style="font-size: small;">@item.paymentMethodNote</div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-    <div class=" col-md-6">
+    <div class=" col-md-5">
         <div class="row no-gutters flex">
             <div class="col-auto" style="position: relative;">
-                <img src="~/poster/@filmPosterImage" alt="@Model.filmSecheduleModel.film.filmName.ToUpper()" style="height: auto; max-width: 197px;">
+                <img src="~/poster/@filmPosterImage" alt="@Model.filmSecheduleModel.film.filmName.ToUpper()" style="height: auto; max-width: 128px;">
                 <span class="rounded"
                     style="position: absolute; top: 5px; left: 5px; @filmGenreStyle; color: white; background-color: orange;">
                     <center>
@@ -39,17 +58,18 @@
             <div class="col no-gutters w-100 pl-2 pr-2" style="">
                 <h4>@Model.filmSecheduleModel.film.filmName.ToUpper()</h4>
                 <br>
-                <p>
+                <p style="font-size: smaller;">
                     Cụm rạp : <strong>@Model.cinemaModel.cinemaName</strong>
                 </p>
-                <p>
+                <p style="font-size: smaller;">
                     Phòng chiếu : <strong>@Model.filmSecheduleModel.CinemaRoom.cinemaRoomName</strong>
                 </p>
-                <p>
+                <p style="font-size: smaller;">
                     Suất chiếu: <strong>@Model.filmSecheduleModel.filmShowTime.ToString(@"hh\:mm") @Model.filmSecheduleModel.filmShowDate.ToShortDateString()</strong>
                 </p>
             </div>
         </div>
+        <br>    
         <div>
             <p>
                 Các ghế đã chọn : <strong>@Model.seats</strong>
@@ -60,7 +80,7 @@
         </div>
     </div>    
 </div>
-</div>
+
         
 
 
@@ -93,6 +113,6 @@
             endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
             updateTimer();
         }
-        countdown("Countdown", 5, 0 );
+        countdown("Countdown", 15, 0 );
     </script>
 }

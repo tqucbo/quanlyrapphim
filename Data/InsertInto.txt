@@ -307,3 +307,11 @@ VALUES
 ('cbd98490-1d92-4310-9bc5-3879651878a8','690b6c20-0e8e-4b9b-9784-b814022607b7','3d4f4a61-9bf5-416c-9712-528fc65debb0','2023-11-10','12:00'),
 ('72e114b2-3294-4a0f-b79c-28ed1f15cec8','690b6c20-0e8e-4b9b-9784-b814022607b7','2687df17-36a5-40cc-b823-1a2b4bd60da6','2023-11-09','15:00');
 
+INSERT INTO PaymentMethod
+VALUES
+('2d6802f4-fdef-4e57-b862-3c05f610e7cb',N'Momo',N'79K cho vé đầu tiên trong tháng và 89K cho các vé tiếp theo khi thanh toán bằng Ví trả sau.', 'momo.png'),
+('dfb2f4f6-f899-4536-8283-6801d84f0aa7',N'ZaloPay',N'Cơ hội được xem phim miễn phí cả năm khi Thanh toán bằng ZaloPay.', 'zalopay.png'),
+('73baada6-058f-4715-8a9c-3294efb5cee7',N'ShopeePay',N'Chỉ 99K khi mua vé Premium Seat trong "Ngày hội Shopee 11/11", tối đa 01 vé/tài khoản.', 'shopeepay.png'),
+('6a4ea0d7-6d74-4d0e-a001-c06484a24998',N'Payoo',N'Thanh toán trong vòng 15 phút kể từ khi đặt vé tại 25000 điểm giao dịch Payoo trên toàn quốc.', 'payoo.png'),
+('28a0baa2-6883-4bc2-9ff4-0a7c71b0b454',N'VNPay',N'Giảm 10% tối đa 50K khi nhập mã VNPAYQRCC trên Ứng dụng ngân hàng hoặc Ví VNPAY', 'vnpay.png'),
+('8feb22e7-0239-4665-80ac-ed44f19303b0',N'Napas',N'Chấp nhận mọi thẻ và tài khoản ngân hàng thuộc hệ thống Napas và một số thẻ quốc tế.', 'napas.png');
