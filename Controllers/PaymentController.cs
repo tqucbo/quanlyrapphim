@@ -8,6 +8,8 @@ using QuanLyRapPhim.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -89,19 +91,35 @@ namespace QuanLyRapPhim.Controllers
 
             await _context.SaveChangesAsync();
 
+            TempData["jsonTicket"] = JsonConvert.SerializeObject(tickets);
+
             return RedirectToAction("CreateInvoice", "Payment", new
             {
-                jsonTickets = JsonConvert.SerializeObject(tickets),
                 paymentMethodName = paymentMethodName,
                 price = price,
             });
         }
 
-        public async Task<IActionResult> CreateInvoice(string jsonTickets, string paymentMethodName, int price)
+        public async Task<IActionResult> CreateInvoice(string paymentMethodName, int price)
         {
-            List<TicketModel> tickets = JsonConvert.DeserializeObject<List<TicketModel>>(jsonTickets);
+            List<TicketModel> tickets = JsonConvert.DeserializeObject<List<TicketModel>>((string)TempData["jsonTicket"]);
 
             string g = Guid.NewGuid().ToString();
+
+            Console.WriteLine($"Kieu du lieu cua g : {g.GetType()}");
+
+            TempData["invoiceId"] = g;
+
+            Console.WriteLine($@"Kieu du lieu cua TempData[""invoiceId""] tai CreateInvoice : {TempData["invoiceId"].GetType()}");
+
+
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode($"{g}", QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+
+            string fileName = $"QRCode_{g}.jpg";
+            qrCodeImage.Save(Path.Combine($"{Directory.GetCurrentDirectory()}", "wwwroot", "qrcode", fileName), ImageFormat.Jpeg);
 
             tickets.ForEach(
                 t =>
@@ -113,11 +131,7 @@ namespace QuanLyRapPhim.Controllers
                                          where pm.paymentMethodName == paymentMethodName
                                          select pm).Select(pm => pm.paymentMethodId).FirstOrDefault();
                     i.price = price;
-
-                    // QRCodeGenerator qrGenerator = new QRCodeGenerator();
-                    // QRCodeData qrCodeData = qrGenerator.CreateQrCode("The text which should be encoded.", QRCodeGenerator.ECCLevel.Q);
-                    // QRCode qrCode = new QRCode(qrCodeData);
-                    // Bitmap qrCodeImage = qrCode.GetGraphic(20);
+                    i.image = fileName;
 
                     _context.Add(i);
                 }
@@ -127,7 +141,7 @@ namespace QuanLyRapPhim.Controllers
 
             return Json(new
             {
-                url = Url.Action("PaymentSuccessfully", "Payment", new { invoiceId = g, })
+                url = Url.Action("PaymentSuccessfully", "Payment", new { invoiceId = g })
             });
         }
 
@@ -140,7 +154,6 @@ namespace QuanLyRapPhim.Controllers
                                            select ims).ToList();
 
             return View(invoices);
-            
         }
     }
 }

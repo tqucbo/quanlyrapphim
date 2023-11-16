@@ -2,6 +2,44 @@
 
 @{
     ViewData["Title"] = "Mua vé thành công";
+
+    var qrCode = Model.Select(i => i.image).Distinct().FirstOrDefault();
+    var filmName = Model.Select(i => i.ticket.filmSechedule.film.filmName).Distinct().FirstOrDefault();
+    var cinema = Model.Select(i => i.ticket.filmSechedule.CinemaRoom.cinemaModel.cinemaName).Distinct().FirstOrDefault();
+    var cinemaRoom = Model.Select(i => i.ticket.filmSechedule.CinemaRoom.cinemaRoomName).Distinct().FirstOrDefault();
+    var filmSechedule = Model.Select(i => new
+    {
+        filmShowDate = i.ticket.filmSechedule.filmShowDate,
+        filmShowTime = i.ticket.filmSechedule.filmShowTime
+    }).Distinct().FirstOrDefault();
+    var seats = Model.Select(i => i.ticket.seat.seatName).ToList();
+    var price = Model.Select(i => i.price).Distinct().FirstOrDefault();
+    var paymentMethod = Model.Select(i => i.PaymentMethod.paymentMethodName).Distinct().FirstOrDefault();
+    var invoiceId = Model.Select(i => i.invoiceId).Distinct().FirstOrDefault();
+    var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{Model.Select(i => i.ticket.filmSechedule.film.filmPosterImage).Distinct().FirstOrDefault()}") ? Model.Select(i => i.ticket.filmSechedule.film.filmPosterImage).Distinct().FirstOrDefault() : "noimageavailable.jpg";
+    var filmGenre = string.IsNullOrEmpty(Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreId).Distinct().FirstOrDefault()) ? "" : Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreName).Distinct().FirstOrDefault();
+    var filmGenreStyle = string.IsNullOrEmpty(Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreId).Distinct().FirstOrDefault()) ? "" : "width: 48px; height: 27px";
+    
+    string getSeatFromSeatModel()
+    {
+        string htmlSeat = "";
+        foreach (var i in seats)
+        {
+            if (seats.IndexOf(i) == 0)
+            {
+                htmlSeat += $"<span>{i}, ";
+            }
+            else if (seats.IndexOf(i) == seats.Count - 1)
+            {
+                htmlSeat += $"{i}</span>";
+            }
+            else
+            {
+                htmlSeat += $"{i}, ";
+            }
+        }
+        return htmlSeat;
+    }
 }
 
 <h1>
@@ -9,4 +47,59 @@
 </h1>
 <hr>
 
-@* @qrCodeImage *@
+<div class="text-center">
+    <h3>Chúc mừng! Bạn đã mua vé thành công!</h3>
+
+    <div style="width: max(75%, min(500px, 100%)); margin: auto;">
+        Mã QR này đã được gửi đến Email của bạn<br>và cũng có thể truy cập từ mục <strong>Lịch sử giao dịch</strong>
+        trên Website và Ứng dụng.
+    </div>
+    <div class="mb-3 mt-3">
+        <img src="~/qrcode/@qrCode" width="200px" height="200px ">
+        <div>@invoiceId</div>
+    </div>
+    <div style="width: max(75%, min(500px, 100%)); margin: auto; font-size: x-small;">
+        Quý khán giả có thể sử dụng trực tiếp mã QR này để vào phòng chiếu nhanh hơn, <strong>bắt đầu từ
+            01/01/2024</strong>.
+        <br>Quý khán giả cũng có thể mang mã QR này đến quầy vé để được hỗ trợ in vé giấy như thường lệ.
+    </div>
+    <br>
+    <h4>
+        Thông tin giao dịch
+    </h4>
+    <div class="d-inline-flex mt-3 mb-3 bg-warning" style="width: fit-content; max-width: max(500px, 50%); margin: auto;">
+        <div style="position: relative; width: fit-content;">
+            <img src="~/poster/@filmPosterImage" alt="@filmName.ToUpper()" style="height: auto; max-width: 128px;">
+            <span class="rounded" style="position: absolute; top: 5px; left: 5px; @filmGenreStyle; color: white; background-color: orange;">
+                <center>
+                    <strong style="user-select: none;">@filmGenre</strong>
+                </center>
+            </span>
+        </div>
+        <div class="ml-3 text-left">
+            <h5>
+                @filmName
+            </h5>
+            <div>
+                Suất chiếu: <strong>@filmSechedule.filmShowTime.ToString(@"hh\:mm")
+                    @filmSechedule.filmShowDate.ToShortDateString()</strong>
+            </div>
+            <div>
+                Cụm rạp : <strong>@cinema</strong>
+            </div>
+            <div>
+                Phòng chiếu : <strong>@cinemaRoom</strong>
+            </div>
+            <div>
+                Các ghế : <strong>@Html.Raw(getSeatFromSeatModel())</strong>
+            </div>
+            <div>
+                Số tiền : <strong><span>@price</span<span>000 VND</span></strong>
+            </div>
+            <div>
+                Hình thức thanh toán: <strong>@paymentMethod</strong>
+            </div>
+        </div>
+    </div>
+
+</div>
