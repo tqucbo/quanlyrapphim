@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuanLyRapPhim.Data;
 
 namespace QuanLyRapPhim.Migrations
 {
     [DbContext(typeof(QuanLyRapPhimDBContext))]
-    partial class QuanLyRapPhimDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231115073951_Version0.15")]
+    partial class Version015
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,15 +200,7 @@ namespace QuanLyRapPhim.Migrations
                     b.Property<string>("ticketId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("paymentMethodId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("price")
-                        .HasColumnType("int");
-
                     b.HasKey("invoiceId", "ticketId");
-
-                    b.HasIndex("paymentMethodId");
 
                     b.HasIndex("ticketId");
 
@@ -345,17 +339,11 @@ namespace QuanLyRapPhim.Migrations
 
             modelBuilder.Entity("QuanLyRapPhim.Models.InvoiceModel", b =>
                 {
-                    b.HasOne("QuanLyRapPhim.Models.PaymentMethodModel", "PaymentMethod")
-                        .WithMany()
-                        .HasForeignKey("paymentMethodId");
-
                     b.HasOne("QuanLyRapPhim.Models.TicketModel", "ticket")
                         .WithMany()
                         .HasForeignKey("ticketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("PaymentMethod");
 
                     b.Navigation("ticket");
                 });

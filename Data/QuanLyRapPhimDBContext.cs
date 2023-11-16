@@ -31,6 +31,8 @@ namespace QuanLyRapPhim.Data
 
         public DbSet<PaymentMethodModel> paymentMethods {set;get;}
 
+        public DbSet<InvoiceModel> invoices {set;get;}
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -50,7 +52,11 @@ namespace QuanLyRapPhim.Data
                 }
             }
 
+            modelBuilder.Entity<TicketModel>().Property(t => t.ticketId).ValueGeneratedOnAdd();
+
             modelBuilder.Entity<InvoiceModel>().HasKey(i => new {i.invoiceId, i.ticketId});
+
+            // modelBuilder.Entity<InvoiceModel>().Property(i => i.invoiceId).ValueGeneratedOnAdd();
 
         }
     }

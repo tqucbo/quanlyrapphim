@@ -10,5 +10,12 @@ namespace QuanLyRapPhim.Models
         
         [ForeignKey("ticketId")]
         public virtual TicketModel ticket {set;get;}
+
+        public string paymentMethodId {set;get;}
+
+        [ForeignKey("paymentMethodId")]
+        public virtual PaymentMethodModel PaymentMethod {set;get;}
+
+        public int price {set;get;}
     }
 }

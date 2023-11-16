@@ -164,3 +164,8 @@ D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\System.Web.WebPages.Deployment.dll
 D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\System.Web.WebPages.Razor.dll
 D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\System.Web.WebPages.dll
 D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll
+D:\BIDC\QuanLyRapPhim\obj\Debug\net5.0\Razor\Views\Payment\PaymentSuccessfully.cshtml.g.cs
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\QRCoder.dll
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\System.Drawing.Common.dll
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\BIDC\QuanLyRapPhim\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll

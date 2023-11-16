@@ -4,10 +4,24 @@
     ViewData["Title"] = "Thanh toán";
 
     var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{Model.filmSecheduleModel.film.filmPosterImage}") ? Model.filmSecheduleModel.film.filmPosterImage : "noimageavailable.jpg";
+    
     var filmGenre = string.IsNullOrEmpty(Model.filmSecheduleModel.film.filmGenreId) ? "" :
             Model.filmSecheduleModel.film.filmGenre.filmGenreName;
             var filmGenreStyle = string.IsNullOrEmpty(Model.filmSecheduleModel.film.filmGenreId) ? "" : "width: 48px; height: 27px";
     
+    string getSeatFromSeatModel() {
+        string htmlSeat = "";
+        foreach(var i in Model.seatModels){
+            if (Model.seatModels.IndexOf(i) == 0) {
+                htmlSeat += $"<span>{i.seatName}, ";
+            } else if (Model.seatModels.IndexOf(i) == Model.seatModels.Count - 1) {
+                htmlSeat += $"{i.seatName}</span>";
+            } else {
+                htmlSeat += $"{i.seatName}, ";
+            }  
+        }
+        return htmlSeat;
+    }
 }
 
 <div class="row no-gutters justify-content-between">
@@ -72,11 +86,20 @@
         <br>    
         <div>
             <p>
-                Các ghế đã chọn : <strong>@Model.seats</strong>
+                Các ghế đã chọn : <strong>@Html.Raw(getSeatFromSeatModel())</strong>
             </p>
             <p>
                 Tổng số tiền phải thanh toán : <strong><span>@Model.price</span<span>000 VND</span></strong>
             </p>
+        </div>
+        <div>
+            <span>
+                Nhập mã khuyến mãi : 
+            </span>
+            <span>
+                <input class="rounded" type="text">
+                <input class="btn-primary rounded" type="button" value="Kiểm tra">
+            </span>
         </div>
     </div>    
 </div>
@@ -86,6 +109,7 @@
 
 @section Scripts {
     <script>
+               
         function countdown( elementName, minutes, seconds )
         {
             var element, endTime, mins, msLeft, time;
@@ -114,5 +138,24 @@
             updateTimer();
         }
         countdown("Countdown", 15, 0 );
+
+        $("#btnXacNhanMuaVe").click(function(event) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.RouteUrl("CreateTicket")",
+                data: 
+                {
+                    "listIdOfChooseSeat": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.seatModels.Select(x => x.seatId).ToList()))'),
+                    "accountId": "99d60d01-64ad-4024-b9bd-8407f6db1514",
+                    "paymentMethodName": $("input[name='paymentMethod']:checked").val(),
+                    "price": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.price))'),
+                    "filmSecheduleId": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.filmSecheduleModel.filmSecheduleId))'),
+                },
+                traditional: true,
+                success: function(response){
+                    window.location.href = response.url
+                },
+            });
+        });
     </script>
 }

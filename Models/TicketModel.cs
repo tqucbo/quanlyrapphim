@@ -10,11 +10,6 @@ namespace QuanLyRapPhim.Models
         [Key]
         public string ticketId { set; get; }                // Mã vé
 
-        public string filmId { set; get; }                  // Mã phim
-
-        [ForeignKey("filmId")]
-        public virtual FilmModel film { set; get; }
-
         public string accountId { set; get; }               // Mã tài khoản
 
         [ForeignKey("accountId")]

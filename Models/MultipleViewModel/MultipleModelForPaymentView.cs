@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace QuanLyRapPhim.Models
 {
     public class MultipleViewModelForPaymentView {
-        public string seats {set;get;}
+        public List<SeatModel> seatModels {set;get;}
 
         public FilmSecheduleModel filmSecheduleModel {set;get;}
 
