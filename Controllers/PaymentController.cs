@@ -106,13 +106,6 @@ namespace QuanLyRapPhim.Controllers
 
             string g = Guid.NewGuid().ToString();
 
-            Console.WriteLine($"Kieu du lieu cua g : {g.GetType()}");
-
-            TempData["invoiceId"] = g;
-
-            Console.WriteLine($@"Kieu du lieu cua TempData[""invoiceId""] tai CreateInvoice : {TempData["invoiceId"].GetType()}");
-
-
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode($"{g}", QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);

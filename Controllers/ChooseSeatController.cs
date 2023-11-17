@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using QuanLyRapPhim.Data;
 using QuanLyRapPhim.Models;
 using System.Linq;
+using System;
 
 namespace QuanLyRapPhim.Controllers
 {
@@ -23,29 +24,36 @@ namespace QuanLyRapPhim.Controllers
         public IActionResult Index(string filmScheduleId)
         {
             List<SeatModel> sms = (from sm in _context.seats
-                                    join crm in _context.cinemaRooms
-                                    on sm.cinemaRoomId equals crm.cinemaRoomId
-                                    join cm in _context.cinemas
-                                    on crm.cinemaId equals cm.cinemaId
-                                    join fsm in _context.filmSechedules
-                                    on crm.cinemaRoomId equals fsm.cinemaRoomId
-                                    where fsm.filmSecheduleId == filmScheduleId
-                                    orderby sm.seatRowChar, sm.seatColumnNumber
+                                   join crm in _context.cinemaRooms
+                                   on sm.cinemaRoomId equals crm.cinemaRoomId
+                                   join cm in _context.cinemas
+                                   on crm.cinemaId equals cm.cinemaId
+                                   join fsm in _context.filmSechedules
+                                   on crm.cinemaRoomId equals fsm.cinemaRoomId
+                                   where fsm.filmSecheduleId == filmScheduleId
+                                   orderby sm.seatRowChar, sm.seatColumnNumber
+                                   select sm).ToList();
+
+            List<SeatModel> smsb = (from sm in _context.seats
+                                    join tm in _context.tickets
+                                    on sm.seatId equals tm.seatId
+                                    where tm.filmSecheduleId == filmScheduleId
                                     select sm).ToList();
 
             FilmSecheduleModel fs = (from fsm in _context.filmSechedules
-                                    where fsm.filmSecheduleId == filmScheduleId
-                                    select fsm).FirstOrDefault(); 
+                                     where fsm.filmSecheduleId == filmScheduleId
+                                     select fsm).FirstOrDefault();
 
             CinemaModel c = (from cm in _context.cinemas
-                                     join crm in _context.cinemaRooms on cm.cinemaId equals crm.cinemaId
-                                     join fsm in _context.filmSechedules on crm.cinemaRoomId equals fsm.cinemaRoomId
-                                     orderby cm.cinemaName
-                                     where fsm.filmSecheduleId == filmScheduleId
-                                     select cm).FirstOrDefault();
+                             join crm in _context.cinemaRooms on cm.cinemaId equals crm.cinemaId
+                             join fsm in _context.filmSechedules on crm.cinemaRoomId equals fsm.cinemaRoomId
+                             orderby cm.cinemaName
+                             where fsm.filmSecheduleId == filmScheduleId
+                             select cm).FirstOrDefault();
 
-            MultipleViewModelForChooseSeatView m = new MultipleViewModelForChooseSeatView() ;
+            MultipleViewModelForChooseSeatView m = new MultipleViewModelForChooseSeatView();
             m.seatModels = sms;
+            m.seatModelsBought = smsb;
             m.filmSecheduleModel = fs;
             m.cinemaModel = c;
 
@@ -54,18 +62,21 @@ namespace QuanLyRapPhim.Controllers
 
         [Route("/redirectToPayment/", Name = "redirectToPayment")]
         [HttpPost]
-        public IActionResult RedirectToPayment(string[] listOfChooseSeat, string filmScheduleId, int price) {
-            return Json (new { 
+        public IActionResult RedirectToPayment(string[] listOfChooseSeat, string filmScheduleId, int price)
+        {
+            return Json(new
+            {
                 url = Url.Action(
-                    "Index", 
-                    "Payment", 
-                    new {
-                            listOfChooseSeat = listOfChooseSeat, 
-                            filmScheduleId = filmScheduleId,
-                            price = price,
-                        }
+                    "Index",
+                    "Payment",
+                    new
+                    {
+                        listOfChooseSeat = listOfChooseSeat,
+                        filmScheduleId = filmScheduleId,
+                        price = price,
+                    }
                     )
-                }      
+            }
             );
         }
     }

@@ -97,13 +97,13 @@
 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, 250px);justify-content: space-between;">
     <select class="custom-select mt-4 w-100" id="selectCinema" disabled>
-        <option disabled hidden selected>Chọn rạp</option>
+        <option hidden selected>Chọn rạp</option>
     </select>
     <select class="custom-select mt-4 w-100" id="selectFilmShowDate" disabled>
-        <option disabled hidden selected>Chọn ngày chiếu</option>
+        <option hidden selected>Chọn ngày chiếu</option>
     </select>
     <select class="custom-select mt-4 w-100" id="selectFilmShowTime" disabled>
-        <option disabled hidden selected>Chọn giờ chiếu</option>
+        <option hidden selected>Chọn giờ chiếu</option>
     </select>
     <a class="btn btn-primary mt-4 w-100 text-light" id="chooseSeatButton">
         Chọn vị trí ngồi</a>
@@ -132,8 +132,20 @@
             });
         });
 
+        var cinemaId, filmShowDate, filmShowTime;
+
         $("#selectCinema").change(function () {
-            var cinemaId = $("#selectCinema option:selected").val();
+            if(cinemaId !== null) {
+                cinemaId = null;
+                filmShowDate = null;
+                filmShowTime = null;
+                $("#selectFilmShowDate").attr("disabled", true);
+                $("#selectFilmShowDate option:first").attr("selected", true);
+                $("#selectFilmShowTime").attr("disabled", true);
+                $("#selectFilmShowTime option:first").attr("selected", true);
+                $("#chooseSeatButton").removeAttr("href");
+            }
+            cinemaId = $("#selectCinema option:selected").val();
             $.ajax({
                 type: "POST",
                 url: "@Url.RouteUrl("getFilmShowDate")",
@@ -153,8 +165,14 @@
         });
 
         $("#selectFilmShowDate").change(function () {
-            var cinemaId = $("#selectCinema option:selected").val();
-            var filmShowDate = $("#selectFilmShowDate option:selected").val();
+            if (filmShowDate != null) {
+                filmShowDate = null;
+                filmShowTime = null
+                $("#selectFilmShowTime").attr("disabled", true);
+                $("#selectFilmShowTime option:first").attr("selected", true);
+                $("#chooseSeatButton").removeAttr("href");
+            }
+            filmShowDate = $("#selectFilmShowDate option:selected").val();
             $.ajax({
                 type: "POST",
                 url: "@Url.RouteUrl("getFilmShowTime")",
@@ -175,9 +193,11 @@
         });
 
         $("#selectFilmShowTime").change(function () {
-            var cinemaId = $("#selectCinema option:selected").val();
-            var filmShowDate = $("#selectFilmShowDate option:selected").val();
-            var filmShowTime = $("#selectFilmShowTime option:selected").val();
+            if (filmShowTime != null) {
+                filmShowTime = null
+                $("#chooseSeatButton").removeAttr("href");
+            }
+            filmShowTime = $("#selectFilmShowTime option:selected").val();
             $.ajax({
                 type: "POST",
                 url: "@Url.RouteUrl("getFilmScheduleId")",

@@ -752,6 +752,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\poster\datrungphuongnam.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\poster\duneparttwo.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>poster\duneparttwo.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\poster\duneparttwo.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\poster\kyantrendoituyet.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
@@ -880,12 +896,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\poster\yeulaivongau.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_0669f263-8354-43a9-991c-6d3703380c79.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_07ff8438-014f-4c7c-ab8b-ec294921eb1d.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_0669f263-8354-43a9-991c-6d3703380c79.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_07ff8438-014f-4c7c-ab8b-ec294921eb1d.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -894,14 +910,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_0669f263-8354-43a9-991c-6d3703380c79.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_07ff8438-014f-4c7c-ab8b-ec294921eb1d.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_3bd6521f-9e63-42fa-b19d-ce6848f71343.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_158dd353-3f6f-483d-b0c0-dd1a7f8338d4.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_3bd6521f-9e63-42fa-b19d-ce6848f71343.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_158dd353-3f6f-483d-b0c0-dd1a7f8338d4.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -910,14 +926,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_3bd6521f-9e63-42fa-b19d-ce6848f71343.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_158dd353-3f6f-483d-b0c0-dd1a7f8338d4.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_3c43bc7c-eac5-4eaa-91e3-5a3c5a1628c8.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_16ed392b-77d9-494a-80eb-34c0faf86f4e.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_3c43bc7c-eac5-4eaa-91e3-5a3c5a1628c8.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_16ed392b-77d9-494a-80eb-34c0faf86f4e.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -926,14 +942,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_3c43bc7c-eac5-4eaa-91e3-5a3c5a1628c8.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_16ed392b-77d9-494a-80eb-34c0faf86f4e.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_6427a87a-ba44-43a2-90da-e20fab72ee1f.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_286d1072-3964-497c-81e3-d3005ae83b26.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_6427a87a-ba44-43a2-90da-e20fab72ee1f.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_286d1072-3964-497c-81e3-d3005ae83b26.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -942,14 +958,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_6427a87a-ba44-43a2-90da-e20fab72ee1f.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_286d1072-3964-497c-81e3-d3005ae83b26.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_6621073d-7745-4ecd-83d7-0507aa4706a7.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_2ac26637-28dc-4616-be0e-68c817eb8739.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_6621073d-7745-4ecd-83d7-0507aa4706a7.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_2ac26637-28dc-4616-be0e-68c817eb8739.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -958,14 +974,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_6621073d-7745-4ecd-83d7-0507aa4706a7.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_2ac26637-28dc-4616-be0e-68c817eb8739.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_6f88eadc-d1b1-4acc-8c9a-ea0a93f6a2b7.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_330300c9-9a0a-4cdb-a657-3bef7b083acd.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_6f88eadc-d1b1-4acc-8c9a-ea0a93f6a2b7.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_330300c9-9a0a-4cdb-a657-3bef7b083acd.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -974,14 +990,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_6f88eadc-d1b1-4acc-8c9a-ea0a93f6a2b7.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_330300c9-9a0a-4cdb-a657-3bef7b083acd.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_75f4eeda-bbf7-4560-9576-12b2efb0d3bb.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_4b44bdc4-0e31-41e1-b6a3-61e1cb01971b.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_75f4eeda-bbf7-4560-9576-12b2efb0d3bb.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_4b44bdc4-0e31-41e1-b6a3-61e1cb01971b.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -990,14 +1006,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_75f4eeda-bbf7-4560-9576-12b2efb0d3bb.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_4b44bdc4-0e31-41e1-b6a3-61e1cb01971b.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_760817bf-11a2-453a-946d-0ae0e25c8faf.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_4da8cb30-91be-420b-9356-ff271fc13fed.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_760817bf-11a2-453a-946d-0ae0e25c8faf.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_4da8cb30-91be-420b-9356-ff271fc13fed.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -1006,14 +1022,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_760817bf-11a2-453a-946d-0ae0e25c8faf.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_4da8cb30-91be-420b-9356-ff271fc13fed.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_7974d645-9769-4a91-b255-607b85e02034.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_54fa686d-1b5c-4de6-89e4-2e08997ad7f5.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_7974d645-9769-4a91-b255-607b85e02034.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_54fa686d-1b5c-4de6-89e4-2e08997ad7f5.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -1022,14 +1038,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_7974d645-9769-4a91-b255-607b85e02034.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_54fa686d-1b5c-4de6-89e4-2e08997ad7f5.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_81223c0d-93cc-4b47-b124-98a4d6ecdb97.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_72f9ba66-ed69-4ab4-a0c8-e95fbdd13675.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_81223c0d-93cc-4b47-b124-98a4d6ecdb97.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_72f9ba66-ed69-4ab4-a0c8-e95fbdd13675.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -1038,14 +1054,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_81223c0d-93cc-4b47-b124-98a4d6ecdb97.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_72f9ba66-ed69-4ab4-a0c8-e95fbdd13675.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_86075262-d9f2-4430-b9c1-d3eea3e24ae9.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_78d3bc25-4b76-47ac-b37f-36e45650b840.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_86075262-d9f2-4430-b9c1-d3eea3e24ae9.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_78d3bc25-4b76-47ac-b37f-36e45650b840.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -1054,14 +1070,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_86075262-d9f2-4430-b9c1-d3eea3e24ae9.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_78d3bc25-4b76-47ac-b37f-36e45650b840.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_96342665-386d-4a81-bf5e-7212688c9825.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_8b9c5118-ba2c-4d38-b132-9b0211b34f57.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_96342665-386d-4a81-bf5e-7212688c9825.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_8b9c5118-ba2c-4d38-b132-9b0211b34f57.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -1070,14 +1086,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_96342665-386d-4a81-bf5e-7212688c9825.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_8b9c5118-ba2c-4d38-b132-9b0211b34f57.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_b3e7021f-db94-4c95-9299-d8a3cf41cd01.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_a061fccb-eb5d-4498-bbad-6e3108dedbd0.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_b3e7021f-db94-4c95-9299-d8a3cf41cd01.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_a061fccb-eb5d-4498-bbad-6e3108dedbd0.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -1086,14 +1102,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_b3e7021f-db94-4c95-9299-d8a3cf41cd01.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_a061fccb-eb5d-4498-bbad-6e3108dedbd0.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_bf664991-7c81-4f40-a5d3-623a9bd32aae.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_a1bee073-52ff-42e1-b491-0c06a3deea4a.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_bf664991-7c81-4f40-a5d3-623a9bd32aae.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_a1bee073-52ff-42e1-b491-0c06a3deea4a.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -1102,14 +1118,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_bf664991-7c81-4f40-a5d3-623a9bd32aae.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_a1bee073-52ff-42e1-b491-0c06a3deea4a.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_f59c6afa-f98f-4979-a237-07785f3d0214.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_aadaa85f-29f0-4d27-9c05-78a957259a35.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>QuanLyRapPhim</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/QuanLyRapPhim</BasePath>
-      <RelativePath>qrcode\QRCode_f59c6afa-f98f-4979-a237-07785f3d0214.jpg</RelativePath>
+      <RelativePath>qrcode\QRCode_aadaa85f-29f0-4d27-9c05-78a957259a35.jpg</RelativePath>
       <AssetKind></AssetKind>
       <AssetMode></AssetMode>
       <AssetRole></AssetRole>
@@ -1118,7 +1134,183 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_f59c6afa-f98f-4979-a237-07785f3d0214.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_aadaa85f-29f0-4d27-9c05-78a957259a35.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_ab34b449-ea23-4b91-b92b-bf2f2f65229b.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_ab34b449-ea23-4b91-b92b-bf2f2f65229b.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_ab34b449-ea23-4b91-b92b-bf2f2f65229b.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_ac8f2e9b-3521-47da-ae8a-8234f8f52094.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_ac8f2e9b-3521-47da-ae8a-8234f8f52094.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_ac8f2e9b-3521-47da-ae8a-8234f8f52094.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_adee74b6-0f42-4e32-8aa8-948141fc75da.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_adee74b6-0f42-4e32-8aa8-948141fc75da.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_adee74b6-0f42-4e32-8aa8-948141fc75da.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_b3c21140-8a5e-4b05-a92b-e084d4a63a71.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_b3c21140-8a5e-4b05-a92b-e084d4a63a71.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_b3c21140-8a5e-4b05-a92b-e084d4a63a71.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_b84bcaa7-62eb-4d7b-8e64-82bca5c1ca87.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_b84bcaa7-62eb-4d7b-8e64-82bca5c1ca87.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_b84bcaa7-62eb-4d7b-8e64-82bca5c1ca87.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_b8c967dc-4855-4e9e-8458-bc971fd9905e.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_b8c967dc-4855-4e9e-8458-bc971fd9905e.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_b8c967dc-4855-4e9e-8458-bc971fd9905e.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_cf0f4a7e-5c75-49a0-a23c-bc164e1f7eca.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_cf0f4a7e-5c75-49a0-a23c-bc164e1f7eca.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_cf0f4a7e-5c75-49a0-a23c-bc164e1f7eca.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_da51b427-4e80-4189-a22f-267597fa417d.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_da51b427-4e80-4189-a22f-267597fa417d.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_da51b427-4e80-4189-a22f-267597fa417d.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_e01a7cba-4b28-4c08-8831-a3cf6f824257.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_e01a7cba-4b28-4c08-8831-a3cf6f824257.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_e01a7cba-4b28-4c08-8831-a3cf6f824257.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_e6668a89-7ebf-4a42-8456-46bc9818c6ce.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_e6668a89-7ebf-4a42-8456-46bc9818c6ce.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_e6668a89-7ebf-4a42-8456-46bc9818c6ce.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_f826ef57-102b-45e4-b51a-b7cd35223fb5.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>QuanLyRapPhim</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/QuanLyRapPhim</BasePath>
+      <RelativePath>qrcode\QRCode_f826ef57-102b-45e4-b51a-b7cd35223fb5.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\qrcode\QRCode_f826ef57-102b-45e4-b51a-b7cd35223fb5.jpg))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

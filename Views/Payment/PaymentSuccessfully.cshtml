@@ -42,10 +42,15 @@
     }
 }
 
-<h1>
-    @ViewData["Title"]
-</h1>
-<hr>
+<div class="row no-gutters justify-content-between">
+    <h1 style="align-self: self-end;">
+        @ViewData["Title"]
+    </h1>
+    <a class="btn btn-primary text-white" asp-action="Index" asp-controller="Home" style="height: min-content; width:100%; max-width: 200px; align-self: self-end;">
+        Trở về trang chủ
+    </a>
+</div>
+<hr />
 
 <div class="text-center">
     <h3>Chúc mừng! Bạn đã mua vé thành công!</h3>
@@ -67,7 +72,7 @@
     <h4>
         Thông tin giao dịch
     </h4>
-    <div class="d-inline-flex mt-3 mb-3 bg-warning" style="width: fit-content; max-width: max(500px, 50%); margin: auto;">
+    <div class="d-inline-flex mt-3 mb-3" style="width: fit-content; max-width: max(500px, 50%); margin: auto;">
         <div style="position: relative; width: fit-content;">
             <img src="~/poster/@filmPosterImage" alt="@filmName.ToUpper()" style="height: auto; max-width: 128px;">
             <span class="rounded" style="position: absolute; top: 5px; left: 5px; @filmGenreStyle; color: white; background-color: orange;">
@@ -94,7 +99,7 @@
                 Các ghế : <strong>@Html.Raw(getSeatFromSeatModel())</strong>
             </div>
             <div>
-                Số tiền : <strong><span>@price</span<span>000 VND</span></strong>
+                Số tiền : <strong><span>@price</span<span>VND</span></strong>
             </div>
             <div>
                 Hình thức thanh toán: <strong>@paymentMethod</strong>

@@ -12,7 +12,9 @@
     string getSeatFromSeatModel() {
         string htmlSeat = "";
         foreach(var i in Model.seatModels){
-            if (Model.seatModels.IndexOf(i) == 0) {
+            if (Model.seatModels.IndexOf(i) == 0 && Model.seatModels.IndexOf(i) == Model.seatModels.Count - 1){
+                htmlSeat += $"<span>{i.seatName}<span>";
+            } else if (Model.seatModels.IndexOf(i) == 0) {
                 htmlSeat += $"<span>{i.seatName}, ";
             } else if (Model.seatModels.IndexOf(i) == Model.seatModels.Count - 1) {
                 htmlSeat += $"{i.seatName}</span>";
@@ -22,13 +24,14 @@
         }
         return htmlSeat;
     }
+
 }
 
 <div class="row no-gutters justify-content-between">
     <h1 style="align-self: self-end;">
         @ViewData["Title"]
     </h1>
-    <a class="btn btn-primary text-white" id="btnXacNhanMuaVe" style="height: min-content; width:100%; max-width: 200px; align-self: self-end;">
+    <a id="btnXacNhanMuaVe" style="height: min-content; width:100%; max-width: 200px; align-self: self-end;">
         Thanh toán trong : <span id="Countdown">00:00</span>
     </a>
 </div>
@@ -89,7 +92,7 @@
                 Các ghế đã chọn : <strong>@Html.Raw(getSeatFromSeatModel())</strong>
             </p>
             <p>
-                Tổng số tiền phải thanh toán : <strong><span>@Model.price</span<span>000 VND</span></strong>
+                Tổng số tiền phải thanh toán : <strong><span>@Model.price</span<span> VND</span></strong>
             </p>
         </div>
         <div>
@@ -109,7 +112,9 @@
 
 @section Scripts {
     <script>
-               
+
+        var flag = true;
+
         function countdown( elementName, minutes, seconds )
         {
             var element, endTime, mins, msLeft, time;
@@ -129,7 +134,9 @@
                     element.innerHTML = twoDigits(mins) + ':' + twoDigits( time.getUTCSeconds() );
                     setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
                 } else {
-                    $("#btnXacNhanMuaVe").text("Đã huỷ thanh toán")
+                    $("#btnXacNhanMuaVe").text("Đã huỷ thanh toán");
+                    $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-secondary text-white")
+                    flag = false;
                 }
             }
 
@@ -137,25 +144,39 @@
             endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
             updateTimer();
         }
-        countdown("Countdown", 15, 0 );
+        countdown("Countdown", 0, 30 );
+
+        $(document).ready(function(event) {
+            if (!$("input[name='paymentMethod']:checked").val()){
+                $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-secondary text-white")
+            } else {
+                $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-primary text-white")
+            }   
+        });
+
+        $("input[name='paymentMethod']").click(function(event) {
+            $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-primary text-white")
+        });
 
         $("#btnXacNhanMuaVe").click(function(event) {
-            $.ajax({
-                type: "POST",
-                url: "@Url.RouteUrl("CreateTicket")",
-                data: 
-                {
-                    "listIdOfChooseSeat": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.seatModels.Select(x => x.seatId).ToList()))'),
-                    "accountId": "99d60d01-64ad-4024-b9bd-8407f6db1514",
-                    "paymentMethodName": $("input[name='paymentMethod']:checked").val(),
-                    "price": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.price))'),
-                    "filmSecheduleId": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.filmSecheduleModel.filmSecheduleId))'),
-                },
-                traditional: true,
-                success: function(response){
-                    window.location.href = response.url
-                },
-            });
+            if ($("input[name='paymentMethod']:checked").val() && flag == true){
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.RouteUrl("CreateTicket")",
+                    data: 
+                    {
+                        "listIdOfChooseSeat": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.seatModels.Select(x => x.seatId).ToList()))'),
+                        "accountId": "99d60d01-64ad-4024-b9bd-8407f6db1514",
+                        "paymentMethodName": $("input[name='paymentMethod']:checked").val(),
+                        "price": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.price))'),
+                        "filmSecheduleId": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.filmSecheduleModel.filmSecheduleId))'),
+                    },
+                    traditional: true,
+                    success: function(response){
+                        window.location.href = response.url
+                    },
+                });
+            }
         });
     </script>
 }

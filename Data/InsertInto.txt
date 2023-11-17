@@ -43,10 +43,10 @@ INSERT INTO CinemaRoom VALUES
 ('2687df17-36a5-40cc-b823-1a2b4bd60da6',N'Standard 2',N'b3709efb-6e07-4b57-89a5-dbc407981a76');
 
 INSERT INTO SeatCategory VALUES
-('fc700aae-568d-43ab-9351-eeb7a40f3228','Standard Seat', 99),
-('83c05f41-566d-408a-a491-d7530df68d04','VIP Seat', 99),
-('e620ba6a-af2b-451b-af23-239448530393','Premium Seat', 149),
-('f17895c5-1251-4a91-a5bb-4702494fafa9','Couple Seat', 99);
+('fc700aae-568d-43ab-9351-eeb7a40f3228','Standard Seat', 99000),
+('83c05f41-566d-408a-a491-d7530df68d04','VIP Seat', 99000),
+('e620ba6a-af2b-451b-af23-239448530393','Premium Seat', 149000),
+('f17895c5-1251-4a91-a5bb-4702494fafa9','Couple Seat', 99000);
 
 INSERT INTO SEAT VALUES
 ('f6877bf3-2889-4cd6-bc07-eda73322f15b','A1',1,'A','15dfa254-0c4c-49b7-b26f-38483195283b','e620ba6a-af2b-451b-af23-239448530393'),
