@@ -1,17 +1,18 @@
 
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using QuanLyRapPhim.Models;
 
 namespace QuanLyRapPhim.Data
 {
-    public class QuanLyRapPhimDBContext : DbContext
+    public class QuanLyRapPhimDBContext : IdentityDbContext
     {
         public QuanLyRapPhimDBContext([NotNullAttribute] DbContextOptions options) : base(options)
         {
         }
 
-        public DbSet<AccountModel> accounts { set; get; }
+        // public DbSet<AccountModel> accounts { set; get; }
 
         public DbSet<CinemaModel> cinemas { set; get; }
 
@@ -29,9 +30,9 @@ namespace QuanLyRapPhim.Data
 
         public DbSet<TicketModel> tickets { set; get; }
 
-        public DbSet<PaymentMethodModel> paymentMethods {set;get;}
+        public DbSet<PaymentMethodModel> paymentMethods { set; get; }
 
-        public DbSet<InvoiceModel> invoices {set;get;}
+        public DbSet<InvoiceModel> invoices { set; get; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -54,7 +55,7 @@ namespace QuanLyRapPhim.Data
 
             modelBuilder.Entity<TicketModel>().Property(t => t.ticketId).ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<InvoiceModel>().HasKey(i => new {i.invoiceId, i.ticketId});
+            modelBuilder.Entity<InvoiceModel>().HasKey(i => new { i.invoiceId, i.ticketId });
 
             // modelBuilder.Entity<InvoiceModel>().Property(i => i.invoiceId).ValueGeneratedOnAdd();
 

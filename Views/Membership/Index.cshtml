@@ -1,0 +1,44 @@
+@model QuanLyRapPhim.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Đăng ký Thành viên";
+}
+
+<h1>
+    @ViewData["Title"]
+</h1>
+<hr>
+
+<form method="post">
+    <div class="form-group row no-gutters">
+        <label asp-for="userName" class="col-3 col-form-label"></label>
+        <input asp-for="userName" type="text" class="form-control col-sm-6">
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="fullName" class="col-3 col-form-label"></label>
+        <input asp-for="fullName" type="text" class="form-control col-sm-6">
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="email" class="col-3 col-form-label"></label>
+        <input asp-for="email" type="text" class="form-control col-sm-6">
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="phoneNumber" class="col-3 col-form-label"></label>
+        <input asp-for="phoneNumber" type="text" class="form-control col-sm-6">
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="peopleId" class="col-3 col-form-label"></label>
+        <input asp-for="peopleId" type="text" class="form-control col-sm-6">
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="password" class="col-3 col-form-label"></label>
+        <input asp-for="password" type="password" class="form-control col-sm-6">
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="confirmPassword" class="col-3 col-form-label"></label>
+        <input asp-for="confirmPassword" type="password" class="form-control col-sm-6">
+    </div>
+    <div class="form-group row no-gutters">
+        <button class="btn btn-primary" asp-action="Register">Gửi thông tin</button>
+    </div>
+</form>

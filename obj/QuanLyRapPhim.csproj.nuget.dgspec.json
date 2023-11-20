@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\BIDC\\QuanLyRapPhim\\QuanLyRapPhim.csproj": {}
+    "D:\\BIDC\\quanlyrapphim\\QuanLyRapPhim.csproj": {}
   },
   "projects": {
-    "D:\\BIDC\\QuanLyRapPhim\\QuanLyRapPhim.csproj": {
+    "D:\\BIDC\\quanlyrapphim\\QuanLyRapPhim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BIDC\\QuanLyRapPhim\\QuanLyRapPhim.csproj",
+        "projectUniqueName": "D:\\BIDC\\quanlyrapphim\\QuanLyRapPhim.csproj",
         "projectName": "QuanLyRapPhim",
-        "projectPath": "D:\\BIDC\\QuanLyRapPhim\\QuanLyRapPhim.csproj",
+        "projectPath": "D:\\BIDC\\quanlyrapphim\\QuanLyRapPhim.csproj",
         "packagesPath": "C:\\Users\\TUF\\.nuget\\packages\\",
-        "outputPath": "D:\\BIDC\\QuanLyRapPhim\\obj\\",
+        "outputPath": "D:\\BIDC\\quanlyrapphim\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\TUF\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,10 @@
             "Microsoft.AspNet.Mvc": {
               "target": "Package",
               "version": "[5.3.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.17, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

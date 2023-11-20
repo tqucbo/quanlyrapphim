@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuanLyRapPhim.Data;
 
 namespace QuanLyRapPhim.Migrations
 {
     [DbContext(typeof(QuanLyRapPhimDBContext))]
-    partial class QuanLyRapPhimDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231120072856_Version0.17b")]
+    partial class Version017b
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -456,6 +458,9 @@ namespace QuanLyRapPhim.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("accountId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("appUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("filmSecheduleId")
@@ -466,7 +471,7 @@ namespace QuanLyRapPhim.Migrations
 
                     b.HasKey("ticketId");
 
-                    b.HasIndex("accountId");
+                    b.HasIndex("appUserId");
 
                     b.HasIndex("filmSecheduleId");
 
@@ -614,7 +619,7 @@ namespace QuanLyRapPhim.Migrations
                 {
                     b.HasOne("QuanLyRapPhim.Models.AppUserModel", "appUser")
                         .WithMany()
-                        .HasForeignKey("accountId");
+                        .HasForeignKey("appUserId");
 
                     b.HasOne("QuanLyRapPhim.Models.FilmSecheduleModel", "filmSechedule")
                         .WithMany()

@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using QuanLyRapPhim.Data;
+using QuanLyRapPhim.Models;
 
 namespace QuanLyRapPhim
 {
@@ -31,6 +33,39 @@ namespace QuanLyRapPhim
                 {
                     string connectionString = Configuration.GetConnectionString("quanLyRapPhimDBContext");
                     option.UseSqlServer(connectionString);
+                }
+            );
+
+            services.AddIdentity<AppUserModel, IdentityRole>()
+                    .AddEntityFrameworkStores<QuanLyRapPhimDBContext>()
+                    .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(
+                options =>
+                {
+                    // Thiết lập về mật khẩu
+
+                    options.Password.RequireDigit = true;               // Yêu cầu số
+                    options.Password.RequireLowercase = true;           // Yêu cầu có chữ thường
+                    options.Password.RequireNonAlphanumeric = true;     // Yêu cầu có ký tự đặc biệt
+                    options.Password.RequireUppercase = true;           // Yêu cầu có chữ hoa
+                    options.Password.RequiredLength = 8;                // Yêu cầu tối thiểu 08 ký tự
+
+                    // Thiết lập về tạm khoá tài khoản
+
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(30);  // Tạm khoá trong 30 giây
+                    options.Lockout.MaxFailedAccessAttempts = 5;                        // Tạm khoá khi thất bại 05 lần
+                    options.Lockout.AllowedForNewUsers = true;
+
+                    // Thiết lập về người dùng
+
+                    options.User.AllowedUserNameCharacters =            // Tên tài khoản chỉ gồm các ký tự sau.
+                        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                    options.User.RequireUniqueEmail = true;             // Mỗi tài khoản chỉ ứng với 1 địa chỉ Email.
+
+                    // Thiết lập đăng nhập
+                    options.SignIn.RequireConfirmedEmail = false;       // Đăng nhập bằng địa chỉ Email đã xác thực
+                    options.SignIn.RequireConfirmedPhoneNumber = false; // Đăng nhập bằng số điện thoại đã xác thực
                 }
             );
         }

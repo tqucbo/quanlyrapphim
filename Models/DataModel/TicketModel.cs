@@ -10,10 +10,9 @@ namespace QuanLyRapPhim.Models
         [Key]
         public string ticketId { set; get; }                // Mã vé
 
+        [ForeignKey("appUser")]
         public string accountId { set; get; }               // Mã tài khoản
-
-        [ForeignKey("accountId")]
-        public virtual AccountModel account { set; get; }
+        public virtual AppUserModel appUser { set; get; }
 
         public string seatId { set; get; }                  // Mã ghế
 
