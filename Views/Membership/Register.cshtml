@@ -1,0 +1,74 @@
+@model QuanLyRapPhim.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Đăng ký Thành viên";
+}
+
+<h1>
+    @ViewData["Title"]
+</h1>
+<hr>
+
+<form method="post" asp-action="Register">
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.userName" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.userName" type="text" class="form-control">
+            <span asp-validation-for="@Model.userName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.fullName" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.fullName" type="text" class="form-control">
+            <span asp-validation-for="@Model.fullName" class="text-danger"></span>
+        </div>
+
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.email" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.email" type="text" class="form-control">
+            <span asp-validation-for="@Model.email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.peopleId" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.peopleId" type="text" class="form-control">
+            <span asp-validation-for="@Model.peopleId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.password" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.password" type="password" class="form-control">
+            <span asp-validation-for="@Model.password" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.confirmPassword" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.confirmPassword" type="password" class="form-control">
+            <span asp-validation-for="@Model.confirmPassword" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <button class="btn btn-primary">Gửi thông tin</button>
+    </div>
+    <div>
+        Đã có tài khoản? <a asp-action="Login" asp-controller="Membership">Đăng nhập ngay</a>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        function onlyNumberKey(evt) {
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                return false;
+            return true;
+        }
+    </script>
+}

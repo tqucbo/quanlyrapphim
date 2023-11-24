@@ -36,9 +36,10 @@
                                 Giá vé</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Membership"
-                                asp-action="Index">Thành
-                                viên</a>
+                            @* <a class="nav-link text-dark" asp-area="" asp-controller="Membership"
+                            asp-action="Login">Thành
+                            viên</a> *@
+                            @await Html.PartialAsync("_LoginPartial")
                         </li>
                     </ul>
                 </div>

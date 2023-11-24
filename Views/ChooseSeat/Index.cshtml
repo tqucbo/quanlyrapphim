@@ -58,15 +58,15 @@ id=""{s.seatRowChar}{s.seatColumnNumber}"" onClick=""chooseSeat('{s.seatRowChar}
         return htmlRaw;
     }
 
-    string formatPrice(int price)
-    {
-        var ni = new System.Globalization.CultureInfo(System.Globalization.CultureInfo.CurrentCulture.Name).NumberFormat;
-        ni.NumberDecimalDigits = 0; //Keep the ".00" from appearing
-        ni.NumberGroupSeparator = " "; //Set the group separator to a space
-        ni.NumberGroupSizes = new int[] { 3 }; //Groups of 3 digits
+    @* string formatPrice(int price)
+{
+var ni = new System.Globalization.CultureInfo(System.Globalization.CultureInfo.CurrentCulture.Name).NumberFormat;
+ni.NumberDecimalDigits = 0; //Keep the ".00" from appearing
+ni.NumberGroupSeparator = " "; //Set the group separator to a space
+ni.NumberGroupSizes = new int[] { 3 }; //Groups of 3 digits
 
-        return price.ToString("N", ni);
-    }
+return price.ToString("N", ni);
+} *@
 }
 
 <div class="row no-gutters justify-content-between">

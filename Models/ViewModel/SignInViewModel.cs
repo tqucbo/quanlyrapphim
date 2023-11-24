@@ -5,13 +5,12 @@ namespace QuanLyRapPhim.Models
     public class SignInViewModel
     {
 
-        [Required]
-        public string userNameOrPhoneNumberOrEmail { set; get; }
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
+        [Display(Name = "Số điện thoại hoặc Email")]
+        public string userNameOrEmail { set; get; }
 
-        [Required]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
+        [Display(Name = "Mật khẩu")]
         public string password { set; get; }
-
-        [Required]
-        public bool rememberMe { set; get; }
     }
 }

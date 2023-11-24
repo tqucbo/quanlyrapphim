@@ -1,0 +1,29 @@
+@using Microsoft.AspNetCore.Identity
+@using QuanLyRapPhim.Models
+@using Microsoft.AspNetCore.Mvc.ViewEngines
+
+@inject SignInManager<AppUserModel> SignInManager
+@inject UserManager<AppUserModel> UserManager
+@inject ICompositeViewEngine Engine
+
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index"
+                title="Manage">Xin chào, @await UserManager.GetUserAsync(User).</a>
+        </li>
+        <li class="nav-item">
+            <form id="logoutForm" class="form-inline" asp-action="Logout" asp-controller="Membership">
+                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Đăng xuất</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="login" asp-action="Login" asp-controller="Membership">Đăng nhập</a>
+        </li>
+    }
+</ul>
