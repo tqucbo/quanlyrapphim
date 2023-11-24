@@ -236,7 +236,30 @@ namespace QuanLyRapPhim.Migrations
                 columns: new string[] { "Id", "Discriminator", "EmailConfirmed", "PhoneNumberConfirmed", "TwoFactorEnabled", "LockoutEnabled", "AccessFailedCount" },
                 values: new object[] { Guid.NewGuid().ToString(), "", true, true, false, false, 0 }
             );
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new string[] {
+                        "Id",
+                        "Discriminator",
+                        "EmailConfirmed",
+                        "PhoneNumberConfirmed",
+                        "TwoFactorEnabled",
+                        "LockoutEnabled",
+                        "AccessFailedCount",
+                        "UserName"
+                    },
+                values: new object[] {
+                        Guid.NewGuid().ToString(),
+                        "AppUserModel",
+                        true,
+                        true,
+                        false,
+                        false,
+                        0,
+                        "KhachVangLai",
 
+                    }
+            );
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

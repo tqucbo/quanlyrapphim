@@ -1,12 +1,8 @@
-using System;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using QuanLyRapPhim.Data;
 using QuanLyRapPhim.Models;
 
@@ -73,6 +69,10 @@ namespace QuanLyRapPhim.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
+                    else
+                    {
+                        ViewData["Message"] = "Tài khoản không tồn tại hoặc Mật khẩu không đúng";
+                    }
                 }
             }
             else
@@ -101,13 +101,13 @@ namespace QuanLyRapPhim.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new AppUserModel();
-                    user.UserName = registerUser.userName;
-                    user.fullName = registerUser.fullName;
-                    user.Email = registerUser.email;
-                    user.peopleId = registerUser.peopleId;
-
-                    var result = await _userManager.CreateAsync(user, registerUser.password);
+                    var result = await _userManager.CreateAsync(new AppUserModel()
+                    {
+                        UserName = registerUser.userName,
+                        fullName = registerUser.fullName,
+                        Email = registerUser.email,
+                        peopleId = registerUser.peopleId
+                    }, registerUser.password);
 
                     if (result.Succeeded)
                     {

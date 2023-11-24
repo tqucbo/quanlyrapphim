@@ -1,30 +1,50 @@
 @model QuanLyRapPhim.Models.MultipleViewModelForPaymentView
 
+@using Microsoft.AspNetCore.Identity
+@using QuanLyRapPhim.Models
+@using Microsoft.AspNetCore.Mvc.ViewEngines
+
+@inject SignInManager<AppUserModel> SignInManager
+@inject UserManager<AppUserModel> UserManager
+@inject ICompositeViewEngine Engine
+
 @{
     ViewData["Title"] = "Thanh toán";
 
     var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{Model.filmSecheduleModel.film.filmPosterImage}") ? Model.filmSecheduleModel.film.filmPosterImage : "noimageavailable.jpg";
-    
+
     var filmGenre = string.IsNullOrEmpty(Model.filmSecheduleModel.film.filmGenreId) ? "" :
             Model.filmSecheduleModel.film.filmGenre.filmGenreName;
-            var filmGenreStyle = string.IsNullOrEmpty(Model.filmSecheduleModel.film.filmGenreId) ? "" : "width: 48px; height: 27px";
-    
-    string getSeatFromSeatModel() {
+    var filmGenreStyle = string.IsNullOrEmpty(Model.filmSecheduleModel.film.filmGenreId) ? "" : "width: 48px; height: 27px";
+
+    string getSeatFromSeatModel()
+    {
         string htmlSeat = "";
-        foreach(var i in Model.seatModels){
-            if (Model.seatModels.IndexOf(i) == 0 && Model.seatModels.IndexOf(i) == Model.seatModels.Count - 1){
+        foreach (var i in Model.seatModels)
+        {
+            if (Model.seatModels.IndexOf(i) == 0 && Model.seatModels.IndexOf(i) == Model.seatModels.Count - 1)
+            {
                 htmlSeat += $"<span>{i.seatName}<span>";
-            } else if (Model.seatModels.IndexOf(i) == 0) {
+            }
+            else if (Model.seatModels.IndexOf(i) == 0)
+            {
                 htmlSeat += $"<span>{i.seatName}, ";
-            } else if (Model.seatModels.IndexOf(i) == Model.seatModels.Count - 1) {
+            }
+            else if (Model.seatModels.IndexOf(i) == Model.seatModels.Count - 1)
+            {
                 htmlSeat += $"{i.seatName}</span>";
-            } else {
+            }
+            else
+            {
                 htmlSeat += $"{i.seatName}, ";
-            }  
+            }
         }
         return htmlSeat;
     }
-
+    string userId = "535e44d7-75ee-4110-841b-593dde5f7e30";
+    if (SignInManager.IsSignedIn(User)){
+        userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value;
+    }
 }
 
 <div class="row no-gutters justify-content-between">
@@ -42,22 +62,23 @@
     <div class="col-md-7">
         <h4>Hình thức thanh toán</h4>
         <div class="pt-2">
-            @foreach (var item in Model.paymentMethodModels){
-                <div style="display: table; height: 64px;">
-                    <div style="display: table-cell; width: fit-content; padding-right: 10px;">
-                        <input class="" type="radio" name="paymentMethod" value="@item.paymentMethodName">
-                    </div>
-                    <div style="display: table-cell; width: fit-content; padding-right: 10px;">
-                        <img class="" src="~/paymentMethod/@item.paymentMethodImage" alt="@item.paymentMethodName.ToUpper()" width="48px" height="48px">
-                    </div>
+            @foreach (var item in Model.paymentMethodModels)
+            {
+                    <div style="display: table; height: 64px;">
+                        <div style="display: table-cell; width: fit-content; padding-right: 10px;">
+                            <input class="" type="radio" name="paymentMethod" value="@item.paymentMethodName">
+                        </div>
+                        <div style="display: table-cell; width: fit-content; padding-right: 10px;">
+                            <img class="" src="~/paymentMethod/@item.paymentMethodImage" alt="@item.paymentMethodName.ToUpper()" width="48px" height="48px">
+                        </div>
                     @{
                         var verticalAlign = string.IsNullOrEmpty(item.paymentMethodNote) ? "center" : "top";
                     }
-                    <div style="display: table-cell; vertical-align: @verticalAlign">
-                        <div>@item.paymentMethodName</div>
-                        <div style="font-size: small;">@item.paymentMethodNote</div>
+                        <div style="display: table-cell; vertical-align: @verticalAlign">
+                            <div>@item.paymentMethodName</div>
+                            <div style="font-size: small;">@item.paymentMethodNote</div>
+                        </div>
                     </div>
-                </div>
             }
         </div>
     </div>
@@ -107,76 +128,79 @@
     </div>    
 </div>
 
-        
+
 
 
 @section Scripts {
-    <script>
+        <script>
 
-        var flag = true;
+            var flag = true;
 
-        function countdown( elementName, minutes, seconds )
-        {
-            var element, endTime, mins, msLeft, time;
-
-            function twoDigits( n )
+            function countdown( elementName, minutes, seconds )
             {
-                return (n <= 9 ? "0" + n : n);
-            }
+                var element, endTime, mins, msLeft, time;
 
-            function updateTimer()
-            {
-                msLeft = endTime - (+new Date);
-                if ( msLeft >= 0 ) {
-                    time = new Date(msLeft);
-         
-                    mins = time.getUTCMinutes();
-                    element.innerHTML = twoDigits(mins) + ':' + twoDigits( time.getUTCSeconds() );
-                    setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
-                } else {
-                    $("#btnXacNhanMuaVe").text("Đã huỷ thanh toán");
-                    $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-secondary text-white")
-                    flag = false;
+                function twoDigits( n )
+                {
+                    return (n <= 9 ? "0" + n : n);
                 }
+
+                function updateTimer()
+                {
+                    msLeft = endTime - (+new Date);
+                    if ( msLeft >= 0 ) {
+                        time = new Date(msLeft);
+
+                        mins = time.getUTCMinutes();
+                        element.innerHTML = twoDigits(mins) + ':' + twoDigits( time.getUTCSeconds() );
+                        setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+                    } else {
+                        $("#btnXacNhanMuaVe").text("Đã huỷ thanh toán");
+                        $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-secondary text-white")
+                        flag = false;
+                    }
+                }
+
+                element = document.getElementById( elementName );
+                endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+                updateTimer();
             }
+            countdown("Countdown", 0, 30 );
 
-            element = document.getElementById( elementName );
-            endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
-            updateTimer();
-        }
-        countdown("Countdown", 0, 30 );
+            $(document).ready(function(event) {
+                if (!$("input[name='paymentMethod']:checked").val()){
+                    $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-secondary text-white")
+                } else {
+                    $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-primary text-white")
+                }   
+            });
 
-        $(document).ready(function(event) {
-            if (!$("input[name='paymentMethod']:checked").val()){
-                $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-secondary text-white")
-            } else {
+            $("input[name='paymentMethod']").click(function(event) {
                 $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-primary text-white")
-            }   
-        });
+            });
 
-        $("input[name='paymentMethod']").click(function(event) {
-            $("#btnXacNhanMuaVe").removeClass().addClass("btn btn-primary text-white")
-        });
-
-        $("#btnXacNhanMuaVe").click(function(event) {
-            if ($("input[name='paymentMethod']:checked").val() && flag == true){
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.RouteUrl("CreateTicket")",
-                    data: 
-                    {
-                        "listIdOfChooseSeat": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.seatModels.Select(x => x.seatId).ToList()))'),
-                        "accountId": "265efde5-9c3f-4ff7-8cf0-d57e31e5242e",
-                        "paymentMethodName": $("input[name='paymentMethod']:checked").val(),
-                        "price": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.price))'),
-                        "filmSecheduleId": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.filmSecheduleModel.filmSecheduleId))'),
-                    },
-                    traditional: true,
-                    success: function(response){
-                        window.location.href = response.url
-                    },
-                });
-            }
-        });
-    </script>
+            $("#btnXacNhanMuaVe").click(function(event) {
+                if ($("input[name='paymentMethod']:checked").val() && flag == true){
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.RouteUrl("CreateTicket")",
+                        data: 
+                        {
+                            "listIdOfChooseSeat": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.seatModels.Select(x => x.seatId).ToList()))'),
+                            "accountId": '@Html.Raw(userId)',
+                            "paymentMethodName": $("input[name='paymentMethod']:checked").val(),
+                            "price": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.price))'),
+                            "filmSecheduleId": JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.filmSecheduleModel.filmSecheduleId))'),
+                        },
+                        traditional: true,
+                        success: function(response){
+                            window.location.href = response.url
+                        },
+                        error: function(response) {
+                            console.log(response)
+                        }
+                    });
+                }
+            });
+        </script>
 }

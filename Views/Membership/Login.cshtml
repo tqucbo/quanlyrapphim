@@ -2,12 +2,19 @@
 
 @{
     ViewData["Title"] = "Đăng nhập";
+
+    string htmlValidationError = @ViewData["Message"] != null
+    ? $@"<div class=""alert alert-danger"">{ViewData["Message"]}</div>"
+    : "";
 }
 
 <h1>
     @ViewData["Title"]
 </h1>
 <hr>
+
+@Html.Raw(htmlValidationError)
+
 <form method="post" asp-action="Login">
     <div class="form-group row no-gutters">
         <label asp-for="@Model.userNameOrEmail" class="col col-12 col-form-label"></label>

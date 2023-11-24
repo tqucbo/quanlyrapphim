@@ -50,7 +50,7 @@ namespace QuanLyRapPhim
                     // Thiết lập về tạm khoá tài khoản
 
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(30);  // Tạm khoá trong 30 giây
-                    options.Lockout.MaxFailedAccessAttempts = 5;                        // Tạm khoá khi thất bại 05 lần
+                    options.Lockout.MaxFailedAccessAttempts = 1000000;                        // Tạm khoá khi thất bại 05 lần
                     options.Lockout.AllowedForNewUsers = true;
 
                     // Thiết lập về người dùng
