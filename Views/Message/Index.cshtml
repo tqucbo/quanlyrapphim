@@ -1,7 +1,10 @@
 @model QuanLyRapPhim.Models.MessageViewModel
 
+@{
+    ViewData["Title"] = Model.title;
+}
 <h1>
-    @Model.title
+    @ViewData["Title"]
 </h1>
 <hr>
 
