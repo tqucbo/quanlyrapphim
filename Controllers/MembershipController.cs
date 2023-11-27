@@ -126,5 +126,120 @@ namespace QuanLyRapPhim.Controllers
 
             return View(registerUser);
         }
+
+        public async Task<IActionResult> Index()
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                MemberInfoViewModel m = new MemberInfoViewModel()
+                {
+                    userName = user.UserName,
+                    fullName = user.fullName,
+                    email = user.Email,
+                    peopleId = user.peopleId,
+                };
+
+                return View(m);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        public async Task<IActionResult> UpdateInfo([FromForm] MemberInfoViewModel memberInfo)
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                if (Request.Method == HttpMethod.Post.Method)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        if (user.Email != memberInfo.email)
+                        {
+                            user.Email = memberInfo.email;
+                        }
+
+                        if (user.fullName != memberInfo.fullName)
+                        {
+                            user.fullName = memberInfo.fullName;
+                        }
+
+                        var result = await _userManager.UpdateAsync(user);
+
+                        if (result.Succeeded)
+                        {
+                            return Redirect(Url.RouteUrl("UpdateSuccesfully"));
+                        }
+                        else
+                        {
+                            return Redirect(Url.RouteUrl("UpdateFailed"));
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.Clear();
+                }
+                return View(new MemberInfoViewModel()
+                {
+                    userName = user.UserName,
+                    fullName = user.fullName,
+                    email = user.Email,
+                    peopleId = user.peopleId,
+                });
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        public async Task<IActionResult> UpdatePassword([FromForm] UpdatePasswordViewModel updatePassword)
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                if (Request.Method == HttpMethod.Post.Method)
+                {
+
+                    if (ModelState.IsValid)
+                    {
+                        if (await _userManager.CheckPasswordAsync(user, updatePassword.oldPassword) == true)
+                        {
+                            var result = await _userManager.ChangePasswordAsync(user, updatePassword.oldPassword, updatePassword.newPassword);
+
+                            if (result.Succeeded)
+                            {
+                                return Redirect(Url.RouteUrl("UpdateSuccesfully"));
+                            }
+                            else
+                            {
+                                return Redirect(Url.RouteUrl("UpdateFailed"));
+                            }
+                        }
+                        else
+                        {
+                            ViewData["Message"] = "Mật khẩu cũ không đúng";
+                            return View(updatePassword);
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.Clear();
+                }
+                return View(updatePassword);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
     }
 }

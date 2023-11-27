@@ -1,0 +1,51 @@
+@model QuanLyRapPhim.Models.MemberInfoViewModel
+
+@{
+    ViewData["Title"] = "Cập nhật Thông tin Thành viên";
+}
+
+<h1>
+    @ViewData["Title"]
+</h1>
+<hr>
+
+<form method="post" asp-action="UpdateInfo">
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.userName" class="col-3 col-form-label"></label>
+        <div class="col-sm-6 no-gutters "
+            style="padding-top: calc(.375rem + 1px); padding-bottom: calc(.375rem + 1px);">
+            <strong class="col-sm-6 col-form-label">@Model.userName</strong>
+            <span class="text-danger">*</span>
+        </div>
+    </div>
+
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.fullName" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.fullName" type="text" class="form-control" value="@Model.fullName">
+            <span asp-validation-for="@Model.fullName" class="text-danger"></span>
+        </div>
+
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.email" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.email" type="text" class="form-control" value="@Model.email">
+            <span asp-validation-for="@Model.email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.peopleId" class="col-3 col-form-label"></label>
+        <div class="col-sm-6 no-gutters "
+            style="padding-top: calc(.375rem + 1px); padding-bottom: calc(.375rem + 1px);">
+            <strong class="col-sm-6 col-form-label">@Model.peopleId</strong>
+            <span class="text-danger">*</span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <button class="btn btn-primary">Gửi thông tin</button>
+    </div>
+</form>
+
+<p style="font-size: small;" class="text-danger">* Không thể chỉnh sửa trực tuyến, vui lòng mang Căn cước công dân đến
+    quầy vé để được hỗ trợ.</p>

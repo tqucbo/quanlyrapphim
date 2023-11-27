@@ -11,8 +11,8 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index"
-                title="Manage">Xin chào, @await UserManager.GetUserAsync(User).</a>
+            <a class="nav-link text-dark" asp-action="Index" asp-controller="Membership">Xin chào,
+                @await UserManager.GetUserAsync(User).</a>
         </li>
         <li class="nav-item">
             <a asp-action="Logout" asp-controller="Membership" class="nav-link text-dark">Đăng xuất</a>

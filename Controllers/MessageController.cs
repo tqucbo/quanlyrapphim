@@ -20,6 +20,8 @@ namespace QuanLyRapPhim.Controllers
 
         [Route("/RegisterSuccesfully/", Name = "RegisterSuccesfully")]
         [Route("/RegisterFailed/", Name = "RegisterFailed")]
+        [Route("/UpdateSuccesfully/", Name = "UpdateSuccesfully")]
+        [Route("/UpdateFailed/", Name = "UpdateFailed")]
         public IActionResult Index(string message)
         {
             if (Request.GetDisplayUrl().Contains("RegisterSuccesfully"))
@@ -44,13 +46,35 @@ namespace QuanLyRapPhim.Controllers
                 }
                 );
             }
+            else if (Request.GetDisplayUrl().Contains("UpdateSuccesfully"))
+            {
+                return View(
+                new MessageViewModel()
+                {
+                    title = "Cập nhật thông tin thành công",
+                    content = "Tài khoản của bạn đã cập nhật thành công.",
+                    urlRedirect = Url.Action("Index", "Home"),
+                }
+                );
+            }
+            else if (Request.GetDisplayUrl().Contains("UpdateFailed"))
+            {
+                return View(
+                new MessageViewModel()
+                {
+                    title = "Cập nhật thông tin không thành công",
+                    content = "Đã xảy ra lỗi, vui lòng thử lại.",
+                    urlRedirect = Url.Action("Index", "Home"),
+                }
+                );
+            }
             else
             {
                 return View(
                 new MessageViewModel()
                 {
                     title = "Đã xảy ra lỗi",
-                    content = "Đã xảy ra lỗi, vui lòng thử lại. Điều hướng về trang chủ trong 5 giây.",
+                    content = "Đã xảy ra lỗi, vui lòng thử lại.",
                     urlRedirect = Url.Action("Index", "Home"),
                 }
                 );

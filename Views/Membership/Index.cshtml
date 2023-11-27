@@ -1,0 +1,35 @@
+@model QuanLyRapPhim.Models.MemberInfoViewModel
+
+@{
+    ViewData["Title"] = "Thông tin tài khoản";
+}
+
+<h1>
+    @ViewData["Title"]
+</h1>
+<hr>
+
+<div class="form-group row no-gutters">
+    <label asp-for="@Model.userName" class="col-3 col-form-label"></label>
+    <strong class="col-sm-6 col-form-label">@Model.userName</strong>
+</div>
+
+<div class="form-group row no-gutters">
+    <label asp-for="@Model.fullName" class="col-3 col-form-label"></label>
+    <strong class="col-sm-6 col-form-label">@Model.fullName</strong>
+</div>
+
+<div class="form-group row no-gutters">
+    <label asp-for="@Model.email" class="col-3 col-form-label"></label>
+    <strong class="col-sm-6 col-form-label">@Model.email</strong>
+</div>
+
+<div class="form-group row no-gutters">
+    <label asp-for="@Model.peopleId" class="col-3 col-form-label"></label>
+    <strong class="col-sm-6 col-form-label">@Model.peopleId</strong>
+</div>
+
+<div class="form-group row no-gutters">
+    <a class="btn btn-primary mr-2" asp-action="UpdateInfo" asp-controller="Membership">Cập nhật thông tin</a>
+    <a class="btn btn-primary mr-2" asp-action="UpdatePassword" asp-controller="Membership">Đổi mật khẩu</a>
+</div>
