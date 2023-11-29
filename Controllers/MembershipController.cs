@@ -253,11 +253,14 @@ namespace QuanLyRapPhim.Controllers
 
                 var userId = await _userManager.GetUserIdAsync(user);
 
-                List<string> invoiceIds = (from i in _context.invoices
-                                           where i.ticket.accountId == userId
-                                           select i.invoiceId).Distinct().ToList();
+                List<InvoiceModel> invoices = (from i in _context.invoices
+                                               where i.ticket.accountId == userId
+                                               orderby i.orderDate descending, i.orderTime descending
+                                               select i).ToList();
 
-                List<InvoiceModel> invoices = new List<InvoiceModel>();
+                List<string> invoiceIds = invoices.Select(i => i.invoiceId).Distinct().ToList();
+
+                List<InvoiceModel> invoices1 = new List<InvoiceModel>();
 
                 invoiceIds.ForEach(i =>
                 {
@@ -267,10 +270,10 @@ namespace QuanLyRapPhim.Controllers
                         select j
                     ).FirstOrDefault();
 
-                    invoices.Add(invoice);
+                    invoices1.Add(invoice);
                 });
 
-                return View(invoices);
+                return View(invoices1);
             }
             else
             {
@@ -278,7 +281,7 @@ namespace QuanLyRapPhim.Controllers
             }
         }
 
-        public async Task<IActionResult> InvoiceDetail(string invoiceId)
+        public IActionResult InvoiceDetail(string invoiceId)
         {
             InvoiceModel invoice = (
                 from i in _context.invoices

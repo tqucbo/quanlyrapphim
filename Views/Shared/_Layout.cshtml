@@ -32,14 +32,12 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Rạp /
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cinema" asp-action="Index">Rạp và
                                 Giá vé</a>
-                        </li>
-                        <li class="nav-item">
-                            @await Html.PartialAsync("_LoginPartial")
                         </li>
                     </ul>
                 </div>
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </nav>
     </header>

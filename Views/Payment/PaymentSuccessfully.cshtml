@@ -25,7 +25,11 @@
         string htmlSeat = "";
         foreach (var i in seats)
         {
-            if (seats.IndexOf(i) == 0)
+            if (seats.IndexOf(i) == 0 && seats.IndexOf(i) == seats.Count - 1)
+            {
+                htmlSeat += $"<span>{i}</span>";
+            }
+            else if (seats.IndexOf(i) == 0)
             {
                 htmlSeat += $"<span>{i}, ";
             }

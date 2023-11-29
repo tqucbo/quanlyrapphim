@@ -51,22 +51,12 @@ id=""{s.seatRowChar}{s.seatColumnNumber}"" onClick=""chooseSeat('{s.seatRowChar}
             : "bg-success";
             htmlRaw = htmlRaw + $@"<div class=""d-flex mt-1""><div class=""{seatColor} rounded mr-2"" style=""width: 25px; height:
 25px;""></div>"
-            + $@"<div>{i.CategoryName} - {i.CategoryPrice}VND/ghế</div></div>";
+            + $@"<div>{i.CategoryName} - {i.CategoryPrice + Model.cinemaModel.cinemaServiceCharge}VND/ghế</div></div>";
         }
         htmlRaw = htmlRaw + $@"<div class=""d-flex mt-1""><div class=""bg-secondary rounded mr-2"" style=""width: 25px; height:
 25px;""></div><div>Không thể chọn</div></div>";
         return htmlRaw;
     }
-
-    @* string formatPrice(int price)
-{
-var ni = new System.Globalization.CultureInfo(System.Globalization.CultureInfo.CurrentCulture.Name).NumberFormat;
-ni.NumberDecimalDigits = 0; //Keep the ".00" from appearing
-ni.NumberGroupSeparator = " "; //Set the group separator to a space
-ni.NumberGroupSizes = new int[] { 3 }; //Groups of 3 digits
-
-return price.ToString("N", ni);
-} *@
 }
 
 <div class="row no-gutters justify-content-between">

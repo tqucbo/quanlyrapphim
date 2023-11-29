@@ -1,0 +1,45 @@
+@model List<QuanLyRapPhim.Models.CinemaModel>
+
+@{
+    ViewData["Title"] = "Rạp và Giá vé";
+}
+
+<h1>
+    @ViewData["Title"]
+</h1>
+<hr>
+
+<div>
+    <select class="custom-select" id="selectCinema" style="width: 250px;">
+        <option hidden selected>Chọn rạp</option>
+        @foreach (var i in Model)
+        {
+            <option value="@i.cinemaId">
+                @i.cinemaName
+            </option>
+        }
+    </select>
+</div>
+
+<div class="cinemaInfo mt-3">
+    Mời quý khán giả chọn rạp để hiển thị giá vé tương ứng.
+</div>
+
+@section Scripts {
+    <script>
+        $("#selectCinema").change(function () {
+            cinemaId = $("#selectCinema option:selected").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.RouteUrl("GetCinemaInfo")",
+                data: {
+                    "cinemaId": cinemaId,
+                },
+                success: function (response) {
+                    console.log(response);
+                    $(".cinemaInfo").html(response);
+                }
+            });
+        });
+    </script>
+}

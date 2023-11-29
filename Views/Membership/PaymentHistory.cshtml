@@ -15,7 +15,10 @@
             <th style="width: auto;">
                 Phim
             </th>
-            <th style="width: 35%">
+            <th style="width: 20%">
+                Ngày đặt vé
+            </th>
+            <th style="width: 25%">
                 Suất chiếu - Địa điểm xem
             </th>
             <th style="width: 15%;">
@@ -25,42 +28,67 @@
     <tbody>
         @foreach (var i in Model)
         {
-            var filmGenre = string.IsNullOrEmpty(i.ticket.filmSechedule.film.filmGenreId) ? "" :
-            i.ticket.filmSechedule.film.filmGenre.filmGenreName;
+            var filmGenre = string.IsNullOrEmpty(i.ticket.filmSechedule.film.filmGenreId)
+            ? ""
+            : i.ticket.filmSechedule.film.filmGenre.filmGenreName;
 
-            var filmGenreStyle = string.IsNullOrEmpty(i.ticket.filmSechedule.film.filmGenreId) ? "" : "width: 48px; height: 27px";
+            var filmGenreStyle = string.IsNullOrEmpty(i.ticket.filmSechedule.film.filmGenreId)
+            ? ""
+            : "width: 48px; height: 27px";
 
-            var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{i.ticket.filmSechedule.film.filmPosterImage}") ? i.ticket.filmSechedule.film.filmPosterImage : "noimageavailable.jpg";
+            var filmPosterImage =
+            System.IO.File.Exists(
+            @$"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{i.ticket.filmSechedule.film.filmPosterImage}"
+            )
+            ? i.ticket.filmSechedule.film.filmPosterImage
+            : "noimageavailable.jpg";
+
+            var filmName = i.ticket.filmSechedule.film.filmName.ToUpper();
+
+            var filmShowDate = i.ticket.filmSechedule.filmShowDate.ToShortDateString();
+
+            var filmShowTime = i.ticket.filmSechedule.filmShowTime.ToString(@"hh\:mm");
+
+            var cinemaRoomName = i.ticket.filmSechedule.CinemaRoom.cinemaRoomName;
+
+            var cinemaName = i.ticket.filmSechedule.CinemaRoom.cinemaModel.cinemaName;
+
+            var invoiceId = i.invoiceId;
+
+            var orderDate = i.orderDate.ToShortDateString();
+
+            var orderTime = i.orderTime.ToString(@"hh\:mm");
 
             <tr>
                 <td class="align-middle">
                     <div class="row no-gutters align-items-center">
                         <div style="width: fit-content;">
-                            <img src="~/poster/@filmPosterImage" alt="@i.ticket.filmSechedule.film.filmName.ToUpper()" width="60px" height="90px">
+                            <img src="~/poster/@filmPosterImage" alt="@filmName" width="60px" height="90px">
                         </div>
                         <div class="ml-2">
-                            <strong>@i.ticket.filmSechedule.film.filmName.ToUpper()</strong>
+                            <strong>@filmName</strong>
                             <br>
-                            <div class="rounded"
-                                style="@filmGenreStyle; color: white; background-color: orange;">
+                            <div class="rounded" style="@filmGenreStyle; color: white; background-color: orange;">
                                 <center>
                                     <strong style="user-select: none;">@filmGenre</strong>
                                 </center>
                             </div>
                         </div>
                     </div>
-                    
                 </td>
                 <td class="align-middle">
-                    @i.ticket.filmSechedule.filmShowTime.ToString(@"hh\:mm")
-                    @i.ticket.filmSechedule.filmShowDate.ToShortDateString()
+                    @orderTime @orderDate
+                </td>
+                <td class="align-middle">
+                    @filmShowTime @filmShowDate
                     <br>
-                    @i.ticket.filmSechedule.CinemaRoom.cinemaRoomName -
-                    @i.ticket.filmSechedule.CinemaRoom.cinemaModel.cinemaName
+                    @cinemaRoomName
+                    <br>
+                    @cinemaName
                 </td>
                 <td class="align-middle">
-                    <a asp-route-invoiceId="@i.invoiceId" asp-action="InvoiceDetail" asp-controller="Membership">Chi
-                        tiết</a>
+                    <a asp-route-invoiceId="@invoiceId" asp-action="InvoiceDetail" asp-controller="Membership">
+                        Chi tiết vé</a>
                 </td>
             </tr>
         }

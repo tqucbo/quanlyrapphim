@@ -28,6 +28,8 @@ namespace QuanLyRapPhim.Data
 
         public DbSet<SeatModel> seats { set; get; }
 
+        public DbSet<SeatCategoryModel> seatCategoryModels { set; get; }
+
         public DbSet<TicketModel> tickets { set; get; }
 
         public DbSet<PaymentMethodModel> paymentMethods { set; get; }
