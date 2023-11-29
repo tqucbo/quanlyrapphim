@@ -164,9 +164,12 @@ D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Film\MovieComingSoon.cshtml.g
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Film\MovieNowShowing.cshtml.g.cs
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Membership\Index.cshtml.g.cs
+D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Membership\InvoiceDetail.cshtml.g.cs
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Membership\Login.cshtml.g.cs
+D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Membership\PaymentHistory.cshtml.g.cs
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Membership\Register.cshtml.g.cs
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Membership\UpdateInfo.cshtml.g.cs
+D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Membership\UpdatePassword.cshtml.g.cs
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Message\Index.cshtml.g.cs
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Payment\Index.cshtml.g.cs
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Payment\PaymentSuccessfully.cshtml.g.cs
@@ -184,4 +187,3 @@ D:\BIDC\quanlyrapphim\obj\Debug\net5.0\QuanLyRapPhim.dll
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\ref\QuanLyRapPhim.dll
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\QuanLyRapPhim.pdb
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\QuanLyRapPhim.genruntimeconfig.cache
-D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Membership\UpdatePassword.cshtml.g.cs

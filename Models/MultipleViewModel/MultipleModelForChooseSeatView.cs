@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace QuanLyRapPhim.Models
 {
-    public class MultipleViewModelForChooseSeatView
+    public class MultipleModelForChooseSeatView
     {
         public List<SeatModel> seatModels { set; get; }
 

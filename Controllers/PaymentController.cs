@@ -31,7 +31,7 @@ namespace QuanLyRapPhim.Controllers
         public IActionResult Index(string[] listOfChooseSeat, string filmScheduleId, int price)
         {
 
-            MultipleViewModelForPaymentView m = new MultipleViewModelForPaymentView();
+            MultipleModelForPaymentView m = new MultipleModelForPaymentView();
 
             List<SeatModel> ss = new List<SeatModel>();
 
@@ -125,6 +125,8 @@ namespace QuanLyRapPhim.Controllers
                                          select pm).Select(pm => pm.paymentMethodId).FirstOrDefault();
                     i.price = price;
                     i.image = fileName;
+                    i.orderDate = DateTime.Now.Date;
+                    i.orderTime = DateTime.Now.TimeOfDay;
 
                     _context.Add(i);
                 }

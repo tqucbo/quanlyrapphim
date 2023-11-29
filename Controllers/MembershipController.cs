@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -5,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using QuanLyRapPhim.Data;
 using QuanLyRapPhim.Models;
+using System.Linq;
+using System;
 
 namespace QuanLyRapPhim.Controllers
 {
@@ -240,6 +243,60 @@ namespace QuanLyRapPhim.Controllers
             {
                 return RedirectToAction("Login");
             }
+        }
+
+        public async Task<IActionResult> PaymentHistory()
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                var userId = await _userManager.GetUserIdAsync(user);
+
+                List<string> invoiceIds = (from i in _context.invoices
+                                           where i.ticket.accountId == userId
+                                           select i.invoiceId).Distinct().ToList();
+
+                List<InvoiceModel> invoices = new List<InvoiceModel>();
+
+                invoiceIds.ForEach(i =>
+                {
+                    var invoice = (
+                        from j in _context.invoices
+                        where j.invoiceId == i
+                        select j
+                    ).FirstOrDefault();
+
+                    invoices.Add(invoice);
+                });
+
+                return View(invoices);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        public async Task<IActionResult> InvoiceDetail(string invoiceId)
+        {
+            InvoiceModel invoice = (
+                from i in _context.invoices
+                where i.invoiceId == invoiceId
+                select i
+            ).FirstOrDefault();
+
+            List<string> listOfSeat = (
+                from i in _context.invoices
+                where i.invoiceId == invoiceId
+                select $"{i.ticket.seat.seatRowChar}{i.ticket.seat.seatColumnNumber}"
+            ).ToList();
+
+            return View(new MultipleModelForInvoiceDetailView()
+            {
+                invoice = invoice,
+                listOfSeat = listOfSeat,
+            });
         }
     }
 }

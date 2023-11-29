@@ -1,0 +1,79 @@
+@model QuanLyRapPhim.Models.MultipleModelForInvoiceDetailView
+
+@{
+    ViewData["Title"] = "Chi tiết vé";
+
+    var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{Model.invoice.ticket.filmSechedule.film.filmPosterImage}") ? Model.invoice.ticket.filmSechedule.film.filmPosterImage : "noimageavailable.jpg";
+
+    var filmGenre = string.IsNullOrEmpty(Model.invoice.ticket.filmSechedule.film.filmGenreId) ? "" :
+            Model.invoice.ticket.filmSechedule.film.filmGenre.filmGenreName;
+
+    var filmGenreStyle = string.IsNullOrEmpty(Model.invoice.ticket.filmSechedule.film.filmGenreId) ? "" : "width: 48px; height: 27px";
+
+    string getSeatFromSeatModel(){
+        string htmlSeat = "";
+        foreach (var i in Model.listOfSeat){
+            if (Model.listOfSeat.IndexOf(i) == 0)
+            {
+                htmlSeat += $"<span>{i}, ";
+            }
+            else if (Model.listOfSeat.IndexOf(i) == Model.listOfSeat.Count - 1)
+            {
+                htmlSeat += $"{i}</span>";
+            }
+            else
+            {
+                htmlSeat += $"{i}, ";
+            }
+        }
+        return htmlSeat;
+        }
+    }
+
+
+<h1>
+    @ViewData["Title"]
+</h1>
+<hr>
+
+<div class="text-center">
+    <div class="mb-3 mt-3">
+        <img src="~/qrcode/@Model.invoice.image" width="200px" height="200px ">
+        <div>@Model.invoice.invoiceId</div>
+        <div>Ngày đặt vé: <strong>@Model.invoice.orderTime.ToString(@"hh\:mm") @Model.invoice.orderDate.ToShortDateString()</strong></div>
+    </div>
+    <div class="d-inline-flex mt-3 mb-3" style="width: fit-content; max-width: max(500px, 50%); margin: auto;">
+        <div style="position: relative; width: fit-content;">
+            <img src="~/poster/@filmPosterImage" alt="@Model.invoice.ticket.filmSechedule.film.filmName.ToUpper()" style="height: auto; max-width: 128px;">
+            <span class="rounded" style="position: absolute; top: 5px; left: 5px; @filmGenreStyle; color: white; background-color: orange;">
+                <center>
+                    <strong style="user-select: none;">@filmGenre</strong>
+                </center>
+            </span>
+        </div>
+        <div class="ml-3 text-left">
+            <h5>
+                @Model.invoice.ticket.filmSechedule.film.filmName
+            </h5>
+            <div>
+                Suất chiếu: <strong>@Model.invoice.ticket.filmSechedule.filmShowTime.ToString(@"hh\:mm") @Model.invoice.ticket.filmSechedule.filmShowDate.ToShortDateString()</strong>
+            </div>
+            <div>
+                Cụm rạp : <strong>@Model.invoice.ticket.filmSechedule.CinemaRoom.cinemaModel.cinemaName</strong>
+            </div>
+            <div>
+                Phòng chiếu : <strong>@Model.invoice.ticket.filmSechedule.CinemaRoom.cinemaRoomName</strong>
+            </div>
+            <div>
+                Các ghế : <strong>@Html.Raw(getSeatFromSeatModel())</strong>
+            </div>
+            <div>
+                Số tiền : <strong><span>@Model.invoice.price</span<span>VND</span></strong>
+            </div>
+            <div>
+                Hình thức thanh toán: <strong>@Model.invoice.PaymentMethod.paymentMethodName</strong>
+            </div>
+        </div>
+    </div>
+</div>
+    

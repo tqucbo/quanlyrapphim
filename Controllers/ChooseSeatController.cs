@@ -51,7 +51,7 @@ namespace QuanLyRapPhim.Controllers
                              where fsm.filmSecheduleId == filmScheduleId
                              select cm).FirstOrDefault();
 
-            MultipleViewModelForChooseSeatView m = new MultipleViewModelForChooseSeatView();
+            MultipleModelForChooseSeatView m = new MultipleModelForChooseSeatView();
             m.seatModels = sms;
             m.seatModelsBought = smsb;
             m.filmSecheduleModel = fs;

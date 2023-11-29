@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QuanLyRapPhim.Models
@@ -18,6 +19,10 @@ namespace QuanLyRapPhim.Models
         public virtual PaymentMethodModel PaymentMethod { set; get; }
 
         public int price { set; get; }
+
+        public DateTime orderDate { set; get; }
+
+        public TimeSpan orderTime { set; get; }
 
         public string image { set; get; }
     }
