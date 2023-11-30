@@ -40,5 +40,7 @@ namespace QuanLyRapPhim.Models
         public string filmCountry { set; get; }             // Quốc gia sản xuất
 
         public string languageSubtitle { set; get; }        //  Ngôn ngữ phụ đề
+
+        public string filmBannerImage { set; get; }
     }
 }

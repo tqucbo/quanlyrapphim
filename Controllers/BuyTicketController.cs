@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using QuanLyRapPhim.Data;
@@ -15,20 +16,38 @@ namespace QuanLyRapPhim.Controllers
 
         private readonly QuanLyRapPhimDBContext _context;
 
-        public BuyTicketController(ILogger<BuyTicketController> logger, QuanLyRapPhimDBContext context)
+        private readonly SignInManager<AppUserModel> _signInManager;
+
+        private readonly UserManager<AppUserModel> _userManager;
+
+        public BuyTicketController(
+            ILogger<BuyTicketController> logger,
+            QuanLyRapPhimDBContext context,
+            SignInManager<AppUserModel> signInManager,
+            UserManager<AppUserModel> userManager
+        )
         {
-            _logger = logger; _context = context;
+            _logger = logger;
+            _context = context;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         [Route("/buyticket/{filmId}")]
         public IActionResult Index(string filmId)
         {
+            if (_signInManager.IsSignedIn(User))
+            {
+                FilmModel f = (from film in _context.films
+                               where film.filmId == filmId
+                               select film).FirstOrDefault();
 
-            FilmModel f = (from film in _context.films
-                           where film.filmId == filmId
-                           select film).FirstOrDefault();
-
-            return View(f);
+                return View(f);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Membership");
+            }
         }
 
         [HttpPost]
@@ -68,7 +87,7 @@ namespace QuanLyRapPhim.Controllers
             List<FilmSecheduleModel> fsms = (from fms in _context.filmSechedules
                                              join crm in _context.cinemaRooms
                                               on fms.cinemaRoomId equals crm.cinemaRoomId
-                                              orderby fms.filmShowTime
+                                             orderby fms.filmShowTime
                                              where fms.filmShowDate == DateTime.Parse(filmShowDate)
                                              && crm.cinemaId == cinemaId
                                              select fms).ToList();

@@ -41,7 +41,7 @@
         }
         return htmlSeat;
     }
-    string userId = "535e44d7-75ee-4110-841b-593dde5f7e30";
+    string userId = "";
     if (SignInManager.IsSignedIn(User)){
         userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value;
     }

@@ -29,8 +29,66 @@ INSERT INTO FilmGenre VALUES
 
 INSERT INTO Film
 VALUES
-('690b6c20-0e8e-4b9b-9784-b814022607b7',N'BIỆT ĐỘI MARVEL',104,'3576ee99-a728-41fc-a522-5f4999074de7',N'Carol Danvers bị vướng vào sức mạnh của Kamala Khan và Monica Rambeau, buộc họ phải hợp tác với nhau để cứu vũ trụ.','2023-11-10','33a74798-27e2-4e49-92b3-facb8ace6926',N'Nia DaCosta',N'Brie Larson, Samuel L. Jackson, Zawe Ashton','bietdoimarvels.jpg',N'Tiếng Việt',N'Hoa Kỳ'),
-('7cc2448b-fc00-4e90-af58-e8fc966b1cca',N'KỲ ÁN TRÊN ĐỒI TUYẾT',150,'fde4dadc-5d11-406d-a882-4060128655a4',N'Cuộc sống của nhà văn Sandra cùng chồng Samuel và cậu con trai mù Daniel ở căn nhà gỗ hẻo lánh trên dãy Alps bất ngờ bị xáo trộn khi Samuel được tìm thấy đã chết một cách bí ẩn trên tuyết, khiến Sandra trở thành nghi phạm chính và mối quan hệ đầy mâu thuẫn giữa cô và chồng dần được phơi bày trước phiên tòa.','2023-11-10','30f2a714-3db0-426f-b2d3-12c57c2145f7',N'Justine Triet',N'Sandra Hüller, Swann Arlaud, Milo Machado-Graner','kyantrendoituyet.jpg',N'Tiếng Việt',N'Pháp');
+(
+    N'29665803-6e0a-44ba-a465-aa18322c5c1b', 
+    N'NCT NATION: VƯƠN TẦM THẾ GIỚI',
+    -1,
+    N'581d50fc-9f78-41bf-b6d8-560d1d484b66',
+    N'"NCT NATION: To The World in Cinemas" đánh dấu sự khởi đầu thú vị của NCT và chuyến hành trình chia sẻ các bản nhạc độc đáo cùng những màn trình diễn ngoạn mục, khẳng định vị thế tiên phong của NCT NATION trong thể loại K-Pop. Bộ concert movie hoàn toàn mới bao gồm các unit hiện tại của NCT như NCT U, NCT 127, NCT Dream và WayV – cùng nhau họ đã tạo nên một màn trình diễn vô cùng đặc sắc trong sự kiện điện ảnh toàn cầu không thể bỏ lỡ. Được ghi hình tại Sân vận động Munhak ở Incheon, Hàn Quốc, cùng kỷ niệm phát hành full album thứ tư của NCT, ''Golden Age'', đây là buổi biểu diễn nhóm đầu tiên của NCT và bộ phim đầu tiên ghi lại sức hút vô hạn của NCT NATION. Bên cạnh buổi hòa nhạc chính, khán giả còn có cơ hội thưởng thức những khoảnh khắc hậu trường có một không hai – hãy cùng nhau đón chờ “NCT NATION: To The World in Cinemas”! Để có trải nghiệm sống động nhất, hãy thưởng thức với định dạng ScreenX - không gian ba màn hình 270 độ cực kì sống động, được ghi lại bằng 18 máy quay để đưa bạn vào trung tâm của buổi biểu diễn, hoặc có thể lựa chọn định dạng 4DX, nơi các hiệu ứng giác quan sẽ tái tạo nên bầu không khí của buổi biểu diễn trực tiếp. Tại một số địa điểm, hãy trải nghiệm cả hai định dạng đặc biệt được kết hợp trong 4DX Screen. Đừng bỏ lỡ sự kiện điện ảnh tuyệt vời này cùng các fan NCT trên toàn thế giới!',
+    '2023-12-06',
+    N'33a74798-27e2-4e49-92b3-facb8ace6926',
+    N'Yoon Dong Oh',
+    N'NCT',
+    N'nctnation_poster.jpg',
+    N'Tiếng Việt',
+    N'Hàn Quốc',
+    N'nctnation_banner.jpg'
+),
+(
+    N'327593fb-0f78-45c6-8e07-225977d98e08', 
+    N'WONKA (PHỤ ĐỀ)',
+    116,
+    N'b667be40-08d9-408c-8f9b-2a016b6b00f1',
+    N'Dựa trên nhân vật từ quyến sách gối đầu giường của các em nhỏ trên toàn thế giới "Charlie và Nhà Máy Sôcôla" và phiên bản phim điện ảnh cùng tên vào năm 2005, WONKA kể câu chuyện kỳ diệu về hành trình của nhà phát minh, ảo thuật gia và nhà sản xuất sôcôla vĩ đại nhất thế giới trở thành WILLY WONKA đáng yêu mà chúng ta biết ngày nay. Từ đạo diễn loạt phim Paddington và nhà sản xuất loạt phim chuyển thể đình đám Harry Potter, WONKA hứa hẹn sẽ là một bộ phim đầy vui nhộn và màu sắc cho khán giả dịp Lễ Giáng Sinh năm nay.',
+    '2023-12-08',
+    N'75d9312c-a1d7-46e1-830a-040b7db1b169',
+    N'Paul King',
+    N'Timothée Chalamet, Hugh Grant, Rowan Atkinson, Matt Lucas, Mathew Baynton',
+    N'wonka_poster.jpg',
+    N'Tiếng Việt',
+    N'Hoa Kỳ',
+    N'wonka_banner.jpg'
+),
+(
+    N'1ac89ca6-f3e4-4315-af61-88b4bf060329', 
+    N'WONKA (LỒNG TIẾNG)',
+    116,
+    N'b667be40-08d9-408c-8f9b-2a016b6b00f1',
+    N'Dựa trên nhân vật từ quyến sách gối đầu giường của các em nhỏ trên toàn thế giới "Charlie và Nhà Máy Sôcôla" và phiên bản phim điện ảnh cùng tên vào năm 2005, WONKA kể câu chuyện kỳ diệu về hành trình của nhà phát minh, ảo thuật gia và nhà sản xuất sôcôla vĩ đại nhất thế giới trở thành WILLY WONKA đáng yêu mà chúng ta biết ngày nay. Từ đạo diễn loạt phim Paddington và nhà sản xuất loạt phim chuyển thể đình đám Harry Potter, WONKA hứa hẹn sẽ là một bộ phim đầy vui nhộn và màu sắc cho khán giả dịp Lễ Giáng Sinh năm nay.',
+    '2023-12-08',
+    N'75d9312c-a1d7-46e1-830a-040b7db1b169',
+    N'Paul King',
+    N'Timothée Chalamet, Hugh Grant, Rowan Atkinson, Matt Lucas, Mathew Baynton',
+    N'wonka_poster.jpg',
+    N'Không',
+    N'Hoa Kỳ',
+    N'wonka_banner.jpg'
+),
+(
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d', 
+    N'BỖNG DƯNG TRÚNG MÁNH',
+    95,
+    N'3576ee99-a728-41fc-a522-5f4999074de7',
+    N'Bỗng Dưng Trúng Mánh là câu chuyện từ cá biệt toàn trường hoá tài phiệt học đường của Lee Kang-jin - một học sinh vốn thường xuyên bị bắt nạt. Tình cờ nhặt được chiếc phong bì chứa đầy tiền mặt của ông trùm cho vay nặng lãi Rang, cuộc đời Kang-jin đã hoàn toàn thay đổi. Rang dạy Kang-jin những bài học đầu tiên về nghề cho vay siêu lợi nhuận, từ đó biến cậu học trò lầm lì trở thành chiến thần tài chính, đại gia mới nổi, ông hoàng cho vay nặng lãi của trường trung học Geumhwa.',
+    '2023-12-01',
+    N'30f2a714-3db0-426f-b2d3-12c57c2145f7',
+    N'Hwang Dong-seok',
+    N'Yoo Seon-ho, Kang Mi-na, Yoo In-soo, Shin Soo-hyun, Lee Chan-hyeong, Seo Hye-won',
+    N'bongdungtrungmanh_poster.jpg',
+    N'Tiếng Việt',
+    N'Hàn Quốc',
+    NULL
+);
 
 INSERT INTO Cinema VALUES
 ('f9e3918b-f94b-4ed7-b3c5-65d95739e94d',N'Thành phố Hồ Chí Minh',N'Quận Bình Thạnh, TP. HCM'),
@@ -302,10 +360,91 @@ INSERT INTO SEAT VALUES
 
 INSERT INTO FilmSchedule
 VALUES
-('d385e899-161b-4ee4-a6e8-741e306d1610','690b6c20-0e8e-4b9b-9784-b814022607b7','15dfa254-0c4c-49b7-b26f-38483195283b','2023-11-09','19:00'),
-('c258d2f3-fc91-4cb8-a17b-410cb5a7171f','690b6c20-0e8e-4b9b-9784-b814022607b7','2e4d6d31-cddc-40be-8da0-14c6fa6eeb6a','2023-11-10','09:00'),
-('cbd98490-1d92-4310-9bc5-3879651878a8','690b6c20-0e8e-4b9b-9784-b814022607b7','3d4f4a61-9bf5-416c-9712-528fc65debb0','2023-11-10','12:00'),
-('72e114b2-3294-4a0f-b79c-28ed1f15cec8','690b6c20-0e8e-4b9b-9784-b814022607b7','2687df17-36a5-40cc-b823-1a2b4bd60da6','2023-11-09','15:00');
+(
+    N'4e68988b-8d2a-403f-b230-a3fcd8291f57',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'3d4f4a61-9bf5-416c-9712-528fc65debb0',
+    '2023-12-01',
+    '10:00'
+),
+(
+    N'd81b3ba2-b8cf-4c9c-a7a7-9cf0149d59a2',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'2687df17-36a5-40cc-b823-1a2b4bd60da6',
+    '2023-12-01',
+    '13:00'
+),
+(
+    N'0b0ec32e-e1c6-4267-b90e-181bc0319d8f',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'15dfa254-0c4c-49b7-b26f-38483195283b',
+    '2023-12-01',
+    '16:00'
+),
+(
+    N'f054743b-6c4d-4a0f-bfed-247ed50763b2',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'2e4d6d31-cddc-40be-8da0-14c6fa6eeb6a',
+    '2023-12-01',
+    '19:00'
+), 
+(
+    N'164681ff-9468-4857-a80f-942217d5b0b0',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'3d4f4a61-9bf5-416c-9712-528fc65debb0',
+    '2023-12-01',
+    '22:00'
+),
+(
+    N'80f0317f-cea0-4ccf-8bf0-79511ad2e0b6',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'2687df17-36a5-40cc-b823-1a2b4bd60da6',
+    '2023-12-02',
+    '09:00'
+),
+(
+    N'e9ac6b9b-3a3d-421d-ad27-dd12762f9309',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'15dfa254-0c4c-49b7-b26f-38483195283b',
+    '2023-12-02',
+    '12:00'
+),
+(
+    N'502de6ab-635b-49c4-b990-b7cad81a7a12',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'2e4d6d31-cddc-40be-8da0-14c6fa6eeb6a',
+    '2023-12-02',
+    '15:00'
+),
+(
+    N'efe4a02e-3f67-4428-a0e5-4d55e34396ca',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'3d4f4a61-9bf5-416c-9712-528fc65debb0',
+    '2023-12-02',
+    '18:00'
+),
+(
+    N'635d60f4-e6d2-4b75-bc87-09c9a8cc914f',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'2687df17-36a5-40cc-b823-1a2b4bd60da6',
+    '2023-12-02',
+    '21:00'
+),
+(
+    N'a15d4127-2274-4562-9103-6c4ea1d472cd',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'15dfa254-0c4c-49b7-b26f-38483195283b',
+    '2023-12-03',
+    '10:00'
+),
+(
+    N'73d7b311-5b7e-44bf-a56f-11f16489d7c8',
+    N'2179c3fb-7fa3-4763-b19c-1d22ac2fa85d',
+    N'2e4d6d31-cddc-40be-8da0-14c6fa6eeb6a',
+    '2023-12-03',
+    '10:00'
+);
+
 
 INSERT INTO PaymentMethod
 VALUES
