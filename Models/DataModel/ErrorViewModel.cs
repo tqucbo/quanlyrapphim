@@ -1,5 +1,3 @@
-using System;
-
 namespace QuanLyRapPhim.Models
 {
     public class ErrorViewModel

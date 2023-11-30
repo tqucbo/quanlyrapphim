@@ -1,9 +1,7 @@
-using System;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using QuanLyRapPhim.Models;
 
 namespace QuanLyRapPhim.Controllers

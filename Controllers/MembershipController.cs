@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using QuanLyRapPhim.Data;
 using QuanLyRapPhim.Models;
 using System.Linq;
-using System;
 
 namespace QuanLyRapPhim.Controllers
 {

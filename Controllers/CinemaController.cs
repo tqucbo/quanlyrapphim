@@ -45,45 +45,84 @@ namespace QuanLyRapPhim.Controllers
                                            orderby sc.seatCategoryPrice
                                            select sc).ToList();
 
-            string htmlCode = $@"
-            Thông tin cụm rạp:
-            <ul>
-                <li>
-                    Tên cụm rạp: {cm.cinemaName}
-                </li>
-                <li>
-                    Địa chỉ: {cm.cinemaAddress}
-                </li>
-                <li>
-                    Tổng số lượng phòng chiếu: {totalCinemaRoom}
-                </li>
-            </ul>
-            Giá vé:
-            <ul>";
+            string htmlInfo = $@"
+            <div>
+                <div class=""row no-gutters"">
+                    <div class=""col col-6"">
+                        <h5>{"Thông tin cụm rạp".ToUpper()}</h5>
+                        <ul>
+                            <li>
+                                Tên cụm rạp: {cm.cinemaName}
+                            </li>
+                            <li>
+                                Địa chỉ: {cm.cinemaAddress}
+                            </li>
+                            <li>
+                                Tổng số lượng phòng chiếu: {totalCinemaRoom}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class=""col col-6"">
+                        <h5>{"Giá vé".ToUpper()}</h5>
+                        <ul>";
 
             scs.ForEach(sc =>
             {
                 if (sc.seatCategoryName.ToLower().Contains("couple".ToLower()))
                 {
-                    htmlCode += $@"
+                    htmlInfo += $@"
                     <li>
                         {sc.seatCategoryName}: {(sc.seatCategoryPrice + cm.cinemaServiceCharge) * 2} VND/vé
                     </li>";
                 }
                 else
                 {
-                    htmlCode += $@"
+                    htmlInfo += $@"
                     <li>
                         {sc.seatCategoryName}: {sc.seatCategoryPrice + cm.cinemaServiceCharge} VND/vé
                     </li>";
                 }
             });
 
-            htmlCode += $@"
-                </ul>
+            htmlInfo += $@"
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h5>{"Lưu ý".ToUpper()}</h5>
+                        <ul>
+                            <li>
+                                Giá vé hiển thị trên Website và Ứng dụng là Giá vé cho Người lớn.
+                            </li>
+                            <li>
+                                Với các đối tượng khách hàng sau, vui lòng mua vé trực tiếp tại rạp và xuất trình giấy tờ tương úng để được hưởng ưu đãi <strong>giảm 50000 VND/hoá đơn</strong>:
+                                <ul>
+                                    <li>
+                                        <strong>Người dưới 23 tuổi</strong>: Xuất trình thẻ Căn cước công dân.
+                                    </li>
+                                    <li>
+                                        <strong>Sinh viên trên 23 tuổi đang học tại các trường đại học, cao đẳng</strong>: Xuất trình thẻ Căn cước công dân và Thẻ sinh viên hoặc Giấy tờ chứng minh khác.
+                                    </li>
+                                    <li>
+                                        <strong>Người cao tuổi</strong> (55 tuổi với Nữ và 60 tuổi với Nam): Xuất trình thẻ Căn cước công dân.
+                                    </li>
+                                    <li>
+                                        <strong>Giáo viên, Giảng viên</strong>: Xuất trình thẻ Căn cước công dân và Thẻ viên chức hoặc Giấy tờ chứng minh khác.
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             ";
 
-            return Json(htmlCode);
+            string htmlImage = $@"<img src=""cinema/{cm.image}"" width=""100%"">";
+
+            return Json(new
+            {
+                htmlInfo = htmlInfo,
+                htmlImage = htmlImage,
+            });
         }
     }
 }

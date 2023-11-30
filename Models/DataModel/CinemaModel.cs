@@ -14,5 +14,7 @@ namespace QuanLyRapPhim.Models
         public string cinemaAddress { set; get; }
 
         public int cinemaServiceCharge { set; get; }
+
+        public string image { set; get; }
     }
 }

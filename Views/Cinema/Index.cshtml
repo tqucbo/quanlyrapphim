@@ -9,21 +9,24 @@
 </h1>
 <hr>
 
-<div>
-    <select class="custom-select" id="selectCinema" style="width: 250px;">
-        <option hidden selected>Chọn rạp</option>
-        @foreach (var i in Model)
-        {
-            <option value="@i.cinemaId">
-                @i.cinemaName
-            </option>
-        }
-    </select>
-</div>
 
+
+<select class="custom-select" id="selectCinema" style="width: 250px;">
+    <option hidden selected>Chọn rạp</option>
+    @foreach (var i in Model)
+    {
+        <option value="@i.cinemaId">
+            @i.cinemaName
+        </option>
+    }
+</select>
+<center class="cinemaImage mt-3 mb-3"></center>
 <div class="cinemaInfo mt-3">
     Mời quý khán giả chọn rạp để hiển thị giá vé tương ứng.
 </div>
+
+
+
 
 @section Scripts {
     <script>
@@ -36,8 +39,8 @@
                     "cinemaId": cinemaId,
                 },
                 success: function (response) {
-                    console.log(response);
-                    $(".cinemaInfo").html(response);
+                    $(".cinemaInfo").html(response.htmlInfo);
+                    $(".cinemaImage").html(response.htmlImage);
                 }
             });
         });
