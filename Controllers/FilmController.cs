@@ -21,7 +21,7 @@ namespace QuanLyRapPhim.Controllers
             _context = context;
         }
 
-        [Route("/movienowshowing")]
+        [Route("/movienowshowing", Name = "MovieNowShowing")]
         public IActionResult MovieNowShowing()
         {
             List<FilmModel> films = (from film in _context.films
@@ -31,7 +31,7 @@ namespace QuanLyRapPhim.Controllers
             return View(films);
         }
 
-        [Route("/moviecomingsoon")]
+        [Route("/moviecomingsoon", Name = "MovieComingSoon")]
         public IActionResult MovieComingSoon()
         {
             List<FilmModel> films = (from film in _context.films

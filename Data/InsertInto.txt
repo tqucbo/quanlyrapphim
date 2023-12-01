@@ -45,6 +45,21 @@ VALUES
     N'nctnation_banner.jpg'
 ),
 (
+    N'b1768a97-6a8c-4ac1-a39c-67c96be9d93a', 
+    N'BẠN KHÔNG THÂN',
+    129,
+    N'b667be40-08d9-408c-8f9b-2a016b6b00f1',
+    N'Bắt đầu với niềm đam mê làm phim bất diệt cùng những ý tưởng lớn, nhóm học sinh trung học của “Bạn Không Thân” chính là hội bạn trong “hoạn nạn” lại cần tới nhau tại một cuộc thi làm phim ngắn dựa trên câu chuyện về cuộc đời của người bạn cùng lớp mà họ yêu quý. Bằng vốn hiểu biết có giới hạn về người bạn quá cố, cả nhóm với sự nỗ lực 200% đã dần khám phá ra những bí mật ẩn giấu gây bất ngờ tới mức có thể thay đổi quan điểm về niềm đam mê của hội thanh thiếu niên này mãi mãi.',
+    '2023-12-01',
+    N'33a74798-27e2-4e49-92b3-facb8ace6926',
+    N'Atta Hemwadee',
+    N'Anthony Buisseret, Pisitpol Ekaphongpisit, Thitiya Jirapornsilp',
+    N'bankhongthan_poster.jpg',
+    N'Tiếng Việt',
+    N'Thái Lan',
+    N'nctnation_banner.jpg'
+),
+(
     N'327593fb-0f78-45c6-8e07-225977d98e08', 
     N'WONKA (PHỤ ĐỀ)',
     116,

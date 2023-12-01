@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using QuanLyRapPhim.Data;
 using QuanLyRapPhim.Models;
 using System.Linq;
-using Castle.Core.Internal;
 using System;
 
 namespace QuanLyRapPhim.Controllers
@@ -36,20 +35,50 @@ namespace QuanLyRapPhim.Controllers
 
         public IActionResult Index()
         {
-            List<string> listImage = (from f in _context.films
-                                      where f.filmBannerImage != null
-                                      orderby f.filmStartDate descending
-                                      select f.filmBannerImage)
+            List<string> listFilmBannerImage = (from f in _context.films
+                                                where f.filmBannerImage != null
+                                                orderby f.filmStartDate descending
+                                                select f.filmBannerImage)
                                       .Distinct()
                                       .Take(10)
                                       .ToList();
 
-            return View(listImage);
+            List<FilmModel> top10NowShowing = (from film in _context.films
+                                               where film.filmStartDate <= DateTime.Now
+                                               orderby film.filmStartDate descending, film.filmName
+                                               select film).Take(10).ToList();
+
+            List<FilmModel> top10ComingSoon = (from film in _context.films
+                                               where film.filmStartDate > DateTime.Now || !film.filmStartDate.HasValue
+                                               orderby film.filmStartDate.HasValue descending, film.filmStartDate, film.filmName
+                                               select film).Take(10).ToList();
+
+            return View(new MultipleModelForHomeView()
+            {
+                listFilmBannerImage = listFilmBannerImage,
+                top10ComingSoon = top10ComingSoon,
+                top10NowShowing = top10NowShowing,
+            });
         }
 
-        public IActionResult Privacy()
+        [Route("/Top10MovieNowShowing", Name = "Top10MovieNowShowing")]
+        public IActionResult Top10MovieNowShowing()
         {
-            return View();
+            List<FilmModel> films = (from film in _context.films
+                                     where film.filmStartDate <= DateTime.Now
+                                     orderby film.filmStartDate descending, film.filmName
+                                     select film).Take(10).ToList();
+            return Json(films);
+        }
+
+        [Route("/Top10MovieComingSoon", Name = "Top10MovieComingSoon")]
+        public IActionResult Top10MovieComingSoon()
+        {
+            List<FilmModel> films = (from film in _context.films
+                                     where film.filmStartDate > DateTime.Now || !film.filmStartDate.HasValue
+                                     orderby film.filmStartDate.HasValue descending, film.filmStartDate, film.filmName
+                                     select film).Take(10).ToList();
+            return Json(films);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

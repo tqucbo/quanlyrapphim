@@ -1,16 +1,21 @@
-﻿@model List<string>
+﻿@model QuanLyRapPhim.Models.MultipleModelForHomeView
 
 @{
     ViewData["Title"] = "Home Page";
 
+    var listFilmBannerImage = Model.listFilmBannerImage;
 
-    string createHtmlCarouselInner()
+    var top10NowShowing = Model.top10NowShowing;
+
+    var top10ComingSoon = Model.top10ComingSoon;
+
+    string createHtmlCarouselInnerForBanner()
     {
         string HtmlCarouselInner = "";
 
-        foreach (var i in Model)
+        foreach (var i in listFilmBannerImage)
         {
-            if (Model.IndexOf(i) == 0)
+            if (listFilmBannerImage.IndexOf(i) == 0)
             {
                 HtmlCarouselInner += $@"<div class = ""carousel-item active"">";
             }
@@ -18,16 +23,23 @@
             {
                 HtmlCarouselInner += $@"<div class = ""carousel-item"">";
             }
-            HtmlCarouselInner += $@"<img src=""/banner/{i}"" class=""d-block"" style=""width:100%; height: 350px;""></div>";
+            HtmlCarouselInner += $@"
+<img src=""/banner/{i}""
+class=""d-block img-fluid""
+style=""
+width:100%;
+height: 45vh;
+object-fit: containt;"">
+</div>";
         }
 
         return HtmlCarouselInner;
     };
 
-    string createHtmlCarouselIndicator()
+    string createHtmlCarouselIndicatorForBanner()
     {
         string HtmlCarouselIndicator = "";
-        for (var i = 0; i < Model.Count; i++)
+        for (var i = 0; i < listFilmBannerImage.Count; i++)
         {
             HtmlCarouselIndicator += $@"<li data-target=""#demo"" data-slide-to=""{i}""";
             if (i == 0)
@@ -38,20 +50,112 @@
         }
         return HtmlCarouselIndicator;
     }
+
+    string createHtmlCarouselInnerForPoster(List<QuanLyRapPhim.Models.FilmModel> films)
+    {
+        string HtmlCarouselInner = "";
+
+        foreach (var i in films)
+        {
+            var filmId = i.filmId;
+            var filmGenre = string.IsNullOrEmpty(i.filmGenreId) ? "" : i.filmGenre.filmGenreName;
+            var filmGenreStyle = string.IsNullOrEmpty(i.filmGenreId) ? "" : "width: 48px; height: 27px";
+            var filmMainCategory = string.IsNullOrEmpty(i.filmMainCategoryId) ? "Chưa xác định" : i.filmMainCategory.filmMainCategoryName;
+            var filmLength = i.filmLength == -1 ||  i.filmLength == 0 ? "Chưa xác định" : $"{i.filmLength} phút";
+            var filmStartDate = i.filmStartDate.HasValue ? string.Format("{0:dd/MM/yyyy}", i.filmStartDate) : "Chưa xác định";
+            var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{i.filmPosterImage}") ? i.filmPosterImage : "noimageavailable.jpg";
+            var filmName = i.filmName;
+            var url = Url.Action("Index", "BuyTicket", new {filmId = filmId});
+
+            if (films.IndexOf(i) == 0)
+            {
+                HtmlCarouselInner += $@"<div class = ""carousel-item active"">";
+            }
+            else
+            {
+                HtmlCarouselInner += $@"<div class = ""carousel-item"">";
+            }
+            HtmlCarouselInner += $@"
+<div class=""row no-gutters flex"">           
+    <div class=""col-auto"" style=""position: relative;"">
+        <img src=""poster/{filmPosterImage}"" alt=""{filmName.ToUpper()}"" width=""197px"" height=""271px"">
+        <span class=""rounded"" style=""position: absolute; top: 5px; left: 5px; {filmGenreStyle}; color: white; background-color: orange;"">
+            <center>
+                <strong style=""user-select: none;"">{filmGenre}</strong>
+            </center>
+        </span>
+    </div>
+    <div class=""col"" style=""padding-left: 25px; padding-right: 25px"">
+        <span>
+            <h4>{filmName.ToUpper()}</h4>
+        </span>
+        <div>
+            <div>
+                <span class=""font-weight-bold"">Thể loại : </span>
+                <span>{filmMainCategory}</span>
+            </div>
+            <div>
+                <span class=""font-weight-bold"">Thời lượng : </span>
+                <span>{filmLength}</span>
+            </div>
+            <div>
+                <span class=""font-weight-bold"">Khởi chiếu : </span>
+                <span>{filmStartDate}</span>
+            </div>
+            <div class=""mt-3"">
+            <a type=""submit"" 
+                class=""btn btn-primary"" 
+                href=""{url}"">
+                        Mua vé
+            </a>  
+            </div> 
+        </div>
+    </div>
+</div> 
+</div>";
+        }
+
+        return HtmlCarouselInner;
+    }
 }
 
-<div id="demo" class="carousel slide" data-ride="carousel">
+<div id="banner" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
+        @Html.Raw(createHtmlCarouselIndicatorForBanner())
     </ul>
     <div class="carousel-inner">
-        @Html.Raw(createHtmlCarouselInner())
+        @Html.Raw(createHtmlCarouselInnerForBanner())
     </div>
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <a class="carousel-control-prev" href="#banner" data-slide="prev">
         <span class="carousel-control-prev-icon"></span>
     </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
+    <a class="carousel-control-next" href="#banner" data-slide="next">
         <span class="carousel-control-next-icon"></span>
     </a>
 </div>
+
+<div class="row no-gutters">
+    <div class="mt-3 col-sm-6">
+        <h2>
+            Đang chiếu
+        </h2>
+        <div id="nowshowing" class="carousel slide carousel-multiple" data-ride="carousel" data-maximum-items-per-slide="5">
+            <div class="carousel-inner">
+                @Html.Raw(createHtmlCarouselInnerForPoster(Model.top10NowShowing))
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 col-sm-6">
+    <h2>
+        Sắp chiếu
+    </h2>
+    <div id="comingsoon" class="carousel slide carousel-multiple" data-ride="carousel" data-maximum-items-per-slide="5">
+        <div class="carousel-inner">
+            @Html.Raw(createHtmlCarouselInnerForPoster(Model.top10ComingSoon))
+        </div>
+    </div>
+</div>
+</div>
+
+
+

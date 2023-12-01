@@ -73,6 +73,7 @@ namespace QuanLyRapPhim.Controllers
                                              on fms.cinemaRoomId equals crm.cinemaRoomId
                                              orderby fms.filmShowDate
                                              where crm.cinemaId == cinemaId
+                                             && fms.filmShowDate >= DateTime.Now.Date
                                              select fms).ToList();
 
             List<string> allFilmShowDate = fsms.Select((fsm) => fsm.filmShowDate.ToShortDateString()).Distinct().ToList();
@@ -90,6 +91,7 @@ namespace QuanLyRapPhim.Controllers
                                              orderby fms.filmShowTime
                                              where fms.filmShowDate == DateTime.Parse(filmShowDate)
                                              && crm.cinemaId == cinemaId
+                                            && fms.filmShowTime >= DateTime.Now.TimeOfDay
                                              select fms).ToList();
 
             List<string> allFilmShowTime = fsms.Select((fsm) => fsm.filmShowTime.ToString(@"hh\:mm")).Distinct().ToList();
