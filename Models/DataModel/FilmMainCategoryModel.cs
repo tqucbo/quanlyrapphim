@@ -13,6 +13,7 @@ namespace QuanLyRapPhim.Models
 
         [Column(TypeName = "NVARCHAR")]
         [StringLength(450)]
+        [Display(Name = "Thể loại")]
         public string filmMainCategoryName { set; get; }        //  Tên thể loại chính
 
     }

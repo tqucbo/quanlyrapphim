@@ -10,6 +10,7 @@ namespace QuanLyRapPhim.Models
         [Key]
         public string filmGenreId { set; get; }                //  Mã phân loại độ tuổi
 
+        [Display(Name = "Độ tuổi")]
         public string filmGenreName { set; get; }              //  Tên phân loại độ tuổi
 
         public string filmGenreDescription { set; get; }       //  Mô tả phân loại độ tuổi

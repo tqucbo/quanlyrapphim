@@ -188,3 +188,6 @@ D:\BIDC\quanlyrapphim\obj\Debug\net5.0\ref\QuanLyRapPhim.dll
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\QuanLyRapPhim.pdb
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\QuanLyRapPhim.genruntimeconfig.cache
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Cinema\Index.cshtml.g.cs
+D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
+D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Admin\ListOfFilms.cshtml.g.cs
+D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Views\Admin\AddNewFilm.cshtml.g.cs
