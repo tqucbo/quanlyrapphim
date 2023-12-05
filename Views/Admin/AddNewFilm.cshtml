@@ -16,33 +16,106 @@
         </div>
     </div>
     <div class="form-group row no-gutters">
+        <label asp-for="@Model.filmGenre.filmGenreName" class="col-3 col-form-label"></label>
+        <div class="col-sm-6" style="padding-top: .375rem; padding-bottom: .375rem;">
+            <div>
+                <input type="radio" name="exists_filmGenre" value="Chưa xác định" checked>
+                <label class="mr-3" for="Chưa xác định">Chưa xác định</label>
+                <input type="radio" name="exists_filmGenre" value="Đã xác định">
+                <label class="mr-3" for="Đã xác định">Đã xác định</label>
+            </div>
+            <select name="filmGenre" id="filmGenre" class="w-100" style="height: calc(1.5em + .75rem + 2px);">
+            </select>
+        </div>
+
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.filmMainCategory.filmMainCategoryName" class="col-3 col-form-label"></label>
+        <div class="col-sm-6" style="padding-top: .375rem; padding-bottom: .375rem;">
+            <div>
+                <input type="radio" name="exists_filmMainCategory" value="Chưa xác định" checked>
+                <label class="mr-3" for="Chưa xác định">Chưa xác định</label>
+                <input type="radio" name="exists_filmMainCategory" value="Đã xác định">
+                <label class="mr-3" for="Đã xác định">Đã xác định</label>
+            </div>
+            <select name="filmMainCategory" id="filmMainCategory" class="w-100"
+                style="height: calc(1.5em + .75rem + 2px);">
+            </select>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.filmStartDate" class="col-3 col-form-label"></label>
+        <div class="col-sm-6" style="padding-top: .375rem; padding-bottom: .375rem;">
+            <div>
+                <input type="radio" name="exists_filmStartDate" value="Chưa xác định" checked>
+                <label class="mr-3" for="Chưa xác định">Chưa xác định</label>
+                <input type="radio" name="exists_filmStartDate" value="Đã xác định">
+                <label class="mr-3" for="Đã xác định">Đã xác định</label>
+            </div>
+            <input asp-for="@Model.filmStartDate" type="date" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
         <label asp-for="@Model.filmLength" class="col-3 col-form-label"></label>
         <div class="col-sm-6">
-            <input asp-for="@Model.filmLength" type="number" class="form-control">
+            <input asp-for="@Model.filmLength" type="number" min="-1" class="form-control">
             <span asp-validation-for="@Model.filmLength" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group row no-gutters">
-        <label asp-for="@Model.filmGenre.filmGenreName" class="col-3 col-form-label"></label>
-        <select name="filmGenre" id="filmGenre" class="col-sm-6">
-        </select>
+        <label asp-for="@Model.filmDescription" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.filmDescription" type="text" class="form-control">
+            <span asp-validation-for="@Model.filmDescription" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group row no-gutters">
-        <label asp-for="@Model.filmMainCategory.filmMainCategoryName" class="col-3 col-form-label"></label>
-        <select name="filmMainCategory" id="filmMainCategory" class="col-sm-6">
-        </select>
-    </div>
+
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmDirector" class="col-3 col-form-label"></label>
         <div class="col-sm-6">
-            <input asp-for="@Model.filmDirector" type="number" class="form-control">
+            <input asp-for="@Model.filmDirector" type="text" class="form-control">
             <span asp-validation-for="@Model.filmDirector" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group row no-gutters">
-        <button class="btn btn-primary">Gửi thông tin</button>
+        <label asp-for="@Model.filmMainActors" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.filmMainActors" type="text" class="form-control">
+            <span asp-validation-for="@Model.filmMainActors" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.filmCountry" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.filmCountry" type="text" class="form-control">
+            <span asp-validation-for="@Model.filmCountry" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.languageSubtitle" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.languageSubtitle" type="text" class="form-control">
+            <span asp-validation-for="@Model.languageSubtitle" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.filmPosterImage" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.filmPosterImage" type="file" class="form-control">
+            <span asp-validation-for="@Model.filmPosterImage" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.filmBannerImage" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.filmBannerImage" type="file" class="form-control">
+            <span asp-validation-for="@Model.filmBannerImage" class="text-danger"></span>
+        </div>
     </div>
 
+    <div class="form-group row no-gutters">
+        <button class="btn btn-primary">Gửi thông tin</button>
+    </div>
 </form>
 
 @section Scripts {
@@ -68,5 +141,7 @@
                 }
             });
         });
+
+
     </script>
 }

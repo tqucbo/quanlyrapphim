@@ -14,6 +14,7 @@ namespace QuanLyRapPhim.Models
         public string filmId { set; get; }                 //  Mã phim
 
         [Display(Name = "Tên phim")]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string filmName { set; get; }               //  Tên phim
 
         [Display(Name = "Độ dài")]
@@ -42,6 +43,7 @@ namespace QuanLyRapPhim.Models
         [Display(Name = "Diễn viên chính")]
         public string filmMainActors { set; get; }         //  Diễn viên chính
 
+        [Display(Name = "Ảnh - Poster")]
         public string filmPosterImage { set; get; }        //  Ảnh Poster
 
         [Display(Name = "Xuất xứ")]
@@ -50,6 +52,7 @@ namespace QuanLyRapPhim.Models
         [Display(Name = "Ngôn ngữ phụ đề")]
         public string languageSubtitle { set; get; }        //  Ngôn ngữ phụ đề
 
+        [Display(Name = "Ảnh - Banner")]
         public string filmBannerImage { set; get; }
     }
 }
