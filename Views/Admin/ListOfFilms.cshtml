@@ -21,7 +21,7 @@
             <th style="width: auto;">
                 @Html.DisplayNameFor(model => model.filmName)
             </th>
-            <th style="width: 10%;">
+            <th style="width: 15%;">
                 @Html.DisplayNameFor(model => model.filmGenre.filmGenreName)
             </th>
             <th style="width: 15%;">
@@ -39,7 +39,7 @@
         @foreach (var i in Model)
         {
             var filmName = i.filmName.ToUpper();
-            var filmGenreName = i.filmGenre.filmGenreName;
+            var filmGenreName = i.filmGenreId == null ? "Chưa xác định" : i.filmGenre.filmGenreName;
             var filmMainCategoryName = i.filmMainCategory.filmMainCategoryName;
             var filmStartDate = i.filmStartDate == null ? "Chưa xác định" : i.filmStartDate?.ToShortDateString();
             var filmId = i.filmId;

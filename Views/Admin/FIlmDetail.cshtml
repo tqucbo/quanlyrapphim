@@ -1,0 +1,103 @@
+@model QuanLyRapPhim.Models.FilmModel
+
+@{
+    ViewData["Title"] = "Chi tiết phim";
+}
+
+<div class="row no-gutters justify-content-between">
+    <h1 style="align-self: self-end;">
+        @ViewData["Title"]
+    </h1>
+    <a class="btn btn-primary" asp-action="UpdateFilm" asp-controller="Admin" asp-route-filmId="@Model.filmId"
+        style="height: min-content; width:100%; max-width: 200px; align-self: self-end;">
+        Chỉnh sửa
+    </a>
+</div>
+<hr />
+
+
+<div class="row no-gutters flex">
+    <div class="col-auto" style="position: relative;">
+        @{
+            var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{Model.filmPosterImage}") ? Model.filmPosterImage : "noimageavailable.jpg";
+        }
+        <img src="~/poster/@filmPosterImage" alt="@Model.filmName.ToUpper()" width="197px" height="271px">
+        @{
+            var filmGenre = string.IsNullOrEmpty(Model.filmGenreId) ? "" :
+            Model.filmGenre.filmGenreName;
+            var filmGenreStyle = string.IsNullOrEmpty(Model.filmGenreId) ? "" : "width: 48px; height: 27px";
+        }
+        <span class="rounded"
+            style="position: absolute; top: 5px; left: 5px; @filmGenreStyle; color: white; background-color: orange;">
+            <center>
+                <strong style="user-select: none;">@filmGenre</strong>
+            </center>
+        </span>
+    </div>
+    <div class="col" style="padding-left: 25px;">
+        <span>
+            <h4>@Model.filmName.ToUpper()</h4>
+        </span>
+        <div>
+            <div>
+                <span class=" font-weight-bold">Đạo diễn : </span>
+                <span>@Model.filmDirector</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Diễn viên : </span>
+                <span>@Model.filmMainActors</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Thể loại : </span>
+                @{
+                    var filmMainCategory = string.IsNullOrEmpty(Model.filmMainCategoryId) ? "Chưa xác định" :
+                    Model.filmMainCategory.filmMainCategoryName;
+                }
+                <span>@filmMainCategory</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Thời lượng : </span>
+                @{
+                    var filmLength = Model.filmLength == -1 || Model.filmLength == 0 ? "Chưa xác định" :
+                    $"{Model.filmLength} phút";
+                }
+                <span>@filmLength</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Quốc gia sản xuất : </span>
+                @{
+                    var filmCountry = Model.filmCountry ?? "Chưa xác định";
+                }
+                <span>@filmCountry</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Phụ đề : </span>
+                @{
+                    var languageSubtitle = Model.languageSubtitle ?? "Không";
+                }
+                <span>@languageSubtitle</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Khởi chiếu : </span>
+                @{
+                    var filmStartDate = Model.filmStartDate.HasValue
+                    ? string.Format("{0:dd/MM/yyyy}", Model.filmStartDate)
+                    : "Chưa xác định";
+                }
+                <span>@filmStartDate</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Phân loại độ tuổi : </span>
+                @{
+                    filmGenre = string.IsNullOrEmpty(Model.filmGenreId) ? "Chưa xác định" :
+                    Model.filmGenre.filmGenreName + " - " + Model.filmGenre.filmGenreDescription;
+                }
+                <span>@filmGenre</span>
+            </div>
+            <div>
+                <span class="font-weight-bold">Nội dung chính : </span>
+                <span>@Model.filmDescription</span>
+            </div>
+        </div>
+    </div>
+</div>

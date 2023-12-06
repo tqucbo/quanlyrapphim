@@ -1,7 +1,7 @@
 @model QuanLyRapPhim.Models.FilmAdminModel
 
 @{
-    ViewData["Title"] = "Thêm phim mới";
+    ViewData["Title"] = "Chỉnh sửa thông tin phim";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -10,12 +10,11 @@
 <form method="post" enctype="multipart/form-data">
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmName" class="col-3 col-form-label"></label>
-        <div class="col-sm-6">
-            <input asp-for="@Model.filmName" type="text" class="form-control">
-            <span asp-validation-for="@Model.filmName" class="text-danger"></span>
+        <div class="col-sm-6" style="padding-top: calc(.375rem + 1px); padding-bottom: calc(.375rem + 1px);">
+            <strong>@Model.filmName</strong>
         </div>
     </div>
-    <div class="form-group row no-gutters">
+    <div class=" form-group row no-gutters">
         <label asp-for="@Model.filmGenreId" class="col-3 col-form-label"></label>
         <div class="col-sm-6" style="padding-top: .375rem; padding-bottom: .375rem;">
             <div>
@@ -32,16 +31,18 @@
     </div>
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmMainCategoryId" class="col-3 col-form-label"></label>
-        <div class="col-sm-6" style="padding-top: .375rem; padding-bottom: .375rem;">
+        <div class="col-sm-6 jQueryFilmMainCategory" style="padding-top: .375rem; padding-bottom: .375rem;">
             <div>
                 <input type="radio" name="exists_filmMainCategory" value="1" checked>
                 <label class="mr-3" for="Chưa xác định">Chưa xác định</label>
                 <input type="radio" name="exists_filmMainCategory" value="2">
                 <label class="mr-3" for="Đã xác định">Đã xác định</label>
             </div>
-            <select name="filmMainCategory" id="filmMainCategory" class="w-100"
-                style="height: calc(1.5em + .75rem + 2px);" disabled="disabled">
-            </select>
+            <div>
+                <select name="filmMainCategory" id="filmMainCategory" class="w-100"
+                    style="height: calc(1.5em + .75rem + 2px);" disabled="disabled">
+                </select>
+            </div>
         </div>
     </div>
     <div class="form-group row no-gutters">
@@ -121,6 +122,7 @@
 @section Scripts {
     <script>
         $(document).ready(function (event) {
+
             $.ajax({
                 type: "GET",
                 url: "@Url.RouteUrl("AddNewFilmAutoLoad")",
@@ -129,17 +131,66 @@
                     var filmGenres = response.filmGenres;
                     var filmMainCategories = response.filmMainCategories;
 
+                    if ("@Model.filmGenreId" === "") {
+                        for (i in filmGenres) {
+                            if (filmGenres[i].filmGenreId == "@Model.filmGenreId") {
+                                $("#filmGenre").append(
+                                    "<option value=\"" + filmGenres[i].filmGenreId + "\" selected>" + filmGenres[i].filmGenreName + " - " + filmGenres[i].filmGenreDescription + "</option>");
+                            } else {
+                                $("#filmGenre").append(
+                                    "<option value=\"" + filmGenres[i].filmGenreId + "\">" + filmGenres[i].filmGenreName + " - " + filmGenres[i].filmGenreDescription + "</option>");
+                            }
+
+                        }
+                    }
+
                     for (i in filmGenres) {
-                        $("#filmGenre").append(
-                            "<option value=\"" + filmGenres[i].filmGenreId + "\">" + filmGenres[i].filmGenreName + " - " + filmGenres[i].filmGenreDescription + "</option>");
+                        if (filmGenres[i].filmGenreId == "@Model.filmGenreId") {
+                            $("#filmGenre").append(
+                                "<option value=\"" + filmGenres[i].filmGenreId + "\" selected>" + filmGenres[i].filmGenreName + " - " + filmGenres[i].filmGenreDescription + "</option>");
+                        } else {
+                            $("#filmGenre").append(
+                                "<option value=\"" + filmGenres[i].filmGenreId + "\">" + filmGenres[i].filmGenreName + " - " + filmGenres[i].filmGenreDescription + "</option>");
+                        }
+
                     }
                     for (i in filmMainCategories) {
-                        $("#filmMainCategory").append(
-                            "<option value=\"" + filmMainCategories[i].filmMainCategoryId + "\">" + filmMainCategories[i].filmMainCategoryName + "</option>"
-                        );
+                        if (filmMainCategories[i].filmMainCategoryId == "@Model.filmMainCategoryId") {
+                            $("#filmMainCategory").append(
+                                "<option value=\"" + filmMainCategories[i].filmMainCategoryId + "\" selected>" + filmMainCategories[i].filmMainCategoryName + "</option>"
+                            );
+                        } else {
+                            $("#filmMainCategory").append(
+                                "<option value=\"" + filmMainCategories[i].filmMainCategoryId + "\">" + filmMainCategories[i].filmMainCategoryName + "</option>"
+                            );
+                        }
+
                     }
                 }
             });
+
+            if ("@Model.filmGenreId" === "") {
+                $("input[name=\"exists_filmGenre\"]").filter("[value=\"1\"]").attr("checked", true);
+            } else {
+                $("input[name=\"exists_filmGenre\"]").filter("[value=\"2\"]").attr("checked", true);
+                $("#filmGenre").removeAttr("disabled");
+
+            }
+            7
+            if ("@Model.filmMainCategoryId" === "") {
+                $("input[name=\"exists_filmMainCategory\"]").filter("[value=\"1\"]").attr("checked", true);
+            } else {
+                $("input[name=\"exists_filmMainCategory\"]").filter("[value=\"2\"]").attr("checked", true);
+                $("#filmMainCategory").removeAttr("disabled");
+            }
+
+            if (@Model.filmStartDate?.ToShortDateString() === "") {
+                $("input[name=\"exists_filmStartDate\"]").filter("[value=\"1\"]").attr("checked", true);
+            } else {
+                $("input[name=\"exists_filmStartDate\"]").filter("[value=\"2\"]").attr("checked", true);
+                $("#filmStartDate").removeAttr("disabled");
+            }
+
         });
 
         $("input[name=exists_filmStartDate]").change(function () {
