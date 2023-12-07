@@ -7,6 +7,14 @@
 <h1>@ViewData["Title"]</h1>
 <hr>
 
+<div>
+    <strong>Cẩn trọng:</strong> Các thông tin chỉ có thể chỉnh sửa
+    <strong style="color: #dc3545;"><u>01 lần duy nhất</u></strong>.
+    <br>
+    Riêng Ngày khởi chiếu có thể chỉnh sửa nhiều lần tuỳ vào chính sách.
+</div>
+<br>
+
 <form method="post" enctype="multipart/form-data">
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmName" class="col-3 col-form-label"></label>
@@ -14,84 +22,54 @@
             <strong>@Model.filmName</strong>
         </div>
     </div>
-    <div class=" form-group row no-gutters">
+    <div class="form-group row no-gutters">
         <label asp-for="@Model.filmGenreId" class="col-3 col-form-label"></label>
-        <div class="col-sm-6" style="padding-top: .375rem; padding-bottom: .375rem;">
-            <div>
-                <input type="radio" name="exists_filmGenre" value="1" checked>
-                <label class="mr-3" for="Chưa xác định">Chưa xác định</label>
-                <input type="radio" name="exists_filmGenre" value="2">
-                <label class="mr-3" for="Đã xác định">Đã xác định</label>
-            </div>
-            <select name="filmGenre" id="filmGenre" class="w-100" style="height: calc(1.5em + .75rem + 2px);"
-                disabled="disabled">
-            </select>
+        <div class="col-sm-6 filmGenreRadioAndSelect" style="padding-top: .375rem; padding-bottom: .375rem;">
         </div>
 
     </div>
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmMainCategoryId" class="col-3 col-form-label"></label>
-        <div class="col-sm-6 jQueryFilmMainCategory" style="padding-top: .375rem; padding-bottom: .375rem;">
-            <div>
-                <input type="radio" name="exists_filmMainCategory" value="1" checked>
-                <label class="mr-3" for="Chưa xác định">Chưa xác định</label>
-                <input type="radio" name="exists_filmMainCategory" value="2">
-                <label class="mr-3" for="Đã xác định">Đã xác định</label>
-            </div>
-            <div>
-                <select name="filmMainCategory" id="filmMainCategory" class="w-100"
-                    style="height: calc(1.5em + .75rem + 2px);" disabled="disabled">
-                </select>
-            </div>
+        <div class="col-sm-6 filmMainCategoryRadioAndSelect" style="padding-top: .375rem; padding-bottom: .375rem;">
         </div>
     </div>
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmStartDate" class="col-3 col-form-label"></label>
         <div class="col-sm-6" style="padding-top: .375rem; padding-bottom: .375rem;">
             <div>
-                <input type="radio" name="exists_filmStartDate" value="1" checked>
+                <input type="radio" name="exists_filmStartDate" value="1">
                 <label class="mr-3" for="Chưa xác định">Chưa xác định</label>
                 <input type="radio" name="exists_filmStartDate" value="2">
                 <label class="mr-3" for="Đã xác định">Đã xác định</label>
             </div>
-            <input id="filmStartDate" asp-for="@Model.filmStartDate" type="date" class="form-control"
-                disabled="disabled">
+            <input id="filmStartDate" asp-for="@Model.filmStartDate" type="date" class="form-control">
         </div>
     </div>
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmLength" class="col-3 col-form-label"></label>
-        <div class="col-sm-6">
-            <input asp-for="@Model.filmLength" type="number" min="-1" class="form-control">
-            <span asp-validation-for="@Model.filmLength" class="text-danger"></span>
+        <div class="col-sm-6 filmLengthInput">
+
         </div>
     </div>
-    <div class="form-group row no-gutters">
+    <div class=" form-group row no-gutters">
         <label asp-for="@Model.filmDescription" class="col-3 col-form-label"></label>
-        <div class="col-sm-6">
-            <input asp-for="@Model.filmDescription" type="text" class="form-control">
-            <span asp-validation-for="@Model.filmDescription" class="text-danger"></span>
+        <div class="col-sm-6 filmDescriptionInput">
         </div>
     </div>
 
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmDirector" class="col-3 col-form-label"></label>
-        <div class="col-sm-6">
-            <input asp-for="@Model.filmDirector" type="text" class="form-control">
-            <span asp-validation-for="@Model.filmDirector" class="text-danger"></span>
+        <div class="col-sm-6 filmDirectorInput">
         </div>
     </div>
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmMainActors" class="col-3 col-form-label"></label>
-        <div class="col-sm-6">
-            <input asp-for="@Model.filmMainActors" type="text" class="form-control">
-            <span asp-validation-for="@Model.filmMainActors" class="text-danger"></span>
+        <div class="col-sm-6 filmMainActorsInput">
         </div>
     </div>
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmCountry" class="col-3 col-form-label"></label>
-        <div class="col-sm-6">
-            <input asp-for="@Model.filmCountry" type="text" class="form-control">
-            <span asp-validation-for="@Model.filmCountry" class="text-danger"></span>
+        <div class="col-sm-6 filmCountryInput">
         </div>
     </div>
     <div class="form-group row no-gutters">
@@ -122,7 +100,6 @@
 @section Scripts {
     <script>
         $(document).ready(function (event) {
-
             $.ajax({
                 type: "GET",
                 url: "@Url.RouteUrl("AddNewFilmAutoLoad")",
@@ -132,6 +109,13 @@
                     var filmMainCategories = response.filmMainCategories;
 
                     if ("@Model.filmGenreId" === "") {
+                        $(".filmGenreRadioAndSelect").append(`<div>`);
+                        $(".filmGenreRadioAndSelect").append(`<input type="radio" name="exists_filmGenre" value="1" checked style="margin-right: revert;">`);
+                        $(".filmGenreRadioAndSelect").append(`<label class="mr-3" for="Chưa xác định">Chưa xác định</label>`);
+                        $(".filmGenreRadioAndSelect").append(`<input type="radio" name="exists_filmGenre" value="2" style="margin: revert;">`);
+                        $(".filmGenreRadioAndSelect").append(`<label class="mr-3" for="Đã xác định">Đã xác định</label>`);
+                        $(".filmGenreRadioAndSelect").append(`</div>`);
+                        $(".filmGenreRadioAndSelect").append(`<select name="filmGenre" id="filmGenre" class="w-100" style="height: calc(1.5em + .75rem + 2px);" disabled="disabled"></select>`);
                         for (i in filmGenres) {
                             if (filmGenres[i].filmGenreId == "@Model.filmGenreId") {
                                 $("#filmGenre").append(
@@ -140,82 +124,112 @@
                                 $("#filmGenre").append(
                                     "<option value=\"" + filmGenres[i].filmGenreId + "\">" + filmGenres[i].filmGenreName + " - " + filmGenres[i].filmGenreDescription + "</option>");
                             }
-
+                        }
+                        $("input[name=exists_filmGenre]").change(function () {
+                            if ($("input[name=exists_filmGenre]:checked").val() == 1) {
+                                $("#filmGenre").attr("disabled", "disabled");
+                            } else {
+                                $("#filmGenre").removeAttr("disabled");
+                            }
+                        });
+                    } else {
+                        for (i in filmGenres) {
+                            if (filmGenres[i].filmGenreId == "@Model.filmGenreId") {
+                                $(".filmGenreRadioAndSelect").html(
+                                    "<strong>" + filmGenres[i].filmGenreName + "</strong> - " + filmGenres[i].filmGenreDescription
+                                )
+                            }
                         }
                     }
 
-                    for (i in filmGenres) {
-                        if (filmGenres[i].filmGenreId == "@Model.filmGenreId") {
-                            $("#filmGenre").append(
-                                "<option value=\"" + filmGenres[i].filmGenreId + "\" selected>" + filmGenres[i].filmGenreName + " - " + filmGenres[i].filmGenreDescription + "</option>");
-                        } else {
-                            $("#filmGenre").append(
-                                "<option value=\"" + filmGenres[i].filmGenreId + "\">" + filmGenres[i].filmGenreName + " - " + filmGenres[i].filmGenreDescription + "</option>");
+                    if ("@Model.filmMainCategoryId" === "") {
+                        $(".filmMainCategoryRadioAndSelect").append(`<div>`);
+                        $(".filmMainCategoryRadioAndSelect").append(`<input type="radio" name="exists_filmMainCategory" value="1" checked style="margin-right: revert;">`);
+                        $(".filmMainCategoryRadioAndSelect").append(`<label class="mr-3" for="Chưa xác định">Chưa xác định</label>`);
+                        $(".filmMainCategoryRadioAndSelect").append(`<input type="radio" name="exists_filmMainCategory" value="2" style="margin: revert;">`);
+                        $(".filmMainCategoryRadioAndSelect").append(`<label class="mr-3" for="Đã xác định">Đã xác định</label>`);
+                        $(".filmMainCategoryRadioAndSelect").append(`</div>`);
+                        $(".filmMainCategoryRadioAndSelect").append(`<select name="filmMainCategory" id="filmMainCategory" class="w-100"style="height: calc(1.5em + .75rem + 2px);" disabled="disabled"></select>`);
+                        for (i in filmMainCategories) {
+                            if (filmMainCategories[i].filmMainCategoryId == "@Model.filmMainCategoryId") {
+                                $("#filmMainCategory").append(
+                                    "<option value=\"" + filmMainCategories[i].filmMainCategoryId + "\" selected>" + filmMainCategories[i].filmMainCategoryName + "</option>"
+                                );
+                            } else {
+                                $("#filmMainCategory").append(
+                                    "<option value=\"" + filmMainCategories[i].filmMainCategoryId + "\">" + filmMainCategories[i].filmMainCategoryName + "</option>"
+                                );
+                            }
                         }
-
-                    }
-                    for (i in filmMainCategories) {
-                        if (filmMainCategories[i].filmMainCategoryId == "@Model.filmMainCategoryId") {
-                            $("#filmMainCategory").append(
-                                "<option value=\"" + filmMainCategories[i].filmMainCategoryId + "\" selected>" + filmMainCategories[i].filmMainCategoryName + "</option>"
-                            );
-                        } else {
-                            $("#filmMainCategory").append(
-                                "<option value=\"" + filmMainCategories[i].filmMainCategoryId + "\">" + filmMainCategories[i].filmMainCategoryName + "</option>"
-                            );
+                        $("input[name=exists_filmMainCategory]").change(function () {
+                            if ($("input[name=exists_filmMainCategory]:checked").val() == 1) {
+                                $("#filmMainCategory").attr("disabled", "disabled");
+                            } else {
+                                $("#filmMainCategory").removeAttr("disabled");
+                            }
+                        });
+                    } else {
+                        for (i in filmMainCategories) {
+                            if (filmMainCategories[i].filmMainCategoryId == "@Model.filmMainCategoryId") {
+                                $(".filmMainCategoryRadioAndSelect  ").html(
+                                    "<strong>" + filmMainCategories[i].filmMainCategoryName + "</strong>"
+                                )
+                            }
                         }
-
                     }
                 }
             });
 
-            if ("@Model.filmGenreId" === "") {
-                $("input[name=\"exists_filmGenre\"]").filter("[value=\"1\"]").attr("checked", true);
-            } else {
-                $("input[name=\"exists_filmGenre\"]").filter("[value=\"2\"]").attr("checked", true);
-                $("#filmGenre").removeAttr("disabled");
-
-            }
-            7
-            if ("@Model.filmMainCategoryId" === "") {
-                $("input[name=\"exists_filmMainCategory\"]").filter("[value=\"1\"]").attr("checked", true);
-            } else {
-                $("input[name=\"exists_filmMainCategory\"]").filter("[value=\"2\"]").attr("checked", true);
-                $("#filmMainCategory").removeAttr("disabled");
-            }
-
-            if (@Model.filmStartDate?.ToShortDateString() === "") {
-                $("input[name=\"exists_filmStartDate\"]").filter("[value=\"1\"]").attr("checked", true);
-            } else {
-                $("input[name=\"exists_filmStartDate\"]").filter("[value=\"2\"]").attr("checked", true);
-                $("#filmStartDate").removeAttr("disabled");
-            }
-
-        });
-
-        $("input[name=exists_filmStartDate]").change(function () {
-            if ($("input[name=exists_filmStartDate]:checked").val() == 1) {
+            if ("@Model.filmStartDate.ToString()" === "") {
+                $("input[name=exists_filmStartDate]").filter("[value=\"1\"]").attr("checked", "checked");
                 $("#filmStartDate").attr("disabled", "disabled");
             } else {
+                $("input[name=exists_filmStartDate]").filter("[value=\"2\"]").attr("checked", "checked");
                 $("#filmStartDate").removeAttr("disabled");
             }
-        });
 
-        $("input[name=exists_filmMainCategory]").change(function () {
-            if ($("input[name=exists_filmMainCategory]:checked").val() == 1) {
-                $("#filmMainCategory").attr("disabled", "disabled");
+            $("input[name=exists_filmStartDate]").change(function () {
+                if ($("input[name=exists_filmStartDate]:checked").val() == 1) {
+                    $("#filmStartDate").attr("disabled", "disabled");
+                } else {
+                    $("#filmStartDate").removeAttr("disabled");
+                }
+            });
+
+            if ("@Model.filmLength" === "0" || "@Model.filmLength" === "-1") {
+                $(".filmLengthInput").append(`<input asp-for="@Model.filmLength" type="number" min="-1" class="form-control"><span asp-validation-for="@Model.filmLength" class="text-danger"></span>`);
             } else {
-                $("#filmMainCategory").removeAttr("disabled");
+                $(".filmLengthInput").append(`<strong>@Model.filmLength phút</strong>`);
+                $(".filmLengthInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
+            }
+
+            if ("@Model.filmDescription" === "") {
+                $(".filmDescriptionInput").append(`<input asp-for="@Model.filmDescription" type="text" class="form-control">`)
+            } else {
+                $(".filmDescriptionInput").append("@Model.filmDescription");
+                $(".filmDescriptionInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
+            }
+
+            if ("@Model.filmDirector" === "") {
+                $(".filmDirectorInput").append(`<input asp-for="@Model.filmDirector" type="text" class="form-control">`)
+            } else {
+                $(".filmDirectorInput").append("@Model.filmDirector");
+                $(".filmDirectorInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
+            }
+
+            if ("@Model.filmMainActors" === "") {
+                $(".filmMainActorsInput").append(`<input asp-for="@Model.filmMainActors" type="text" class="form-control">`)
+            } else {
+                $(".filmMainActorsInput").append("@Model.filmMainActors");
+                $(".filmMainActorsInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
+            }
+
+            if ("@Model.filmCountry" === "") {
+                $(".filmCountryInput").append(`<input asp-for="@Model.filmCountry" type="text" class="form-control">`)
+            } else {
+                $(".filmCountryInput").append("@Model.filmCountry");
+                $(".filmCountryInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
             }
         });
-
-        $("input[name=exists_filmGenre]").change(function () {
-            if ($("input[name=exists_filmGenre]:checked").val() == 1) {
-                $("#filmGenre").attr("disabled", "disabled");
-            } else {
-                $("#filmGenre").removeAttr("disabled");
-            }
-        });
-
     </script>
 }

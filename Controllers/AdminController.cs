@@ -12,6 +12,7 @@ using System;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Org.BouncyCastle.Crypto.Macs;
+using Newtonsoft.Json;
 
 namespace QuanLyRapPhim.Controllers
 {
@@ -165,39 +166,97 @@ namespace QuanLyRapPhim.Controllers
                     filmMainCategoryId = fm.filmMainCategoryId,
                 };
 
+                ModelState.Clear();
+
                 return View(fam);
             }
             if (Request.Method == HttpMethod.Post.Method)
             {
-                if (ModelState.IsValid)
-                {
-                    string exists_filmStartDate = Request.Form["exists_filmStartDate"].ToString();
-                    string exists_filmMainCategory = Request.Form["exists_filmMainCategory"].ToString();
-                    string exists_filmGenre = Request.Form["exists_filmGenre"].ToString();
+                Console.WriteLine(JsonConvert.SerializeObject(filmFromForm));
 
-                    var film = await _context.films.FindAsync(filmId);
+                var film = await _context.films.FindAsync(filmId);
 
-                    film.filmBannerImage = filmBannerImage != null ? filmBannerImage.FileName.ToString() : null;
-                    film.filmCountry = filmFromForm.filmCountry;
-                    // film.filmName = filmFromForm.filmName;
-                    // film.filmGenreId = exists_filmGenre == "2" ? Request.Form["filmGenre"].ToString() : null;
-                    film.filmDescription = filmFromForm.filmDescription;
-                    film.filmDirector = filmFromForm.filmDirector;
-                    // film.filmMainCategoryId = exists_filmGenre == "2" ? Request.Form["filmGenre"].ToString() : null;
-                    film.filmLength = filmFromForm.filmLength;
-                    film.filmMainActors = filmFromForm.filmMainActors;
-                    film.filmStartDate = filmFromForm.filmStartDate;
-                    film.filmPosterImage = filmPosterImage != null ? filmPosterImage.FileName.ToString() : null;
-                    film.languageSubtitle = filmFromForm.languageSubtitle;
+                film.filmBannerImage =
+                    filmBannerImage == null
+                    ? film.filmBannerImage
+                    : filmBannerImage.FileName.ToString();
 
-                    var result = await _context.SaveChangesAsync();
+                film.filmDescription =
+                    string.IsNullOrEmpty(filmFromForm.filmDescription)
+                    ? film.filmDescription
+                    : filmFromForm.filmDescription;
 
-                    return RedirectToAction("ListOfFilms");
-                }
-            }
-            else
-            {
-                ModelState.Clear();
+                film.filmDirector =
+                    string.IsNullOrEmpty(filmFromForm.filmDirector)
+                    ? film.filmDirector
+                    : filmFromForm.filmDirector;
+
+                film.filmName =
+                    string.IsNullOrEmpty(filmFromForm.filmName)
+                    ? film.filmName
+                    : filmFromForm.filmName;
+
+                film.filmCountry =
+                    string.IsNullOrEmpty(filmFromForm.filmCountry)
+                    ? film.filmCountry
+                    : filmFromForm.filmCountry;
+
+                film.filmGenreId =
+                    string.IsNullOrEmpty(filmFromForm.filmGenreId)
+                    ? film.filmGenreId
+                    : Request.Form["exists_filmGenre"].ToString() == "1"
+                    ? film.filmGenreId
+                    : Request.Form["filmGenre"].ToString() == film.filmGenreId
+                    ? film.filmGenreId
+                    : Request.Form["filmGenre"].ToString();
+
+                film.filmLength =
+                    filmFromForm.filmLength == 0 || filmFromForm.filmLength == -1
+                    ? film.filmLength
+                    : filmFromForm.filmLength;
+
+                film.filmMainActors =
+                    string.IsNullOrEmpty(filmFromForm.filmMainActors)
+                    ? film.filmMainActors
+                    : filmFromForm.filmMainActors;
+
+                film.filmMainCategoryId =
+                    string.IsNullOrEmpty(filmFromForm.filmMainCategoryId)
+                    ? film.filmMainCategoryId
+                    : Request.Form["exists_filmMainCategory"].ToString() == "1"
+                    ? film.filmMainCategoryId
+                    : Request.Form["filmMainCategory"].ToString() == film.filmMainCategoryId
+                    ? film.filmMainCategoryId
+                    : Request.Form["filmMainCategory"];
+
+                film.filmName =
+                    string.IsNullOrEmpty(filmFromForm.filmName)
+                    ? film.filmName
+                    : filmFromForm.filmName;
+
+                film.filmPosterImage =
+                    filmPosterImage == null
+                    ? film.filmPosterImage
+                    : filmPosterImage.FileName.ToString();
+
+                film.filmStartDate =
+                    string.IsNullOrEmpty(filmFromForm.filmStartDate.ToString())
+                    ? null
+                    : Request.Form["exists_filmStartDate"].ToString() == "1"
+                    ? null
+                    : Request.Form["exists_filmStartDate"].ToString() == film.filmStartDate.ToString()
+                    ? film.filmStartDate
+                    : DateTime.Parse(Request.Form["filmStartDate"].ToString());
+
+                film.languageSubtitle =
+                    string.IsNullOrEmpty(filmFromForm.languageSubtitle)
+                    ? film.languageSubtitle
+                    : filmFromForm.languageSubtitle;
+
+                var result = await _context.SaveChangesAsync();
+
+                return RedirectToAction("ListOfFilms");
+
             }
             return View(filmFromForm);
         }
