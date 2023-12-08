@@ -1,0 +1,28 @@
+@model QuanLyRapPhim.Models.FilmSecheduleAdminModel
+
+@{
+    ViewData["Title"] = "Thêm suất chiếu mới";
+}
+
+<h1>
+    @ViewData["Title"]
+</h1>
+<hr>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.filmShowDate" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.filmShowDate" type="date" class="form-control">
+            <span asp-validation-for="@Model.filmShowDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label asp-for="@Model.filmShowTime" class="col-3 col-form-label"></label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.filmShowTime" type="time" class="form-control">
+            <span asp-validation-for="@Model.filmShowTime" class="text-danger"></span>
+        </div>
+    </div>
+
+</form>

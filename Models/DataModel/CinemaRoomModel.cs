@@ -10,6 +10,7 @@ namespace QuanLyRapPhim.Models
         [Key]
         public string cinemaRoomId { set; get; }            //  Mã phòng chiếu
 
+        [Display(Name = "Phòng chiếu")]
         public string cinemaRoomName { set; get; }          //  Tên phòng chiếu
 
         public string cinemaId { set; get; }                //  Phòng chiếu thuộc rạp nào

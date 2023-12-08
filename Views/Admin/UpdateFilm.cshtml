@@ -8,10 +8,16 @@
 <hr>
 
 <div>
-    <strong>Cẩn trọng:</strong> Các thông tin chỉ có thể chỉnh sửa
-    <strong style="color: #dc3545;"><u>01 lần duy nhất</u></strong>.
-    <br>
-    Riêng Ngày khởi chiếu có thể chỉnh sửa nhiều lần tuỳ vào chính sách.
+    <strong>Lưu ý quan trọng:</strong>
+    <ul>
+        <li>
+            Ngày khởi chiếu, Banner và Poster có thể chỉnh sửa nhiều lần tuỳ vào chính sách.
+        </li>
+        <li>
+            Các thông tin còn lại chỉ có thể chỉnh sửa <strong style="color: #dc3545;"><u>01 lần duy nhất</u></strong>.
+        </li>
+    </ul>
+
 </div>
 <br>
 
@@ -74,9 +80,7 @@
     </div>
     <div class="form-group row no-gutters">
         <label asp-for="@Model.languageSubtitle" class="col-3 col-form-label"></label>
-        <div class="col-sm-6">
-            <input asp-for="@Model.languageSubtitle" type="text" class="form-control">
-            <span asp-validation-for="@Model.languageSubtitle" class="text-danger"></span>
+        <div class="col-sm-6 languageSubtitleInput">
         </div>
     </div>
     <div class="form-group row no-gutters">
@@ -210,6 +214,7 @@
                 $(".filmDescriptionInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
             }
 
+
             if ("@Model.filmDirector" === "") {
                 $(".filmDirectorInput").append(`<input asp-for="@Model.filmDirector" type="text" class="form-control">`)
             } else {
@@ -229,6 +234,13 @@
             } else {
                 $(".filmCountryInput").append("@Model.filmCountry");
                 $(".filmCountryInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
+            }
+
+            if ("@Model.languageSubtitle" === "") {
+                $(".languageSubtitleInput").append(`<input asp-for="@Model.languageSubtitle" type="text" class="form-control">`)
+            } else {
+                $(".languageSubtitleInput").append("@Model.languageSubtitle");
+                $(".languageSubtitleInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
             }
         });
     </script>

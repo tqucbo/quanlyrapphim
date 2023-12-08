@@ -11,8 +11,11 @@ using System.Net.Http;
 using System;
 using System.IO;
 using Microsoft.AspNetCore.Http;
-using Org.BouncyCastle.Crypto.Macs;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Reflection;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace QuanLyRapPhim.Controllers
 {
@@ -259,6 +262,94 @@ namespace QuanLyRapPhim.Controllers
 
             }
             return View(filmFromForm);
+        }
+
+        public IActionResult ListOfFilmSchedules(string filmId)
+        {
+            List<FilmSecheduleModel> filmSechedules = (from fsm in _context.filmSechedules
+                                                       where fsm.filmId == filmId
+                                                       select fsm).ToList();
+
+            FilmModel film = (from f in _context.films
+                              where f.filmId == filmId
+                              select f).FirstOrDefault();
+
+            return View(new ListOfFilmSchedulesAdminModel()
+            {
+                filmSechedules = filmSechedules,
+                film = film,
+            });
+        }
+
+        [HttpPost]
+        [Route("/ListOfFilmSchedulesPost", Name = "ListOfFilmSchedulesPost")]
+        public IActionResult ListOfFilmSchedulesPost(string filmId, string cinemaId)
+        {
+            List<FilmSecheduleModel> filmSechedules = new List<FilmSecheduleModel>();
+            if (string.IsNullOrEmpty(cinemaId))
+            {
+                filmSechedules = (from fsm in _context.filmSechedules
+                                  where fsm.filmId == filmId
+                                  orderby fsm.CinemaRoom.cinemaModel.cinemaName, fsm.filmShowDate descending, fsm.filmShowTime descending
+                                  select fsm).ToList();
+            }
+            else
+            {
+                filmSechedules = (from fsm in _context.filmSechedules
+                                  where fsm.filmId == filmId
+                                  && fsm.CinemaRoom.cinemaId == cinemaId
+                                  orderby fsm.CinemaRoom.cinemaModel.cinemaName, fsm.filmShowDate descending, fsm.filmShowTime descending
+                                  select fsm).ToList();
+            }
+
+            string htmlTHead = @$"
+                <tr>
+                    <th style=""width: 25%"">
+                        {(typeof(FilmSecheduleModel).GetProperty("filmShowDate").GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute).Name}
+                    </th>
+                    <th style=""width: 25%"">
+                        {(typeof(FilmSecheduleModel).GetProperty("filmShowTime").GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute).Name}
+                    </th>
+                    <th style=""width: 25%"">
+                        {(typeof(CinemaRoomModel).GetProperty("cinemaRoomName").GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute).Name}
+                    </th>
+                    <th style=""width: 25%"">
+                        {(typeof(CinemaModel).GetProperty("cinemaName").GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute).Name}
+                    </th>
+                </tr>
+            ";
+
+            string htmlTBody = "";
+
+            foreach (var i in filmSechedules)
+            {
+                htmlTBody += @$"
+                    <tr>
+                        <td>
+                            {i.filmShowDate.ToShortDateString()}
+                        </td>
+                        <td>
+                            {i.filmShowTime.ToString(@"hh\:mm")}
+                        </td>
+                        <td>
+                            {i.CinemaRoom.cinemaRoomName}
+                        </td>
+                        <td>
+                            {i.CinemaRoom.cinemaModel.cinemaName}
+                        </td>
+                    </tr>
+                ";
+            }
+            return Json(new
+            {
+                htmlTHead = htmlTHead,
+                htmlTBody = htmlTBody,
+            });
+        }
+
+        public IActionResult AddNewFilmSchedule(string filmId)
+        {
+            return View();
         }
     }
 }

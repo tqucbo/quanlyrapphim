@@ -9,6 +9,7 @@ namespace QuanLyRapPhim.Models
         [Key]
         public string cinemaId { set; get; }
 
+        [Display(Name = "Cụm rạp")]
         public string cinemaName { set; get; }
 
         public string cinemaAddress { set; get; }

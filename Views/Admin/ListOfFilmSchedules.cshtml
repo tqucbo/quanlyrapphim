@@ -1,0 +1,71 @@
+@model QuanLyRapPhim.Models.ListOfFilmSchedulesAdminModel
+
+@{
+    ViewData["Title"] = "Danh sách suất chiếu";
+
+    var listCinema = Model.filmSechedules.Select(m => m.CinemaRoom.cinemaModel).Distinct().ToList();
+
+    var filmId = Model.film.filmId;
+
+    var filmName = Model.film.filmName;
+}
+
+<div class="row no-gutters justify-content-between">
+    <h1 style="align-self: self-end;">
+        @ViewData["Title"]
+    </h1>
+    <a class="btn btn-primary" asp-action="AddNewFilmSchedule" asp-controller="Admin" asp-route-filmId="@filmId"
+        style="height: min-content; width:100%; max-width: 200px; align-self: self-end;">
+        Thêm suất chiếu mới
+    </a>
+</div>
+<hr />
+
+<div>
+    Danh sách suất chiếu cho phim: <strong>@filmName</strong>
+</div>
+
+<div class="mt-3 mb-3">
+    <select class="custom-select" id="selectCinema" style="width: 250px;">
+        <option value="" selected>Tất cả các rạp</option>
+        @foreach (var i in listCinema)
+        {
+            <option value="@i.cinemaId">@i.cinemaName</option>
+        }
+    </select>
+</div>
+
+<table class="table">
+    <thead>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script>
+        function getFilmSchedule() {
+            $.ajax({
+                type: "POST",
+                url: "@Url.RouteUrl("ListOfFilmSchedulesPost")",
+                data: {
+                    filmId: "@filmId",
+                    cinemaId: $("#selectCinema option:selected").val()
+                },
+                success: function (response) {
+                    $("thead").html(response.htmlTHead)
+                    $("tbody").html(response.htmlTBody);
+                }
+            });
+        }
+
+        $(document).ready(function (event) {
+            getFilmSchedule();
+        });
+
+        $("#selectCinema").change(function (event) {
+            getFilmSchedule();
+        });
+    </script>
+}

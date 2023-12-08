@@ -13,9 +13,11 @@ namespace QuanLyRapPhim.Models
         public string filmSecheduleId { set; get; }                //  Mã lịch chiếu
 
         [Column(TypeName = "DATE")]
+        [Display(Name = "Ngày chiếu")]
         public DateTime filmShowDate { set; get; }                 //  Ngày chiếu
 
         [Column(TypeName = "TIME")]
+        [Display(Name = "Giờ chiếu")]
         public TimeSpan filmShowTime { set; get; }                 //  Giờ chiếu
 
         public string filmId { set; get; }                         //  Mã phim

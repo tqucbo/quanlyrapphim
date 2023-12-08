@@ -30,8 +30,8 @@
             <th style="width: 15%;">
                 @Html.DisplayNameFor(model => model.filmStartDate)
             </th>
-            <th style="width: 10%;">
-
+            <th style="width: 15%;">
+                Thao tác
             </th>
         </tr>
     </thead>
@@ -58,7 +58,15 @@
                     @filmStartDate
                 </td>
                 <td>
-                    <a asp-action="FilmDetail" asp-controller="Admin" asp-route-filmId="@filmId">Chi tiết</a>
+                    <ul style="list-style-type: none; padding: 0; margin: 0;">
+                        <li>
+                            <a asp-action="FilmDetail" asp-controller="Admin" asp-route-filmId="@filmId">Chi tiết</a>
+                        </li>
+                        <li>
+                            <a asp-action="ListOfFilmSchedules" asp-controller="Admin" asp-route-filmId="@filmId">Suất
+                                chiếu</a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         }
