@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Reflection;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http.Extensions;
 
 
 namespace QuanLyRapPhim.Controllers
@@ -120,7 +121,7 @@ namespace QuanLyRapPhim.Controllers
 
                         using (var filestream = new FileStream(filmBannerImagePath, FileMode.Create))
                         {
-                            await filmPosterImage.CopyToAsync(filestream);
+                            await filmBannerImage.CopyToAsync(filestream);
                         }
 
                     }
@@ -256,6 +257,30 @@ namespace QuanLyRapPhim.Controllers
                     ? film.languageSubtitle
                     : filmFromForm.languageSubtitle;
 
+                if (filmPosterImage != null)
+                {
+
+                    var filmPosterImagePath = Path.Combine($"{Directory.GetCurrentDirectory()}", "wwwroot", "poster", filmPosterImage.FileName.ToString());
+
+                    using (var filestream = new FileStream(filmPosterImagePath, FileMode.Create))
+                    {
+                        await filmPosterImage.CopyToAsync(filestream);
+                    }
+
+                }
+
+                if (filmBannerImage != null)
+                {
+
+                    var filmBannerImagePath = Path.Combine($"{Directory.GetCurrentDirectory()}", "wwwroot", "banner", filmBannerImage.FileName.ToString());
+
+                    using (var filestream = new FileStream(filmBannerImagePath, FileMode.Create))
+                    {
+                        await filmBannerImage.CopyToAsync(filestream);
+                    }
+
+                }
+
                 var result = await _context.SaveChangesAsync();
 
                 return RedirectToAction("ListOfFilms");
@@ -347,9 +372,56 @@ namespace QuanLyRapPhim.Controllers
             });
         }
 
-        public IActionResult AddNewFilmSchedule(string filmId)
+        public async Task<IActionResult> AddNewFilmSchedule(string filmId, [FromForm] FilmSecheduleAdminModel filmSecheduleFromForm)
         {
-            return View();
+            if (Request.Method == HttpMethod.Post.Method)
+            {
+
+                if (ModelState.IsValid)
+                {
+                    FilmSecheduleModel filmSechedule = new FilmSecheduleModel()
+                    {
+                        filmSecheduleId = Guid.NewGuid().ToString(),
+                        filmId = filmId,
+                        filmShowDate = filmSecheduleFromForm.filmShowDate,
+                        filmShowTime = filmSecheduleFromForm.filmShowTime,
+                        cinemaRoomId = Request.Form["cinemaRoomInput"].ToString(),
+                    };
+
+                    _context.Add(filmSechedule);
+
+                    var result = await _context.SaveChangesAsync();
+
+                    if (result != 0)
+                    {
+                        return RedirectToAction("ListOfFilmSchedules", new { filmId = filmId });
+                    }
+                }
+            }
+
+            return View(new FilmSecheduleAdminModel()
+            {
+                filmId = filmId
+            });
+
+        }
+
+        [Route("AddNewFilmScheduleAutoLoad", Name = "AddNewFilmScheduleAutoLoad")]
+        public IActionResult AddNewFilmScheduleAutoLoad(string cinemaId)
+        {
+            if (string.IsNullOrEmpty(cinemaId))
+            {
+                List<CinemaModel> cinemas = (from c in _context.cinemas
+                                             select c).ToList();
+                return Json(cinemas);
+            }
+            else
+            {
+                List<CinemaRoomModel> cinemaRooms = (from cr in _context.cinemaRooms
+                                                     where cr.cinemaId == cinemaId
+                                                     select cr).ToList();
+                return Json(cinemaRooms);
+            }
         }
     }
 }

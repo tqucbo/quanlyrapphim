@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Thêm suất chiếu mới";
+    ViewData["filmId"] = Model.filmId;
 }
 
 <h1>
@@ -9,7 +10,7 @@
 </h1>
 <hr>
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" asp-action="AddNewFilmSchedule" asp-route-filmId="@Model.filmId" enctype="multipart/form-data">
     <div class="form-group row no-gutters">
         <label asp-for="@Model.filmShowDate" class="col-3 col-form-label"></label>
         <div class="col-sm-6">
@@ -24,5 +25,68 @@
             <span asp-validation-for="@Model.filmShowTime" class="text-danger"></span>
         </div>
     </div>
-
+    <div class="form-group row no-gutters">
+        <label class="col-3 col-form-label">Cụm rạp</label>
+        <div class="col-sm-6">
+            <select class="custom-select" name="cinemaInput" id="cinemaInput">
+                <option hidden selected>Chọn rạp</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <label class="col-3 col-form-label">Phòng chiếu</label>
+        <div class="col-sm-6">
+            <select class="custom-select" name="cinemaRoomInput" id="cinemaRoomInput" disabled>
+                <option hidden selected>Chọn phòng chiếu</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row no-gutters">
+        <button class="btn btn-primary">Gửi thông tin</button>
+    </div>
 </form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function (event) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.RouteUrl("AddNewFilmScheduleAutoLoad")",
+                success: function (response) {
+                    console.log(response);
+                    for (i in response) {
+                        $("#cinemaInput").append(`<option value="` + response[i].cinemaId + `">` + response[i].cinemaName + `</option>`);
+                    }
+                }
+            });
+        });
+
+        var cinemaId;
+
+        $("#cinemaInput").change(function (event) {
+            if (cinemaId !== null) {
+                cinemaId == null;
+                $("#cinemaRoomInput").attr("disabled", true);
+                $("#cinemaRoomInput option:first").attr("selected", "selected");
+            }
+
+            cinemaId = $("#cinemaInput option:selected").val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.RouteUrl("AddNewFilmScheduleAutoLoad")",
+                data: {
+                    cinemaId: cinemaId,
+                },
+                success: function (response) {
+                    console.log(response);
+                    $("#cinemaRoomInput").attr("disabled", false);
+                    $("#cinemaRoomInput").find("option").not(":first").remove();
+                    for (i in response) {
+                        $("#cinemaRoomInput").append(`<option value="` + response[i].cinemaRoomId + `">` + response[i].cinemaRoomName + `</option>`);
+                    }
+                }
+            });
+        })
+    </script>
+}

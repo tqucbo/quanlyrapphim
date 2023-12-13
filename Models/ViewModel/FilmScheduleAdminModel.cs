@@ -10,7 +10,7 @@ namespace QuanLyRapPhim.Models
         public DateTime filmShowDate { set; get; }
 
         [Required(ErrorMessage = "{0} không được bỏ trống")]
-        [Display(Name = "Ngày chiếu")]
+        [Display(Name = "Giờ chiếu")]
         public TimeSpan filmShowTime { set; get; }
 
         public string filmId { set; get; }
