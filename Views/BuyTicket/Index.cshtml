@@ -151,6 +151,7 @@
                 url: "@Url.RouteUrl("getFilmShowDate")",
                 data: {
                     "cinemaId": cinemaId,
+                    "filmId": "@Model.filmId",
                 },
                 success: function (response) {
                     $("#selectFilmShowDate").removeAttr("disabled");
@@ -179,6 +180,7 @@
                 data: {
                     "filmShowDate": filmShowDate,
                     "cinemaId": cinemaId,
+                    "filmId": "@Model.filmId",
                 },
                 success: function (response) {
                     $("#selectFilmShowTime").removeAttr("disabled");
@@ -205,6 +207,7 @@
                     "cinemaId": cinemaId,
                     "filmShowDate": filmShowDate,
                     "filmShowTime": filmShowTime,
+                    "filmId": "@Model.filmId",
                 },
                 success: function (response) {
                     var href = "@Url.Action("Index", "ChooseSeat", new { filmScheduleId = "response" })".replace("response", response);

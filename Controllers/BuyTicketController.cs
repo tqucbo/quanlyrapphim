@@ -54,64 +54,54 @@ namespace QuanLyRapPhim.Controllers
         [Route("/getCinema", Name = "getCinema")]
         public IActionResult GetCinema([FromForm] string filmId)
         {
-            List<CinemaModel> cms = (from cm in _context.cinemas
-                                     join crm in _context.cinemaRooms on cm.cinemaId equals crm.cinemaId
-                                     join fsm in _context.filmSechedules on crm.cinemaRoomId equals fsm.cinemaRoomId
-                                     orderby cm.cinemaName
+            List<CinemaModel> cms = (from fsm in _context.filmSechedules
                                      where fsm.filmId == filmId
-                                     select cm).Distinct().ToList();
+                                     && fsm.filmShowDate >= DateTime.Now.Date
+                                     select fsm.CinemaRoom.cinemaModel).Distinct().ToList();
 
             return Json(cms);
         }
 
         [HttpPost]
         [Route("/getFilmShowDate", Name = "getFilmShowDate")]
-        public IActionResult GetFilmShowDate([FromForm] string cinemaId)
+        public IActionResult GetFilmShowDate([FromForm] string cinemaId, [FromForm] string filmId)
         {
-            List<FilmSecheduleModel> fsms = (from fms in _context.filmSechedules
-                                             join crm in _context.cinemaRooms
-                                             on fms.cinemaRoomId equals crm.cinemaRoomId
-                                             orderby fms.filmShowDate
-                                             where crm.cinemaId == cinemaId
-                                             && fms.filmShowDate >= DateTime.Now.Date
-                                             select fms).ToList();
-
-            List<string> allFilmShowDate = fsms.Select((fsm) => fsm.filmShowDate.ToShortDateString()).Distinct().ToList();
+            List<string> allFilmShowDate = (from fsm in _context.filmSechedules
+                                            where fsm.filmId == filmId
+                                            && fsm.CinemaRoom.cinemaModel.cinemaId == cinemaId
+                                            && fsm.filmShowDate >= DateTime.Now.Date
+                                            select fsm.filmShowDate.ToShortDateString()).Distinct().ToList();
 
             return Json(allFilmShowDate);
         }
 
         [HttpPost]
         [Route("/getFilmShowTime", Name = "getFilmShowTime")]
-        public IActionResult GetFilmShowTime([FromForm] string filmShowDate, [FromForm] string cinemaId)
+        public IActionResult GetFilmShowTime([FromForm] string filmShowDate, [FromForm] string cinemaId, [FromForm] string filmId)
         {
-            List<FilmSecheduleModel> fsms = (from fms in _context.filmSechedules
-                                             join crm in _context.cinemaRooms
-                                              on fms.cinemaRoomId equals crm.cinemaRoomId
-                                             orderby fms.filmShowTime
-                                             where fms.filmShowDate == DateTime.Parse(filmShowDate)
-                                             && crm.cinemaId == cinemaId
-                                            && fms.filmShowTime >= DateTime.Now.TimeOfDay
-                                             select fms).ToList();
-
-            List<string> allFilmShowTime = fsms.Select((fsm) => fsm.filmShowTime.ToString(@"hh\:mm")).Distinct().ToList();
+            List<string> allFilmShowTime = (from fsm in _context.filmSechedules
+                                            where fsm.filmId == filmId
+                                            && fsm.CinemaRoom.cinemaModel.cinemaId == cinemaId
+                                            && fsm.filmShowDate == DateTime.Parse(filmShowDate)
+                                            && fsm.filmShowTime >= DateTime.Now.TimeOfDay
+                                            orderby fsm.filmShowTime
+                                            select fsm.filmShowTime.ToString(@"hh\:mm")).Distinct().ToList();
 
             return Json(allFilmShowTime);
         }
 
         [HttpPost]
         [Route("/getFilmScheduleId", Name = "getFilmScheduleId")]
-        public IActionResult GetFilmScheduleId(string cinemaId, string filmShowDate, string filmShowTime)
+        public IActionResult GetFilmScheduleId(string cinemaId, string filmShowDate, string filmShowTime, string filmId)
         {
-            FilmSecheduleModel f = (from fms in _context.filmSechedules
-                                    join crm in _context.cinemaRooms
-                                     on fms.cinemaRoomId equals crm.cinemaRoomId
-                                    where crm.cinemaId == cinemaId
-                                    && fms.filmShowDate == DateTime.Parse(filmShowDate)
-                                    && fms.filmShowTime == TimeSpan.Parse(filmShowTime)
-                                    select fms).FirstOrDefault();
+            string filmSecheduleId = (from fsm in _context.filmSechedules
+                                      where fsm.filmId == filmId
+                                      && fsm.filmShowDate == DateTime.Parse(filmShowDate)
+                                      && fsm.filmShowTime == TimeSpan.Parse(filmShowTime)
+                                      && fsm.CinemaRoom.cinemaModel.cinemaId == cinemaId
+                                      select fsm.filmSecheduleId).FirstOrDefault();
 
-            return Json(f.filmSecheduleId);
+            return Json(filmSecheduleId);
         }
     }
 }
