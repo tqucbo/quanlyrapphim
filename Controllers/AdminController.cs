@@ -176,86 +176,81 @@ namespace QuanLyRapPhim.Controllers
             }
             if (Request.Method == HttpMethod.Post.Method)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(filmFromForm));
+                Console.WriteLine("Film length from form: " + filmFromForm.filmLength);
 
                 var film = await _context.films.FindAsync(filmId);
 
-                film.filmBannerImage =
-                    filmBannerImage == null
-                    ? film.filmBannerImage
-                    : filmBannerImage.FileName.ToString();
+                if (filmPosterImage != null)
+                {
+                    film.filmPosterImage = filmPosterImage.FileName.ToString();
+                }
 
-                film.filmDescription =
-                    string.IsNullOrEmpty(filmFromForm.filmDescription)
-                    ? film.filmDescription
-                    : filmFromForm.filmDescription;
+                if (filmBannerImage != null)
+                {
+                    film.filmBannerImage = filmBannerImage.FileName.ToString();
+                }
 
-                film.filmDirector =
-                    string.IsNullOrEmpty(filmFromForm.filmDirector)
-                    ? film.filmDirector
-                    : filmFromForm.filmDirector;
+                if (filmFromForm.filmDescription != null)
+                {
+                    film.filmDescription = filmFromForm.filmDescription;
+                }
 
-                film.filmName =
-                    string.IsNullOrEmpty(filmFromForm.filmName)
-                    ? film.filmName
-                    : filmFromForm.filmName;
+                if (filmFromForm.filmDirector != null)
+                {
+                    film.filmDirector = filmFromForm.filmDirector;
+                }
 
-                film.filmCountry =
-                    string.IsNullOrEmpty(filmFromForm.filmCountry)
-                    ? film.filmCountry
-                    : filmFromForm.filmCountry;
+                if (filmFromForm.filmName != null)
+                {
+                    film.filmName = filmFromForm.filmName;
+                }
 
-                film.filmGenreId =
-                    string.IsNullOrEmpty(filmFromForm.filmGenreId)
-                    ? film.filmGenreId
-                    : Request.Form["exists_filmGenre"].ToString() == "1"
-                    ? film.filmGenreId
-                    : Request.Form["filmGenre"].ToString() == film.filmGenreId
-                    ? film.filmGenreId
-                    : Request.Form["filmGenre"].ToString();
+                if (filmFromForm.filmCountry != null)
+                {
+                    film.filmCountry = filmFromForm.filmCountry;
+                }
 
-                film.filmLength =
-                    filmFromForm.filmLength == 0 || filmFromForm.filmLength == -1
-                    ? film.filmLength
-                    : filmFromForm.filmLength;
+                if (Request.Form["exists_filmGenre"].ToString() == "2")
+                {
+                    film.filmGenreId = Request.Form["filmGenre"].ToString();
+                }
+                else if (Request.Form["exists_filmGenre"].ToString() == "1")
+                {
+                    film.filmGenreId = null;
+                }
 
-                film.filmMainActors =
-                    string.IsNullOrEmpty(filmFromForm.filmMainActors)
-                    ? film.filmMainActors
-                    : filmFromForm.filmMainActors;
+                if (filmFromForm.filmLength != 0 || filmFromForm.filmLength != -1)
+                {
+                    film.filmLength = filmFromForm.filmLength;
+                }
 
-                film.filmMainCategoryId =
-                    string.IsNullOrEmpty(filmFromForm.filmMainCategoryId)
-                    ? film.filmMainCategoryId
-                    : Request.Form["exists_filmMainCategory"].ToString() == "1"
-                    ? film.filmMainCategoryId
-                    : Request.Form["filmMainCategory"].ToString() == film.filmMainCategoryId
-                    ? film.filmMainCategoryId
-                    : Request.Form["filmMainCategory"];
+                if (filmFromForm.filmMainActors != null)
+                {
+                    film.filmMainActors = filmFromForm.filmMainActors;
+                }
 
-                film.filmName =
-                    string.IsNullOrEmpty(filmFromForm.filmName)
-                    ? film.filmName
-                    : filmFromForm.filmName;
+                if (Request.Form["exists_filmMainCategory"].ToString() == "2")
+                {
+                    film.filmMainCategoryId = Request.Form["filmMainCategory"].ToString();
+                }
+                else if (Request.Form["exists_filmMainCategory"].ToString() == "1")
+                {
+                    film.filmMainCategoryId = null;
+                }
 
-                film.filmPosterImage =
-                    filmPosterImage == null
-                    ? film.filmPosterImage
-                    : filmPosterImage.FileName.ToString();
+                if (Request.Form["exists_filmStartDate"].ToString() == "2")
+                {
+                    film.filmStartDate = DateTime.Parse(Request.Form["filmStartDate"].ToString());
+                }
+                else if (Request.Form["exists_filmMainCategory"].ToString() == "1")
+                {
+                    film.filmStartDate = null;
+                }
 
-                film.filmStartDate =
-                    string.IsNullOrEmpty(filmFromForm.filmStartDate.ToString())
-                    ? null
-                    : Request.Form["exists_filmStartDate"].ToString() == "1"
-                    ? null
-                    : Request.Form["exists_filmStartDate"].ToString() == film.filmStartDate.ToString()
-                    ? film.filmStartDate
-                    : DateTime.Parse(Request.Form["filmStartDate"].ToString());
-
-                film.languageSubtitle =
-                    string.IsNullOrEmpty(filmFromForm.languageSubtitle)
-                    ? film.languageSubtitle
-                    : filmFromForm.languageSubtitle;
+                if (filmFromForm.languageSubtitle != null)
+                {
+                    film.languageSubtitle = filmFromForm.languageSubtitle;
+                }
 
                 if (filmPosterImage != null)
                 {
@@ -281,7 +276,9 @@ namespace QuanLyRapPhim.Controllers
 
                 }
 
-                var result = await _context.SaveChangesAsync();
+                Console.WriteLine("Film: " + JsonConvert.SerializeObject(film));
+
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction("ListOfFilms");
 

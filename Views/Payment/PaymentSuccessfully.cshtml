@@ -17,7 +17,13 @@
     var paymentMethod = Model.Select(i => i.PaymentMethod.paymentMethodName).Distinct().FirstOrDefault();
     var invoiceId = Model.Select(i => i.invoiceId).Distinct().FirstOrDefault();
     var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{Model.Select(i => i.ticket.filmSechedule.film.filmPosterImage).Distinct().FirstOrDefault()}") ? Model.Select(i => i.ticket.filmSechedule.film.filmPosterImage).Distinct().FirstOrDefault() : "noimageavailable.jpg";
-    var filmGenre = string.IsNullOrEmpty(Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreId).Distinct().FirstOrDefault()) ? "" : Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreName).Distinct().FirstOrDefault();
+    var filmGenre = 
+        string.IsNullOrEmpty(
+            Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreId)
+            .Distinct()
+            .FirstOrDefault()) 
+            ? "" 
+            : Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreName).Distinct().FirstOrDefault();
     var filmGenreStyle = string.IsNullOrEmpty(Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreId).Distinct().FirstOrDefault()) ? "" : "width: 48px; height: 27px";
     
     string getSeatFromSeatModel()

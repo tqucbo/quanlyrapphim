@@ -40,7 +40,8 @@
         {
             var filmName = i.filmName.ToUpper();
             var filmGenreName = i.filmGenreId == null ? "Chưa xác định" : i.filmGenre.filmGenreName;
-            var filmMainCategoryName = i.filmMainCategory.filmMainCategoryName;
+            var filmMainCategoryName = i.filmMainCategoryId == null ? "Chưa xác định" :
+            i.filmMainCategory.filmMainCategoryName;
             var filmStartDate = i.filmStartDate == null ? "Chưa xác định" : i.filmStartDate?.ToShortDateString();
             var filmId = i.filmId;
 

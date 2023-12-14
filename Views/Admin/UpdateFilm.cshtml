@@ -154,6 +154,7 @@
                         $(".filmMainCategoryRadioAndSelect").append(`<label class="mr-3" for="Đã xác định">Đã xác định</label>`);
                         $(".filmMainCategoryRadioAndSelect").append(`</div>`);
                         $(".filmMainCategoryRadioAndSelect").append(`<select name="filmMainCategory" id="filmMainCategory" class="w-100"style="height: calc(1.5em + .75rem + 2px);" disabled="disabled"></select>`);
+
                         for (i in filmMainCategories) {
                             if (filmMainCategories[i].filmMainCategoryId == "@Model.filmMainCategoryId") {
                                 $("#filmMainCategory").append(
@@ -165,6 +166,7 @@
                                 );
                             }
                         }
+
                         $("input[name=exists_filmMainCategory]").change(function () {
                             if ($("input[name=exists_filmMainCategory]:checked").val() == 1) {
                                 $("#filmMainCategory").attr("disabled", "disabled");
@@ -172,6 +174,7 @@
                                 $("#filmMainCategory").removeAttr("disabled");
                             }
                         });
+
                     } else {
                         for (i in filmMainCategories) {
                             if (filmMainCategories[i].filmMainCategoryId == "@Model.filmMainCategoryId") {
@@ -201,14 +204,14 @@
             });
 
             if ("@Model.filmLength" === "0" || "@Model.filmLength" === "-1") {
-                $(".filmLengthInput").append(`<input asp-for="@Model.filmLength" type="number" min="-1" class="form-control"><span asp-validation-for="@Model.filmLength" class="text-danger"></span>`);
+                $(".filmLengthInput").append(`<input name="filmLength" type="number" min="-1" class="form-control"><span asp-validation-for="@Model.filmLength" class="text-danger"></span>`);
             } else {
                 $(".filmLengthInput").append(`<strong>@Model.filmLength phút</strong>`);
                 $(".filmLengthInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
             }
 
             if ("@Model.filmDescription" === "") {
-                $(".filmDescriptionInput").append(`<input asp-for="@Model.filmDescription" type="text" class="form-control">`)
+                $(".filmDescriptionInput").append(`<input name="filmDescription" type="text" class="form-control">`)
             } else {
                 $(".filmDescriptionInput").append("@Model.filmDescription");
                 $(".filmDescriptionInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
@@ -216,32 +219,34 @@
 
 
             if ("@Model.filmDirector" === "") {
-                $(".filmDirectorInput").append(`<input asp-for="@Model.filmDirector" type="text" class="form-control">`)
+                $(".filmDirectorInput").append(`<input name="filmDirector" type="text" class="form-control">`)
             } else {
                 $(".filmDirectorInput").append("@Model.filmDirector");
                 $(".filmDirectorInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
             }
 
             if ("@Model.filmMainActors" === "") {
-                $(".filmMainActorsInput").append(`<input asp-for="@Model.filmMainActors" type="text" class="form-control">`)
+                $(".filmMainActorsInput").append(`<input name="filmMainActors" type="text" class="form-control">`)
             } else {
                 $(".filmMainActorsInput").append("@Model.filmMainActors");
                 $(".filmMainActorsInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
             }
 
             if ("@Model.filmCountry" === "") {
-                $(".filmCountryInput").append(`<input asp-for="@Model.filmCountry" type="text" class="form-control">`)
+                $(".filmCountryInput").append(`<input name="filmCountry" type="text" class="form-control">`)
             } else {
                 $(".filmCountryInput").append("@Model.filmCountry");
                 $(".filmCountryInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
             }
 
             if ("@Model.languageSubtitle" === "") {
-                $(".languageSubtitleInput").append(`<input asp-for="@Model.languageSubtitle" type="text" class="form-control">`)
+                $(".languageSubtitleInput").append(`<input name="languageSubtitle" type="text" class="form-control">`)
             } else {
                 $(".languageSubtitleInput").append("@Model.languageSubtitle");
                 $(".languageSubtitleInput").css({ "padding-top": ".375rem", "padding-bottom": ".375rem" });
             }
+
+
         });
     </script>
 }
