@@ -19,12 +19,12 @@
     var filmPosterImage = System.IO.File.Exists($"{System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot")}/poster/{Model.Select(i => i.ticket.filmSechedule.film.filmPosterImage).Distinct().FirstOrDefault()}") ? Model.Select(i => i.ticket.filmSechedule.film.filmPosterImage).Distinct().FirstOrDefault() : "noimageavailable.jpg";
     var filmGenre = 
         string.IsNullOrEmpty(
-            Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreId)
+            Model.Select(i => i.ticket.filmSechedule.film.filmGenreId)
             .Distinct()
             .FirstOrDefault()) 
             ? "" 
             : Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreName).Distinct().FirstOrDefault();
-    var filmGenreStyle = string.IsNullOrEmpty(Model.Select(i => i.ticket.filmSechedule.film.filmGenre.filmGenreId).Distinct().FirstOrDefault()) ? "" : "width: 48px; height: 27px";
+    var filmGenreStyle = string.IsNullOrEmpty(Model.Select(i => i.ticket.filmSechedule.film.filmGenreId).Distinct().FirstOrDefault()) ? "" : "width: 48px; height: 27px";
     
     string getSeatFromSeatModel()
     {
