@@ -92,6 +92,21 @@ namespace QuanLyRapPhim
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "Admin",
+                    areaName: "Admin",
+                    pattern: "{controller=Admin}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "Membership",
+                    areaName: "Membership",
+                    pattern: "{controller=Membership}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "Role",
+                    areaName: "Role",
+                    pattern: "{controller=Role}/{action=Index}/{id?}");
             });
         }
     }
