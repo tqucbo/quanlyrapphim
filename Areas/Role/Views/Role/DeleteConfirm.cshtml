@@ -1,0 +1,25 @@
+@model Microsoft.AspNetCore.Identity.IdentityRole
+
+@{
+    ViewData["Title"] = "Xoá quyền";
+}
+
+<h1>
+    @ViewData["Title"]
+</h1>
+
+<hr>
+
+<p>
+    Nhấn vào nút "Gửi thông tin" bên dưới để xác nhận việc xoá quyền sau:
+    <br>
+    Mã quyền: <strong>@Model.Id</strong>
+    <br>
+    Tên quyền: <strong>@Model.Name</strong>
+</p>
+<div>
+    <form asp-action="Delete" asp-route-roleId="@Model.Id" method="post">
+        <button class="btn btn-primary" type="submit">Gửi thông
+            tin</button>
+    </form>
+</div>

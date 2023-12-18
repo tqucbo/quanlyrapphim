@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace QuanLyRapPhim.Controllers
 {
@@ -40,10 +41,24 @@ namespace QuanLyRapPhim.Controllers
             }
         }
 
+        public async Task<IActionResult> DeleteConfirm(string roleId)
+        {
+            IdentityRole role = await _roleManager.FindByIdAsync(roleId);
+
+            if (role != null)
+            {
+                return View(role);
+            }
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Delete(string roleId)
         {
             IdentityRole role = await _roleManager.FindByIdAsync(roleId);
+
+            Console.WriteLine(JsonConvert.SerializeObject(role));
+
             if (role != null)
             {
                 var result = await _roleManager.DeleteAsync(role);

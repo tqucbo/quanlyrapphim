@@ -204,3 +204,4 @@ D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Areas\Role\Views\_ViewImports.cshtm
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Areas\Role\Views\_ViewStart.cshtml.g.cs
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Areas\Role\Views\Role\Create.cshtml.g.cs
 D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Areas\Role\Views\Role\Delete.cshtml.g.cs
+D:\BIDC\quanlyrapphim\obj\Debug\net5.0\Razor\Areas\Role\Views\Role\DeleteConfirm.cshtml.g.cs
