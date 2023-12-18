@@ -4,16 +4,23 @@
     ViewData["Title"] = "Quản lý quyền truy cập";
 }
 
-<div class="row no-gutters justify-content-between">
-    <h1 style="align-self: self-end;">
-        @ViewData["Title"]
-    </h1>
-    <a class="btn btn-primary" asp-action="Create"
-        style="height: min-content; width:100%; max-width: 200px; align-self: self-end;">
+<h1 style="align-self: self-end;">
+    @ViewData["Title"]
+</h1>
+
+<hr />
+
+<div class="row no-gutters">
+    <a class="btn btn-primary text-white mb-3 mr-2" asp-action="Create"
+        style="height: min-content; width:100%; max-width: 250px; align-self: self-end;">
         Thêm quyền mới
     </a>
+    <a class="btn btn-primary text-white mb-3 mr-2"
+        style="height: min-content; width:100%; max-width: 250px; align-self: self-end;">
+        Thêm quyền cho người dùng
+    </a>
 </div>
-<hr />
+
 
 <table class="table">
     <thead>

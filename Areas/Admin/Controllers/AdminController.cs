@@ -13,11 +13,13 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using System.Reflection;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace QuanLyRapPhim.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly ILogger<AdminController> _logger;

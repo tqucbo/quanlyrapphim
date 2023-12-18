@@ -1,4 +1,5 @@
 using System;
+using System.Security.Policy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -35,6 +36,13 @@ namespace QuanLyRapPhim
             services.AddIdentity<AppUserModel, IdentityRole>()
                     .AddEntityFrameworkStores<QuanLyRapPhimDBContext>()
                     .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(
+                options =>
+                {
+                    options.AccessDeniedPath = "/";
+                }
+            );
 
             services.Configure<IdentityOptions>(
                 options =>

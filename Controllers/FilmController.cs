@@ -27,7 +27,7 @@ namespace QuanLyRapPhim.Controllers
             List<FilmModel> films = (from film in _context.films
                                      where film.filmStartDate <= DateTime.Now
                                      orderby film.filmStartDate descending, film.filmName
-                                     select film).ToList();
+                                     select film).Take(20).ToList();
             return View(films);
         }
 

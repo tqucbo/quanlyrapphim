@@ -1,21 +1,31 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using QuanLyRapPhim.Models;
 
 namespace QuanLyRapPhim.Controllers
 {
     [Area("Role")]
+    [Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
         public RoleManager<IdentityRole> _roleManager;
 
-        public RoleController(RoleManager<IdentityRole> roleManager)
+        public UserManager<AppUserModel> _userManager;
+
+        public RoleController(
+            RoleManager<IdentityRole> roleManager,
+            UserManager<AppUserModel> userManager
+            )
         {
             _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -29,9 +39,18 @@ namespace QuanLyRapPhim.Controllers
             {
                 if (ModelState.IsValid)
                 {
+
+                    if (await _roleManager.RoleExistsAsync(name) == true)
+                    {
+                        ModelState.AddModelError("", "Đã có quyền này");
+                    }
+
                     var result = await _roleManager.CreateAsync(new IdentityRole(name));
+
                     if (result.Succeeded)
+                    {
                         return RedirectToAction("Index");
+                    }
                 }
                 return View(name);
             }
@@ -57,8 +76,6 @@ namespace QuanLyRapPhim.Controllers
         {
             IdentityRole role = await _roleManager.FindByIdAsync(roleId);
 
-            Console.WriteLine(JsonConvert.SerializeObject(role));
-
             if (role != null)
             {
                 var result = await _roleManager.DeleteAsync(role);
@@ -73,7 +90,7 @@ namespace QuanLyRapPhim.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "No role found");
+                ModelState.AddModelError("", "Không tìm thấy quyền nào");
             }
             return View("Index", _roleManager.Roles);
         }
