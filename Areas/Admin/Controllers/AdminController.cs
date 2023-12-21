@@ -370,6 +370,15 @@ namespace QuanLyRapPhim.Controllers
         {
             if (Request.Method == HttpMethod.Post.Method)
             {
+                if (Request.Form["cinemaRoomInput"].ToString().Contains("Chọn") || Request.Form["cinemaInput"].ToString().Contains("Chọn"))
+                {
+                    return View(new FilmSecheduleAdminModel()
+                    {
+                        filmId = filmId,
+                        filmShowDate = filmSecheduleFromForm.filmShowDate,
+                        filmShowTime = filmSecheduleFromForm.filmShowTime,
+                    });
+                }
 
                 if (ModelState.IsValid)
                 {

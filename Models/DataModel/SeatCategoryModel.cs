@@ -1,13 +1,16 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace QuanLyRapPhim.Models {
+namespace QuanLyRapPhim.Models
+{
     [Table("SeatCategory")]
-    public class SeatCategoryModel {
+    public class SeatCategoryModel
+    {
         [Key]
-        public string seatCategoryId {set;get;}
-        public string seatCategoryName {set;get;}
+        public string seatCategoryId { set; get; }
 
-        public int seatCategoryPrice {set;get;}
+        public string seatCategoryName { set; get; }
+
+        public int seatCategoryPrice { set; get; }
     }
 }

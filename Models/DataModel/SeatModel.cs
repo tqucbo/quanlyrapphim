@@ -21,10 +21,10 @@ namespace QuanLyRapPhim.Models
         [ForeignKey("cinemaRoomId")]
         public virtual CinemaRoomModel cinemaRoom { set; get; }
 
-        public string seatCategoryId {set;get;}
+        public string seatCategoryId { set; get; }
 
         [ForeignKey("seatCategoryId")]
-        public virtual SeatCategoryModel seatCategory {set;get;}
+        public virtual SeatCategoryModel seatCategory { set; get; }
 
     }
 }

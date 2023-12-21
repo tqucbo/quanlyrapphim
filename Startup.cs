@@ -40,6 +40,7 @@ namespace QuanLyRapPhim
             services.ConfigureApplicationCookie(
                 options =>
                 {
+                    options.LoginPath = "/Membership/Login";
                     options.AccessDeniedPath = "/";
                 }
             );
@@ -111,10 +112,10 @@ namespace QuanLyRapPhim
                     areaName: "Membership",
                     pattern: "{controller=Membership}/{action=Index}/{id?}");
 
-                endpoints.MapAreaControllerRoute(
-                    name: "Role",
-                    areaName: "Role",
-                    pattern: "{controller=Role}/{action=Index}/{id?}");
+                // endpoints.MapAreaControllerRoute(
+                //     name: "InvoiceAdmin",
+                //     areaName: "InvoiceAdmin",
+                //     pattern: "{controller=InvoiceAdmin}/{action=Index}/{id?}");
             });
         }
     }
