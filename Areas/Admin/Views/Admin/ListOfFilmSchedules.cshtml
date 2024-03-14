@@ -11,13 +11,23 @@
 }
 
 <div class="row no-gutters justify-content-between">
-    <h1 style="align-self: self-end;">
-        @ViewData["Title"]
-    </h1>
-    <a class="btn btn-primary" asp-action="AddNewFilmSchedule" asp-controller="Admin" asp-route-filmId="@filmId"
-        style="height: min-content; width:100%; max-width: 200px; align-self: self-end;">
-        Thêm suất chiếu mới
-    </a>
+    <div>
+        <h1 style="align-self: self-end;">
+            @ViewData["Title"]
+        </h1>
+    </div>
+    <div class="row no-gutters" style="justify-content: space-between; width: 100%; max-width: 410px">
+        <a class="btn btn-primary" asp-action="ListOfFilms" asp-controller="Admin"
+            style="height: min-content; width:100%; max-width: 200px; align-self: self-end;">
+            Danh sách phim
+        </a>
+        <a class="btn btn-primary" asp-action="AddNewFilmSchedule" asp-controller="Admin" asp-route-filmId="@filmId"
+            style="height: min-content; width:100%; max-width: 200px; align-self: self-end;">
+            Thêm suất chiếu mới
+        </a>
+    </div>
+
+
 </div>
 <hr />
 

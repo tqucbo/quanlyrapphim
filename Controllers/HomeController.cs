@@ -43,10 +43,12 @@ namespace QuanLyRapPhim.Controllers
                                       .Take(10)
                                       .ToList();
 
-            List<FilmModel> top10NowShowing = (from film in _context.films
-                                               where film.filmStartDate <= DateTime.Now
-                                               orderby film.filmStartDate descending, film.filmName
-                                               select film).Take(10).ToList();
+            List<FilmModel> top10NowShowing = (from fs in _context.filmSechedules
+                                     where fs.film.filmStartDate <= DateTime.Now
+                                     && fs.filmShowDate.AddDays(7) >= DateTime.Now
+                                     orderby fs.film.filmStartDate descending, fs.film.filmName
+                                     select fs.film).Distinct().Take(10).ToList();
+
 
             List<FilmModel> top10ComingSoon = (from film in _context.films
                                                where film.filmStartDate > DateTime.Now || !film.filmStartDate.HasValue
@@ -64,10 +66,12 @@ namespace QuanLyRapPhim.Controllers
         [Route("/Top10MovieNowShowing", Name = "Top10MovieNowShowing")]
         public IActionResult Top10MovieNowShowing()
         {
-            List<FilmModel> films = (from film in _context.films
-                                     where film.filmStartDate <= DateTime.Now
-                                     orderby film.filmStartDate descending, film.filmName
-                                     select film).Take(10).ToList();
+            List<FilmModel> films = (from fs in _context.filmSechedules
+                                     where fs.film.filmStartDate <= DateTime.Now
+                                     && fs.filmShowDate.AddDays(7) >= DateTime.Now
+                                     orderby fs.film.filmStartDate descending, fs.film.filmName
+                                     select fs.film).Distinct().Take(10).ToList();
+
             return Json(films);
         }
 
