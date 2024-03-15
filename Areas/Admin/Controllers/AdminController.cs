@@ -218,7 +218,11 @@ namespace QuanLyRapPhim.Controllers
                     film.filmGenreId = null;
                 }
 
-                if (filmFromForm.filmLength != 0 || filmFromForm.filmLength != -1)
+                if (filmFromForm.filmLength == 0 || filmFromForm.filmLength == -1)
+                {
+                    film.filmLength = film.filmLength;
+                }
+                else
                 {
                     film.filmLength = filmFromForm.filmLength;
                 }
