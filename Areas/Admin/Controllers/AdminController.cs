@@ -45,11 +45,6 @@ namespace QuanLyRapPhim.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult ListOfFilms()
-        {
 
             List<FilmModel> films = (from f in _context.films
                                      orderby f.filmStartDate descending, f.filmName ascending
